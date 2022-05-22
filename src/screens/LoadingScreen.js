@@ -1,13 +1,21 @@
-import { StyleSheet, View, ImageBackground, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
-export default function App(navigation) {
+export default function App({ navigation }) {
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
       style={styles.imgBackground}
     >
       <View style={styles.container}>
-        <Image source={require("../../assets/logo.png")} />
+        <TouchableOpacity onPress={() => navigation.replace("Login")}>
+          <Image source={require("../../assets/logo.png")} />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );

@@ -7,6 +7,7 @@ import {
   ImageBackground,
   TextInput,
   Pressable,
+  Alert,
 } from "react-native";
 
 export default function SignUpScreen({ navigation }) {
@@ -25,7 +26,7 @@ export default function SignUpScreen({ navigation }) {
         </View>
         <View style={styles.section}>
           <StatusBar style="auto" />
-          <Text style={styles.text}>Login</Text>
+          <Text style={styles.text}>Cadastrar</Text>
           <TextInput
             value={email}
             onChangeText={(userEmail) => setEmail(userEmail)}
@@ -54,7 +55,12 @@ export default function SignUpScreen({ navigation }) {
           />
           <Pressable
             style={styles.button}
-            onPress={() => navigation.replace("SignUp")}
+            onPress={() =>
+              Alert.alert(
+                "Cadastrado com sucesso!",
+                "Email de verificação enviado para: " + email
+              )
+            }
           >
             <Text style={styles.textButton}>Cadastrar</Text>
           </Pressable>
@@ -145,7 +151,7 @@ const styles = StyleSheet.create({
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 14,
+    fontSize: 12,
     marginTop: 5,
   },
   secondText: {
