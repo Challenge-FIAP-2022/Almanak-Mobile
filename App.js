@@ -1,6 +1,5 @@
-import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
-import { MainStackNavigator } from "./src/navigation/StackNavigators";
+import { Router } from "./src/navigation/Router";
 
 import LoadingScreen from "./src/screens/LoadingScreen";
 
@@ -10,8 +9,6 @@ import {
 } from "@expo-google-fonts/press-start-2p";
 
 import { SquadaOne_400Regular } from "@expo-google-fonts/squada-one";
-
-import AppLoading from "expo-app-loading";
 
 const App = () => {
   let [fontsLoaded] = useFonts({
@@ -23,11 +20,7 @@ const App = () => {
     return <LoadingScreen />;
   }
 
-  return (
-    <NavigationContainer>
-      <MainStackNavigator />
-    </NavigationContainer>
-  );
+  return <Router />;
 };
 
 export default App;

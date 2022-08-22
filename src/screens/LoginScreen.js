@@ -17,6 +17,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
+      blurRadius={2}
       style={styles.imgBackground}
     >
       <View style={styles.container}>
