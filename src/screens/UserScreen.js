@@ -1,11 +1,11 @@
-import { useNavigation } from "@react-navigation/native";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, View } from "react-native";
+import { useAuth } from "../contexts/Auth";
 
 export default function UserScreen() {
-  const navigation = useNavigation();
+  const {signOut} = useAuth;
   return (
     <View style={styles.container}>
-      <Button title="Sair" onPress={() => navigation.navigate("Login")} />
+      <Button title="Sair" onPress={signOut} />
     </View>
   );
 }

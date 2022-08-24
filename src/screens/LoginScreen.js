@@ -19,7 +19,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
-      blurRadius={2}
+      blurRadius={3}
       style={styles.imgBackground}
     >
       <View style={styles.container}>
@@ -49,7 +49,7 @@ export default function LoginScreen({ navigation }) {
           />
           <Pressable
             style={styles.button}
-            onPress={() => navigation.replace("Loading")}
+            onPress={() => signIn(email, password)}
           >
             <Text style={styles.textButton}>Entrar</Text>
           </Pressable>
@@ -61,7 +61,7 @@ export default function LoginScreen({ navigation }) {
               Ainda não tem uma conta?
               <Text
                 style={styles.signUpText}
-                onPress={() => signIn(email, password)}
+                onPress={() => navigation.replace("SignUp")}
               >
                 {" "}
                 Cadastrar-se
