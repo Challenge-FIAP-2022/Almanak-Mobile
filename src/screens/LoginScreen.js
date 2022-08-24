@@ -7,12 +7,14 @@ import {
   ImageBackground,
   TextInput,
   Pressable,
-  KeyboardAvoidingView,
 } from "react-native";
+import { useAuth } from "../contexts/Auth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const { signIn } = useAuth();
 
   return (
     <ImageBackground
@@ -59,7 +61,7 @@ export default function LoginScreen({ navigation }) {
               Ainda não tem uma conta?
               <Text
                 style={styles.signUpText}
-                onPress={() => navigation.replace("SignUp")}
+                onPress={() => signIn(email, password)}
               >
                 {" "}
                 Cadastrar-se

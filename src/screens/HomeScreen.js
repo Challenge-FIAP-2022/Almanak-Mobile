@@ -5,9 +5,12 @@ export default function HomeScreen() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Button title="Sua conta" onPress={() => navigation.navigate("UserScreen")} />
+      <Button
+        title="Sua conta"
+        onPress={() => navigation.navigate("UserScreen")}
+      />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

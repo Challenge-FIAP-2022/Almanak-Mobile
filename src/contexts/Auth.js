@@ -1,34 +1,39 @@
+import React, { useContext } from "react";
 import { createContext, useState } from "react";
-
-// interface AuthData {
-//     token: string;
-//     email: string;
-//     name: string;
-// }
-
-// interface AuthContextData {
-//     authData : AuthData;
-//     signIn: (email, password) => Promise;
-//     signOut: ()=> Promise;
-// }
+import { Alert } from "react-native";
+import { authService } from "../services/authService";
 
 export const AuthContext = createContext({});
 
-export const AuthProvider = ({children}) =>{
-    const [autData, setAuth] = useState();
+export const AuthProvider = ({ children }) => {
+  const [authData, setAuth] = useState({});
 
-    function signIn(){
-        //chama API
+  async function signIn(email, password) {
+    try {
+      const auth = await authService.signIn(email, password);
+
+      setAuth(authData);
+
+      return auth;
+    } catch (error) {
+      Alert.alert(error.message, "Tente novamente");
     }
+  }
 
-    function signOut(){
-        //Logout
-    }
+  async function signOut() {
+    setAuth(undefined);
 
-    return(
-        <AuthContext.Provider
-        value={{authData, signIn, signOut}}>
-            {children}
-        </AuthContext.Provider>
-    )
+    return;
+  }
+
+  return (
+    <AuthContext.Provider value={{ authData, signIn, signOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  return context;
 }
