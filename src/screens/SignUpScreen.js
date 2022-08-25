@@ -11,74 +11,91 @@ import {
 } from "react-native";
 
 export default function SignUpScreen({ navigation }) {
+  const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
+  const [birth, setBirth] = useState();
 
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
       style={styles.imgBackground}
     >
-      <View style={styles.container}>
-        <View style={styles.section}>
-          <Text style={styles.textTilte}>Almanak</Text>
-        </View>
-        <View style={styles.section}>
-          <StatusBar style="auto" />
-          <Text style={styles.text}>Cadastrar</Text>
-          <TextInput
-            value={email}
-            onChangeText={(userEmail) => setEmail(userEmail)}
-            placeholder="Email"
-            style={styles.textInput}
-            placeholderTextColor="#FFFFFF"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <TextInput
-            value={password}
-            onChangeText={(userPassword) => setPassword(userPassword)}
-            style={styles.textInput}
-            placeholder="Senha"
-            placeholderTextColor="#FFFFFF"
-            secureTextEntry
-          />
-          <TextInput
-            value={confirmPassword}
-            onChangeText={(userPassword) => setConfirmPassword(userPassword)}
-            style={styles.textInput}
-            placeholder="Confirmar senha"
-            placeholderTextColor="#FFFFFF"
-            secureTextEntry
-          />
-          <Pressable
-            style={styles.button}
-            onPress={() =>
-              Alert.alert(
-                "Cadastrado com sucesso!",
-                "Email de verificação enviado para: " + email
-              )
-            }
+      <View style={styles.containerTitle}>
+        <Text style={styles.textTilte}>Almanak</Text>
+        <StatusBar style="auto" />
+        <Text style={styles.text}>Criar uma conta</Text>
+      </View>
+      <View style={styles.containerInput}>
+        <TextInput
+          value={userName}
+          onChangeText={(userName) => setUserName(userName)}
+          placeholder="Nome"
+          style={styles.textInput}
+          placeholderTextColor="#FFFFFF"
+          keyboardType="default"
+          autoCapitalize="words"
+          autoCorrect={false}
+        />
+
+        <TextInput
+          value={birth}
+          onChangeText={(userBirth) => setBirth(userBirth)}
+          placeholder="Data de nascimento"
+          style={styles.textInput}
+          placeholderTextColor="#FFFFFF"
+          keyboardType="numeric"
+        />
+        <TextInput
+          value={email}
+          onChangeText={(userEmail) => setEmail(userEmail)}
+          placeholder="Email"
+          style={styles.textInput}
+          placeholderTextColor="#FFFFFF"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <TextInput
+          value={password}
+          onChangeText={(userPassword) => setPassword(userPassword)}
+          style={styles.textInput}
+          placeholder="Senha"
+          placeholderTextColor="#FFFFFF"
+          secureTextEntry
+        />
+        <TextInput
+          value={confirmPassword}
+          onChangeText={(userPassword) => setConfirmPassword(userPassword)}
+          style={styles.textInput}
+          placeholder="Confirmar senha"
+          placeholderTextColor="#FFFFFF"
+          secureTextEntry
+        />
+      </View>
+      <View style={styles.containerButtons}>
+        <Pressable
+          style={styles.button}
+          onPress={() =>
+            Alert.alert(
+              "Cadastrado com sucesso!",
+              "Email de verificação enviado para: " + email
+            )
+          }
+        >
+          <Text style={styles.textButton}>Cadastrar</Text>
+        </Pressable>
+        <Text style={styles.secondText}>
+          Já tem uma conta?
+          <Text
+            style={styles.signUpText}
+            onPress={() => navigation.replace("Login")}
           >
-            <Text style={styles.textButton}>Cadastrar</Text>
-          </Pressable>
-        </View>
-        <View style={styles.section}>
-          <View style={styles.secondContainer}>
-            <Text style={styles.secondText}>
-              Já tem uma conta?
-              <Text
-                style={styles.signUpText}
-                onPress={() => navigation.replace("Login")}
-              >
-                {" "}
-                Entrar
-              </Text>
-            </Text>
-          </View>
-        </View>
+            {" "}
+            Entrar
+          </Text>
+        </Text>
       </View>
     </ImageBackground>
   );
@@ -90,18 +107,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  section: {
+  containerTitle: {
+    flex: 0.8,
+    alignItems: "center",
+    justifyContent: "flex-end",
+  },
+  containerInput: {
     flex: 1,
-    width: "100%",
     alignItems: "center",
     justifyContent: "center",
   },
-  secondContainer: {
-    height: "100%",
-    flexDirection: "column",
-    justifyContent: "space-around",
+  containerButtons: {
+    flex: 0.5,
     alignItems: "center",
+    justifyContent: "flex-start",
   },
+
   imgBackground: {
     flex: 1,
     resizeMode: "cover",
@@ -116,7 +137,7 @@ const styles = StyleSheet.create({
       width: 2,
       height: 2,
     },
-    marginTop: 100,
+    marginVertical: 30
   },
   text: {
     fontFamily: "SquadaOne_400Regular",
@@ -144,9 +165,11 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#FFFF00",
     backgroundColor: "#3792CB",
     marginTop: 20,
-    width: "50%",
+    width: "60%",
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",

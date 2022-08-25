@@ -134,9 +134,11 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#FFFF00",
     backgroundColor: "#3792CB",
     marginTop: 20,
-    width: "40%",
+    width: "60%",
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
