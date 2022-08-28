@@ -1,19 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
 
-export const SignatureComponent = () => {
+export const SignaturesComponent = ({name, desc, value}) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>PROGAMER</Text>
+        <Text style={styles.title}>{name}</Text>
       </View>
       <View style={styles.containerBody}>
-        <Text style={styles.text}>
-          No plano progamer, o usuário tem acesso a todas as funcionalidades
-          disponíveis no plano Gamer e também...
+        <Text style={styles.text}>{desc}
         </Text>
         <View style={styles.line} />
-        <Text style={styles.title}>R$ 2,99</Text>
+        <Text style={styles.title}>R$ {value}</Text>
         <Pressable
           style={styles.button}
           onPress={() => Alert.alert("Plano escolhido com sucesso")}
@@ -32,6 +30,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
+    marginRight: 20
   },
   titleContainer: {
     flex: 0.3,
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "PressStart2P_400Regular",
-    color: "#FFF",
+    color: "#0E2333",
     fontSize: 24,
     alignSelf: "center",
   },
@@ -57,6 +56,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 40,
     alignSelf: "center",
+    marginBottom: 50
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     lineHeight: 17,
   },
   text: {
-    fontFamily: "Rubik",
+    fontFamily: "Rubik_400Regular",
     fontSize: 18,
     color: "#FFFFFF",
     padding: 20,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 2,
     alignSelf: "center",
+    marginTop: "auto",
     marginBottom: 20,
   },
   containerBody: {

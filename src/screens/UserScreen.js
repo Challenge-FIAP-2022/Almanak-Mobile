@@ -9,9 +9,23 @@ import {
 } from "react-native";
 import { useAuth } from "../contexts/Auth";
 
+import { api } from "../services/api";
+
 export default function UserScreen() {
   const navigation = useNavigation();
-  const { signOut } = useAuth();
+  const { authData, signOut } = useAuth();
+
+  api
+    .get(`/usuario/${authData.id}`)
+    .then(function (response) {
+      // manipula o sucesso da requisição
+      console.log(response);
+    })
+    .catch(function (error) {
+      // manipula erros da requisição
+      console.error(error.response);
+    });
+
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
@@ -19,7 +33,7 @@ export default function UserScreen() {
       style={styles.imgBackground}
     >
       <View style={styles.container}>
-        <Text style={styles.textTilte}>Almanak</Text>
+        <Text style={styles.textTitle}>Almanak</Text>
         <Text style={styles.textButton}>Perfil de usuário</Text>
       </View>
 
@@ -36,7 +50,10 @@ export default function UserScreen() {
         <View style={styles.buttons}>
           <Pressable
             style={styles.button}
-            onPress={() => (Alert.alert("Cadastro atualizado"), navigation.navigate("SignaturesScreen"))}
+            onPress={() => (
+              Alert.alert("Cadastro atualizado"),
+              navigation.navigate("SignaturesScreen")
+            )}
           >
             <Text style={styles.textButton}>Atualizar Cadastro</Text>
           </Pressable>
@@ -46,7 +63,6 @@ export default function UserScreen() {
           </Pressable>
         </View>
       </View>
-      <View style={{backgroundColor: "#3792CB", width: "100%", height: 50, marginBottom: 10}}/>
     </ImageBackground>
   );
 }
@@ -60,9 +76,9 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignItems: "center",
     justifyContent: "flex-end",
-    marginBottom: 20
+    marginBottom: 20,
   },
-  textTilte: {
+  textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
     fontSize: 40,
@@ -105,7 +121,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   userInfo: {
-    fontFamily: "Rubik",
+    fontFamily: "Rubik_400Regular",
     fontSize: 18,
     color: "#FFFFFF",
     marginLeft: 35,
@@ -113,7 +129,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
-    padding: 5,
+    padding: 10,
     width: "80%",
+    paddingVertical: 10,
+    textAlignVertical: "center"
   },
 });

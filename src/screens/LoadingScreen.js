@@ -13,6 +13,7 @@ export default function App() {
     <ImageBackground
       source={require("../../assets/bg.png")}
       style={styles.imgBackground}
+      blurRadius={3}
     >
       <View style={styles.container}>
         <TouchableOpacity>
@@ -20,8 +21,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
       <View style={styles.loading}>
-        <ActivityIndicator size="small" color="#45B6FE" />
-        <Text style={styles.text}>Beijoz</Text>
+        <ActivityIndicator size="large" color="#45B6FE" />
       </View>
     </ImageBackground>
   );
@@ -40,10 +40,5 @@ const styles = StyleSheet.create({
   loading: {
     flex: 1,
     alignItems: "center"
-  },
-  text: {
-    fontSize: 14,
-    fontFamily: "PressStart2P_400Regular",
-    color: "#FFFF00",
-  },
+  }
 });

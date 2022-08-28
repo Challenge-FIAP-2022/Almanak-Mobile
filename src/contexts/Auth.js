@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { createContext, useState } from "react";
-import { Alert } from "react-native";
-import { authService } from "../services/authService";
+import { api } from "../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AuthContext = createContext({});
@@ -24,6 +23,18 @@ export const AuthProvider = ({ children }) => {
         //If there are data, it's converted to an Object and the state is updated.
         const _authData = JSON.parse(authDataSerialized);
         setAuth(_authData);
+        api
+          .get(`/usuario/enterapp/${_authData.id}`)
+          .then(function (response) {
+            // manipula o sucesso da requisição
+            delete response.data.plano;
+            setAuth(response.data);
+            AsyncStorage.setItem("@AuthData", JSON.stringify(response.data));
+          })
+          .catch(function (error) {
+            // manipula erros da requisição
+            // console.error(error.response);
+          });
       }
     } catch (error) {
     } finally {
@@ -32,15 +43,25 @@ export const AuthProvider = ({ children }) => {
   }
 
   async function signIn(email, password) {
-    try {
-      const auth = await authService.signIn(email, password);
-
-      setAuth(auth);
-      AsyncStorage.setItem("@AuthData", JSON.stringify(auth));
-    } catch (error) {
-      Alert.alert(error.message, "Tente novamente");
-    }
+    api
+      .get("/usuario/login", {
+        params: {
+          email: email,
+          senha: password,
+        },
+      })
+      .then(function (response) {
+        // manipula o sucesso da requisição
+        delete response.data.plano;
+        setAuth(response.data);
+        AsyncStorage.setItem("@AuthData", JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        // manipula erros da requisição
+        console.error(error.response);
+      });
   }
+
 
   async function signOut() {
     setAuth(undefined);

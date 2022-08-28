@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "categoria": "Jogos de Bola",
+      "icone": "volleyball"
+    },
+    {
+      "id": 2,
+      "categoria": "Jogos de Cartas",
+      "icone": "cards"
+    },
+    {
+      "id": 4,
+      "categoria": "Jogos de Tabuleiro",
+      "icone": "checkerboard"
+    },
+    {
+      "id": 5,
+      "categoria": "Jogos com Bebida",
+      "icone": "glass-wine"
+    }
+  ]
+}

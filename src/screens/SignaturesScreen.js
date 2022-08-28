@@ -1,13 +1,30 @@
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
   ImageBackground,
   Text,
+  ScrollView,
 } from "react-native";
-import { SignatureComponent } from "../Components/SignatureComponent";
-import { useAuth } from "../contexts/Auth";
+import { SignaturesComponent } from "../Components/SignatureComponent";
+import { api } from "../services/api";
 
 export default function UserScreen() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    api
+      .get("/plano")
+      .then(function (response) {
+        // manipula o sucesso da requisição
+        setData(response.data.content);
+      })
+      .catch(function (error) {
+        // manipula erros da requisição
+        console.error(error.response);
+      });
+  }, []);
+
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
@@ -15,7 +32,7 @@ export default function UserScreen() {
       style={styles.imgBackground}
     >
       <View style={styles.container}>
-        <Text style={styles.textTilte}>Almanak</Text>
+        <Text style={styles.textTitle}>Almanak</Text>
         <Text style={styles.textYellow}>Planos</Text>
       </View>
       <View
@@ -25,7 +42,18 @@ export default function UserScreen() {
           justifyContent: "flex-start",
         }}
       >
-        <SignatureComponent />
+        <View style={styles.scroll}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {data.map((item) => (
+              <SignaturesComponent
+                name={item.name}
+                desc={item.desc}
+                value={item.valor}
+                key={item.id}
+              />
+            ))}
+          </ScrollView>
+        </View>
       </View>
     </ImageBackground>
   );
@@ -42,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginBottom: 20,
   },
-  textTilte: {
+  textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
     fontSize: 36,
@@ -58,5 +86,8 @@ const styles = StyleSheet.create({
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
     fontSize: 32,
+  },
+  scroll: {
+    flex: 0.9,
   },
 });

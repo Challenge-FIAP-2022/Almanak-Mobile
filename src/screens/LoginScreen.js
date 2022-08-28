@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
   StyleSheet,
@@ -7,6 +6,7 @@ import {
   ImageBackground,
   TextInput,
   Pressable,
+  SafeAreaView,
 } from "react-native";
 import { useAuth } from "../contexts/Auth";
 
@@ -17,60 +17,61 @@ export default function LoginScreen({ navigation }) {
   const { signIn } = useAuth();
 
   return (
-    <ImageBackground
-      source={require("../../assets/bg.png")}
-      blurRadius={3}
-      style={styles.imgBackground}
-    >
-      <View style={styles.container}>
-        <View style={styles.test}>
-          <Text style={styles.textTilte}>Almanak</Text>
-        </View>
-        <View style={styles.test}>
-          <StatusBar style="auto" />
-          <Text style={styles.text}>Login</Text>
-          <TextInput
-            value={email}
-            onChangeText={(userEmail) => setEmail(userEmail)}
-            placeholder="Email"
-            style={styles.textInput}
-            placeholderTextColor="#FFFFFF"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <TextInput
-            value={password}
-            onChangeText={(userPassword) => setPassword(userPassword)}
-            style={styles.textInput}
-            placeholder="Senha"
-            placeholderTextColor="#FFFFFF"
-            secureTextEntry
-          />
-          <Pressable
-            style={styles.button}
-            onPress={() => signIn(email, password)}
-          >
-            <Text style={styles.textButton}>Entrar</Text>
-          </Pressable>
-        </View>
-        <View style={styles.test}>
-          <View style={styles.secondContainer}>
-            <Text style={styles.secondText}>Esqueceu a sua senha? </Text>
-            <Text style={styles.secondText}>
-              Ainda não tem uma conta?
-              <Text
-                style={styles.signUpText}
-                onPress={() => navigation.replace("SignUp")}
-              >
-                {" "}
-                Cadastrar-se
+    <SafeAreaView style={{flex:1}}>
+      <ImageBackground
+        source={require("../../assets/bg.png")}
+        blurRadius={3}
+        style={styles.imgBackground}
+      >
+        <View style={styles.container}>
+          <View style={styles.test}>
+            <Text style={styles.textTilte}>Almanak</Text>
+          </View>
+          <View style={styles.test}>
+            <Text style={styles.text}>Login</Text>
+            <TextInput
+              value={email}
+              onChangeText={(userEmail) => setEmail(userEmail)}
+              placeholder="Email"
+              style={styles.textInput}
+              placeholderTextColor="#FFFFFF"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            <TextInput
+              value={password}
+              onChangeText={(userPassword) => setPassword(userPassword)}
+              style={styles.textInput}
+              placeholder="Senha"
+              placeholderTextColor="#FFFFFF"
+              secureTextEntry
+            />
+            <Pressable
+              style={styles.button}
+              onPress={() => signIn(email, password)}
+            >
+              <Text style={styles.textButton}>Entrar</Text>
+            </Pressable>
+          </View>
+          <View style={styles.test}>
+            <View style={styles.secondContainer}>
+              <Text style={styles.secondText}>Esqueceu a sua senha? </Text>
+              <Text style={styles.secondText}>
+                Ainda não tem uma conta?
+                <Text
+                  style={styles.registerText}
+                  onPress={() => navigation.replace("Register")}
+                >
+                  {" "}
+                  Cadastrar-se
+                </Text>
               </Text>
-            </Text>
+            </View>
           </View>
         </View>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
 
@@ -134,8 +135,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "#FFFF00",
     backgroundColor: "#3792CB",
     marginTop: 20,
     width: "60%",
@@ -152,7 +151,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     margin: 20,
   },
-  signUpText: {
+  registerText: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFFF00",
     fontSize: 16,
