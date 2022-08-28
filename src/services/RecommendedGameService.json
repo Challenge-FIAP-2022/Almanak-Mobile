@@ -1,0 +1,48 @@
+{
+    "games": [
+      {
+        "id": 1,
+        "categoria": "Cartas",
+        "jogo": "Truco",
+        "imagem":
+          "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      },
+      {
+        "id": 2,
+        "categoria": "Cartas",
+        "jogo": "Uno",
+        "imagem":
+          "https://images.unsplash.com/photo-1617783919141-8417358d4e29?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
+      },
+      {
+        "id": 3,
+        "categoria": "Bola",
+        "jogo": "Queimada",
+        "imagem":
+          "https://images.unsplash.com/photo-1593786930094-d5c8164ac771?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      },
+      {
+        "id": 4,
+        "categoria": "Tabuleiro",
+        "jogo": "Monopoly",
+        "imagem":
+          "https://images.unsplash.com/photo-1640461470346-c8b56497850a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+      },
+      {
+        "id": 5,
+        "categoria": "Tabuleiro",
+        "jogo": "Xadrez",
+        "imagem":
+          "https://images.unsplash.com/photo-1582925250462-d012a22ef727?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80"
+      },
+      {
+        "id": 6,
+        "categoria": "Tabuleiro",
+        "jogo": "Xadrez 3D",
+        "imagem":
+          "https://static.turbosquid.com/Preview/2020/09/27__02_17_00/chess_light1.pngAA62607D-6DBD-4520-9788-87DFD4A3B39BLarge.jpg"
+          
+      }
+    ]
+  }
+
