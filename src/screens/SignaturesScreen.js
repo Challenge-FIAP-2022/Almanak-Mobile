@@ -89,5 +89,6 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 0.9,
+    marginRight: 5
   },
 });

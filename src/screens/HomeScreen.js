@@ -31,7 +31,7 @@ export default function HomeScreen() {
         <Text style={styles.secondText}>Recomendados</Text>
       </View>
 
-      <View style={styles.scroll}>
+      <View style={styles.scrollHorizontal}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {data.map((item) => (
             <RecommendedGameComponent
@@ -46,14 +46,16 @@ export default function HomeScreen() {
 
       <Text style={styles.secondText}>Categorias</Text>
 
-      <View style={{ flex: 0.4, marginTop: 20 }}>
-        {categoryData.map((item) => (
+      <View style={styles.scrollVertical}>
+        <ScrollView vertical showsHorizontalScrollIndicator={false}>
+          {categoryData.map((item) => (
             <RecommendedCategoryComponent
               icon = {item.icone}
               categoryName = {item.categoria}
               key = {item.id}
             />
           ))}
+        </ScrollView>
       </View>
     </ImageBackground>
   );
@@ -87,8 +89,14 @@ const styles = StyleSheet.create({
     fontSize: 32,
     alignSelf: "center",
   },
-  scroll: {
+  scrollHorizontal: {
     flex: 0.3,
-    marginBottom: 20
+    marginBottom: 20,
+    marginRight: 20
   },
+  scrollVertical: {
+    flex: 0.4, 
+    marginTop: 20,
+    marginBottom: 50
+  }
 });

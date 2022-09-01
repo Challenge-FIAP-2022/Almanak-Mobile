@@ -107,8 +107,9 @@ const styles = StyleSheet.create({
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 14,
+    fontSize: 13,
     marginTop: 5,
+    alignItems: 'center',
   },
   userData: {
     flex: 1,

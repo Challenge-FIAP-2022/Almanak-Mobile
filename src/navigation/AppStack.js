@@ -7,7 +7,7 @@ import CreateScreen from "../screens/CreateScreen";
 import SignaturesScreen from "../screens/SignaturesScreen";
 import UserScreen from "../screens/UserScreen";
 
-import ButtonNew from "../Components/ButtonNew";
+import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
 
@@ -64,7 +64,7 @@ export function AppStack() {
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ size, focused }) => (
-            <ButtonNew size={size} focused={focused} />
+            <ButtonNewComponent size={size} focused={focused} />
           ),
         }}
       />

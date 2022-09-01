@@ -19,6 +19,16 @@
       "id": 5,
       "categoria": "Jogos com Bebida",
       "icone": "glass-wine"
-    }
+    },
+    {
+      "id": 6,
+      "categoria": "Jogos com Corda",
+      "icone": "alert-decagram"
+    },
+    {
+      "id": 7,
+      "categoria": "Jogos com Dados",
+      "icone": "dice-5"
+    },
   ]
 }
