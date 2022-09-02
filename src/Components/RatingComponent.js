@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native';
 import { AirbnbRating } from '@rneui/themed';
+import { Rating } from 'react-native-ratings';
 
 const RatingComponent = () => {
 /*const ratingCompleted = (rating) => {
@@ -10,22 +11,25 @@ const RatingComponent = () => {
 const ratingProps = {};*/
 return (
   <View style={styles.container}>
-    <ScrollView style={styles.viewContainer}>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: 30,
-        }}
-      >
-        <AirbnbRating
-          reviews
-          isDisabled={true}
-          defaultRating={4}
-        />
+    <View
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 30,
+      }}
+    >
+      <AirbnbRating
+        reviews
+        type='custom'
+        ratingColor='#ffff00'
+        ratingBackgroundColor='#0E2433'
+        imageSize={90}
+        half={true}
+        isDisabled={true}
+        defaultRating={4}
+      />
 
-      </View>
-    </ScrollView>
+    </View>
   </View>
 );
 };
@@ -33,9 +37,7 @@ return (
 const styles = StyleSheet.create({
 container: {
   flex: 0.2,
-},
-viewContainer: {
-  flex: 1,
+  backgroundColor: '#0E2433',
 },
 });
 

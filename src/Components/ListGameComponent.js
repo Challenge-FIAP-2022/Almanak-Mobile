@@ -6,7 +6,8 @@ import {
   Pressable,
   Text,
 } from "react-native";
-import { AirbnbRating } from '@rneui/themed';
+//import { Rating } from "react-native-ratings";
+import RatingComponent from "./RatingComponent";
 
 export const ListGameComponent = ({category, gameName, urlImg}) => {
   return (
@@ -38,18 +39,20 @@ export const ListGameComponent = ({category, gameName, urlImg}) => {
             {gameName}
           </Text>
         </View>
-        <Pressable style={styles.button}>
-          <Text style={styles.textButton}>Visualizar Jogo</Text>
-        </Pressable>
       </View>
+
+      <View style={styles.rating}>
+        <RatingComponent />
+      </View>
+
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   imgBg: {
-    width: 220,
-    height: 175,
+    width: 320,
+    height: 90,
     resizeMode: "contain",
     backgroundColor: "#1C4966",
     borderRadius: 10,
@@ -60,21 +63,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
-    marginTop: "auto",
+    marginBottom: "auto",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    height: 50,
   },
-  button: {
-    backgroundColor: "#1C4966",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignContent: "center",
-    padding: 5,
-  },
-  textButton: {
-    fontFamily: "Rubik_400Regular",
-    color: "#FFF",
-    fontSize: 9,
-  },
+  rating: {
+    //marginTop: 'auto',
+    height: 10,
+    borderWidth: 2,
+    
+  }
+
 });

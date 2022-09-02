@@ -60,6 +60,7 @@ export default function HomeScreen() {
     </ImageBackground>
   );
 }
+
 const styles = StyleSheet.create({
   imgBackground: {
     flex: 1,
@@ -90,13 +91,13 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   scrollHorizontal: {
-    flex: 0.3,
+    flex: 0.5,
     marginBottom: 20,
     marginRight: 20
   },
   scrollVertical: {
     flex: 0.4, 
     marginTop: 20,
-    marginBottom: 50
+    marginBottom: 80,
   }
 });
