@@ -23,7 +23,8 @@ return (
         type='custom'
         ratingColor='#ffff00'
         ratingBackgroundColor='#0E2433'
-        imageSize={90}
+        count={5}
+        size={20}
         half={true}
         isDisabled={true}
         defaultRating={4}
@@ -37,7 +38,9 @@ return (
 const styles = StyleSheet.create({
 container: {
   flex: 0.2,
-  backgroundColor: '#0E2433',
+  marginRight: 30,
+  //justifyContent: "space-between",
+  backgroundColor: 'transparent',
 },
 });
 

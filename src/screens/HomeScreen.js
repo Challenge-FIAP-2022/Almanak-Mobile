@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     flex: 0.25,
     justifyContent: "flex-end",
     marginBottom: 20,
+    marginTop: 50,
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
       width: 2,
       height: 2,
     },
-    marginBottom: 30,
+    marginBottom: 20,
     alignSelf: "center",
   },
   secondText: {
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
   },
   scrollHorizontal: {
     flex: 0.5,
-    marginBottom: 20,
+    marginBottom: 5,
     marginRight: 20
   },
   scrollVertical: {

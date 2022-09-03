@@ -1,9 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View, Text, ScrollView, ImageBackground, TextInput } from "react-native";
-import RatingComponent from "../Components/RatingComponent";
+import { StyleSheet, View, Text, ScrollView, ImageBackground, TextInput, Image } from "react-native";
 import GamesData from "../services/RecommendedGameService.json";
 import { useEffect, useState } from "react";
 import { ListGameComponent } from "../Components/ListGameComponent";
+import { MaterialCommunityIcons , MaterialIcons  } from "@expo/vector-icons";
 
 export default function ListScreen() {
   const [data, setData] = useState([]);
@@ -23,14 +23,32 @@ export default function ListScreen() {
       <View style={styles.container}>
         <Text style={styles.textTitle}>Lista de Jogos</Text>
 
-          <TextInput style={styles.textInput}
-            placeholder="Pesquisar jogos"
-            placeholderTextColor="#FFFFFF"
+          <View style={styles.textInputAndIcons}>
+            <TextInput style={styles.textInput}
+              placeholder="Pesquisar jogos"
+              placeholderTextColor="#FFFFFF"
+            />
+            <MaterialIcons
+              name="search"
+              size={25}
+              color="#FFF"
+              style={styles.icon}
+            />
+            <MaterialIcons
+              name="mic"
+              size={25}
+              color="#FFF"
+              style={styles.icon}
+            />
+            <MaterialCommunityIcons
+              name="filter"
+              size={25}
+              color="#FFF"
+              style={styles.icon}
+            />
+          </View>
 
-          />
-
-
-        <View style={styles.scrollVertical}>
+        <View style={styles.scrollVertical}>          
           <ScrollView vertical showsVerticalScrollIndicator={false}>
             {data.map((item) => (
               <ListGameComponent
@@ -41,7 +59,8 @@ export default function ListScreen() {
               />
             ))}
           </ScrollView>
-          <RatingComponent />
+          
+
         </View>
 
 
@@ -65,37 +84,49 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-
+    marginTop: 15,
+    marginBottom: 50,
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 36,
-    textShadowColor: "white",
-    textShadowRadius: 1,
-    textShadowOffset: {
-      width: 2,
-      height: 2,
-    },
+    fontSize: 28,
+    lineHeight: 40,
     textAlign: "center",
-    lineHeight: 50,
-    marginTop: 50,
-    marginBottom: 15,
     alignSelf: "center",
+    marginTop: 60,
+    marginBottom: 15,
+    width: 320,
+  },
+  textInputAndIcons: {
+    width: 320,
+    flexDirection: "row",
+    alignItems: "center",
+    height: 40,
+    width: 320,
+    margin: 10,
+    borderWidth: 2,
+    borderColor: "#296D98",
+    borderRadius: 10,
   },
   textInput: {
     fontFamily: "SquadaOne_400Regular", 
-    height: 40,
-    width: "80%",
-    margin: 10,
     textAlign: "left",
-    borderWidth: 2,
-    borderColor: "#296D98",
     paddingLeft: 20,
-    borderRadius: 10,
     color: "white",
     fontSize: 20,
-    backgroundColor: "rgba(14, 36, 51, 0.2)",
-  }
+    // height: 40,
+    // width: 320,
+    // margin: 10,
+    // borderWidth: 2,
+    // borderColor: "#296D98",
+    // borderRadius: 10,
+    // backgroundColor: "rgba(14, 36, 51, 0.2)",
+  },
+  icon: {
+    alignSelf: "center",
+    paddingStart: 20,
+    justifyContent: "space-between",
+  },
 
 });
