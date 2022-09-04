@@ -1,15 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
 
-export const SignaturesComponent = ({name, desc, value}) => {
+export const SignaturesComponent = ({ name, desc, value }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{name}</Text>
       </View>
       <View style={styles.containerBody}>
-        <Text style={styles.text}>{desc}
-        </Text>
+        <Text style={styles.text}>{desc}</Text>
         <View style={styles.line} />
         <Text style={styles.title}>R$ {value}</Text>
         <Pressable
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
-    marginRight: 20
+    marginRight: 20,
   },
   titleContainer: {
     flex: 0.3,
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 40,
     alignSelf: "center",
-    marginBottom: 50
+    marginBottom: 50,
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",

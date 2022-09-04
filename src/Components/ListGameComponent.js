@@ -1,36 +1,21 @@
 import { Image } from "@rneui/base";
 import React from "react";
-import {
-  ImageBackground,
-  View,
-  StyleSheet,
-  Pressable,
-  Text,
-} from "react-native";
-//import { Rating } from "react-native-ratings";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 import RatingComponent from "./RatingComponent";
 
-
-export const ListGameComponent = ({category, gameName, urlImg}) => {
+export const ListGameComponent = ({ category, gameName, urlImg }) => {
   return (
-    // <ImageBackground
-    //   style={styles.imgBg}
-    //   source={{
-    //     uri: urlImg,
-    //   }}
-    //   imageStyle={{ borderRadius: 10 }}
-    // >
     <Pressable style={styles.card}>
       <View style={styles.container}>
         <View>
-          <Image 
+          <Image
             style={styles.img}
             source={{
               uri: urlImg,
             }}
           />
         </View>
-        
+
         <View style={styles.text}>
           <Text
             style={{
@@ -52,22 +37,13 @@ export const ListGameComponent = ({category, gameName, urlImg}) => {
           >
             {gameName}
           </Text>
-
-
         </View>
-
-
-
       </View>
-
 
       <View style={styles.estrelas}>
         <RatingComponent style={styles.rating} />
-
       </View>
-
     </Pressable>
-    // </ImageBackground>
   );
 };
 
@@ -75,7 +51,7 @@ const styles = StyleSheet.create({
   img: {
     width: 75,
     height: 75,
-    resizeMode: "contain",
+    resizeMode: "cover",
     borderRadius: 10,
     marginStart: 10,
     marginTop: 45,
@@ -83,14 +59,13 @@ const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
     justifyContent: "space-between",
-    // borderTopWidth: 2,
     borderWidth: 2,
     borderColor: "#296D98",
     height: 100,
     width: 320,
     borderRadius: 10,
     marginBottom: 20,
-    backgroundColor: "rgba(28, 73, 102, 0.2)",
+    backgroundColor: "#132E3D",
   },
   container: {
     flexDirection: "row",
@@ -104,8 +79,8 @@ const styles = StyleSheet.create({
     width: 320,
     height: 50,
   },
-  text:{
-    flex: 1,    
+  text: {
+    flex: 1,
     marginLeft: 15,
   },
   estrelas: {
@@ -116,8 +91,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 140,
     padding: 25,
-
-  
   },
-  
 });

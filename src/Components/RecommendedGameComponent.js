@@ -7,7 +7,7 @@ import {
   Text,
 } from "react-native";
 
-export const RecommendedGameComponent = ({category, gameName, urlImg}) => {
+export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
   return (
     <ImageBackground
       style={styles.imgBg}

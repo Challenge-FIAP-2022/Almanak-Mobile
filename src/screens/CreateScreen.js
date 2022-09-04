@@ -1,12 +1,17 @@
 // import { CheckBox } from "@rneui/themed";
 import { useEffect, useState } from "react";
-import { StyleSheet, ImageBackground, View, Text, ScrollView, TextInput } from "react-native";
+import {
+  StyleSheet,
+  ImageBackground,
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+} from "react-native";
 import MultipleSelectListComponent from "../Components/MultipleSelectListComponent";
 
-
-
 export default function CreateScreen() {
-// const [check2, setCheck2] = useState(false);
+  // const [check2, setCheck2] = useState(false);
 
   return (
     <ImageBackground
@@ -14,33 +19,37 @@ export default function CreateScreen() {
       blurRadius={3}
       style={styles.imgBackground}
     >
-      
       <Text style={styles.textTitle}>Cadastrar Novo Jogo</Text>
 
       <View style={styles.scrollVertical}>
         <ScrollView vertical showsHorizontalScrollIndicator={false}>
           <View style={styles.textInput}>
             <Text style={styles.titleInput}>Nome do Jogo:</Text>
-            <TextInput style={styles.answerInput}
+            <TextInput
+              style={styles.answerInput}
               placeholder="Insira o nome do jogo"
               placeholderTextColor="#FFFFFF"
             />
 
             <Text style={styles.titleInput}>Quantidade de Jogadores:</Text>
             <View style={styles.numberInput}>
-              <TextInput style={styles.answerNumberInput}
+              <TextInput
+                style={styles.answerNumberInput}
                 placeholder="Mínimo"
                 placeholderTextColor="#FFFFFF"
                 keyboardType="number-pad"
               />
-              <TextInput style={styles.answerNumberInput}
+              <TextInput
+                style={styles.answerNumberInput}
                 placeholder="Máximo"
                 placeholderTextColor="#FFFFFF"
                 keyboardType="number-pad"
               />
             </View>
 
-            <Text style={styles.titleInput}>O jogo permite jogadores menores de idade?:</Text>
+            <Text style={styles.titleInput}>
+              O jogo permite jogadores menores de idade?:
+            </Text>
             {/* <CheckBox style={styles.checkbox}
               center
               wrapperStyle="#0E2433"
@@ -50,20 +59,20 @@ export default function CreateScreen() {
               checked={check2}
               onPress={() => setCheck2(!check2)}
             />  */}
-            <TextInput style={styles.answerInput}
+            <TextInput
+              style={styles.answerInput}
               placeholder="Arrumar a parte do radiobutton aqui"
               placeholderTextColor="#FFFFFF"
             />
 
-            <Text style={styles.titleInput}>Quais itens são necessários no jogo:</Text>
-            <MultipleSelectListComponent />
-
-
+            <Text style={styles.titleInput}>
+              Quais itens são necessários no jogo:
+            </Text>
           </View>
-         
+
+          <MultipleSelectListComponent />
         </ScrollView>
       </View>
-
     </ImageBackground>
   );
 }
@@ -85,7 +94,7 @@ const styles = StyleSheet.create({
     width: 320,
   },
   scrollVertical: {
-    flex: 1, 
+    flex: 1,
     marginTop: 20,
     marginBottom: 80,
   },

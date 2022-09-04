@@ -62,7 +62,6 @@ export const AuthProvider = ({ children }) => {
       });
   }
 
-
   async function signOut() {
     setAuth(undefined);
     AsyncStorage.removeItem("@AuthData");

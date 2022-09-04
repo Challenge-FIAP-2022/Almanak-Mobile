@@ -9,15 +9,31 @@ import {
 import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryComponent";
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
 import GamesData from "../services/RecommendedGameService.json";
-import CategoryData from "../services/RecommendedGameCategoty.json"
+import CategoryData from "../services/RecommendedGameCategoty.json";
+import { api } from "../services/api";
 
 export default function HomeScreen() {
-  const [data, setData] = useState([]);
-  const [categoryData, setCategoryData] = useState([])
+  const [gameData, setGameData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
 
   useEffect(() => {
-    setData(GamesData.games);
-    setCategoryData(CategoryData.categories)
+    // setTimeout(()=>{
+    api
+      .get("/jogo/valido/sim", {
+        params: {
+          size: 5,
+        },
+      })
+      .then(function (response) {
+        // manipula o sucesso da requisição
+        setGameData(response.data);
+      })
+      .catch(function (error) {
+        // manipula erros da requisição
+        console.error(error);
+      });
+    // }, 1000)
+    setCategoryData(CategoryData.categories);
   }, []);
 
   return (
@@ -33,12 +49,12 @@ export default function HomeScreen() {
 
       <View style={styles.scrollHorizontal}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {data.map((item) => (
+          {gameData.map((item, idx) => (
             <RecommendedGameComponent
-              category={item.categoria}
-              gameName={item.jogo}
+              gameName={item.name}
+              category={item.categorias[0].name}
               urlImg={item.imagem}
-              key={item.id}
+              key={idx}
             />
           ))}
         </ScrollView>
@@ -50,9 +66,9 @@ export default function HomeScreen() {
         <ScrollView vertical showsHorizontalScrollIndicator={false}>
           {categoryData.map((item) => (
             <RecommendedCategoryComponent
-              icon = {item.icone}
-              categoryName = {item.categoria}
-              key = {item.id}
+              icon={item.icone}
+              categoryName={item.categoria}
+              key={item.id}
             />
           ))}
         </ScrollView>
@@ -94,11 +110,11 @@ const styles = StyleSheet.create({
   scrollHorizontal: {
     flex: 0.5,
     marginBottom: 5,
-    marginRight: 20
+    marginRight: 20,
   },
   scrollVertical: {
-    flex: 0.4, 
+    flex: 0.4,
     marginTop: 20,
     marginBottom: 80,
-  }
+  },
 });

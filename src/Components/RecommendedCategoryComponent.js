@@ -1,12 +1,17 @@
 import React from "react";
-import { MaterialCommunityIcons , MaterialIcons  } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 
 export const RecommendedCategoryComponent = ({ icon, categoryName }) => {
   return (
     <Pressable style={styles.container}>
       <View style={styles.textAndIcon}>
-        <MaterialCommunityIcons  name={icon} size={32} color="#FFF" style={styles.icon} />
+        <MaterialCommunityIcons
+          name={icon}
+          size={32}
+          color="#FFF"
+          style={styles.icon}
+        />
         <Text style={styles.text}>{categoryName}</Text>
       </View>
       <MaterialIcons

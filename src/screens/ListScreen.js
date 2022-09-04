@@ -1,13 +1,18 @@
-import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View, Text, ScrollView, ImageBackground, TextInput, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  ImageBackground,
+  TextInput,
+} from "react-native";
 import GamesData from "../services/RecommendedGameService.json";
 import { useEffect, useState } from "react";
 import { ListGameComponent } from "../Components/ListGameComponent";
-import { MaterialCommunityIcons , MaterialIcons  } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
 export default function ListScreen() {
   const [data, setData] = useState([]);
-  //const navigation = useNavigation();
 
   useEffect(() => {
     setData(GamesData.games);
@@ -19,36 +24,36 @@ export default function ListScreen() {
       blurRadius={3}
       style={styles.imgBackground}
     >
-
       <View style={styles.container}>
         <Text style={styles.textTitle}>Lista de Jogos</Text>
 
-          <View style={styles.textInputAndIcons}>
-            <TextInput style={styles.textInput}
-              placeholder="Pesquisar jogos"
-              placeholderTextColor="#FFFFFF"
-            />
-            <MaterialIcons
-              name="search"
-              size={25}
-              color="#FFF"
-              style={styles.icon}
-            />
-            <MaterialIcons
-              name="mic"
-              size={25}
-              color="#FFF"
-              style={styles.icon}
-            />
-            <MaterialCommunityIcons
-              name="filter"
-              size={25}
-              color="#FFF"
-              style={styles.icon}
-            />
-          </View>
+        <View style={styles.textInputAndIcons}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Pesquisar jogos"
+            placeholderTextColor="#FFFFFF"
+          />
+          <MaterialIcons
+            name="search"
+            size={25}
+            color="#FFF"
+            style={styles.icon}
+          />
+          <MaterialIcons
+            name="mic"
+            size={25}
+            color="#FFF"
+            style={styles.icon}
+          />
+          <MaterialCommunityIcons
+            name="filter"
+            size={25}
+            color="#FFF"
+            style={styles.icon}
+          />
+        </View>
 
-        <View style={styles.scrollVertical}>          
+        <View style={styles.scrollVertical}>
           <ScrollView vertical showsVerticalScrollIndicator={false}>
             {data.map((item) => (
               <ListGameComponent
@@ -59,13 +64,8 @@ export default function ListScreen() {
               />
             ))}
           </ScrollView>
-          
-
         </View>
-
-
       </View>
-
     </ImageBackground>
   );
 }
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   textInput: {
-    fontFamily: "SquadaOne_400Regular", 
+    fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
     paddingLeft: 20,
     color: "white",
@@ -128,5 +128,4 @@ const styles = StyleSheet.create({
     paddingStart: 20,
     justifyContent: "space-between",
   },
-
 });
