@@ -29,8 +29,6 @@ const MultipleSelectListComponent = () => {
           uniqueKey='id'
           onSelectedItemsChange={onSelectedItemsChange}
           selectedItems={selectedItems}
-          selectText='Digite para pesquisar'
-          searchInputPlaceholderText='Digite para pesquisar...'
           onChangeInput={(text) => console.warn(text)}
           altFontFamily="Rubik_400Regular"
           itemFontFamily="Rubik_400Regular"
@@ -38,12 +36,20 @@ const MultipleSelectListComponent = () => {
           tagBorderColor='#ffff00'
           tagTextColor='#fff'
           itemTextColor='#fff'
-          displayKey='name'
-          searchInputStyle={{ color: '#0E2433', backgroundColor: '#296D98' }}
+          // displayKey='name'
+          searchInputPlaceholderText='Digite para pesquisar...'
+          searchInputStyle={{ color: '#fff', backgroundColor: '#296D98', height: 40, fontWeight: 'bold' }}
           submitButtonColor='#296D98'
           submitButtonText='Selecionar'
           styleListContainer={{ backgroundColor: '#0E2433', borderWidth: 2, borderColor: '#45B6FE', borderRadius: 5 }}
           styleInputGroup={{ backgroundColor: '#296D98', borderWidth: 2, borderColor: '#45B6FE', borderRadius: 5 }}
+          // flatListProps={{ backgroundColor: 'red', borderWidth: 5, borderColor: 'orange', borderRadius: 20 }}
+          noItemsText="Nenhum outro item disponível"
+          selectText='Digite para pesquisar'
+          styleDropdownMenuSubsection={{ backgroundColor: '#0E2433', borderWidth: 2, borderColor: '#296D98', borderRadius: 10, height: 50, marginTop: 15, }}
+          styleTextDropdown={{ marginLeft: 15, color: '#FFF' }}
+
+          tagContainerStyle={{ marginTop: 15 }}
           removeSelected
         />
       </View>
