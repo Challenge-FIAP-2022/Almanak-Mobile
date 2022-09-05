@@ -14,6 +14,7 @@ const items = [
   {
     id: "3",
     name: "Uno",
+    key: "disable",
   },
 ];
 
@@ -22,6 +23,7 @@ const MultipleSelectListComponent = () => {
 
   onSelectedItemsChange = (selectedItems) => {
     setselectedItems(selectedItems);
+    console.log(selectedItems);
   };
 
   return (
@@ -32,48 +34,75 @@ const MultipleSelectListComponent = () => {
           uniqueKey="id"
           onSelectedItemsChange={onSelectedItemsChange}
           selectedItems={selectedItems}
-          onChangeInput={(text) => console.warn(text)}
+          selectText="Digite para pesquisar"
+          searchInputPlaceholderText="Digite para pesquisar"
+          noItemsText="Item não encontrado"
+          onChangeInput={(text) => console.log(text)}
           altFontFamily="Rubik_400Regular"
           itemFontFamily="Rubik_400Regular"
-          tagRemoveIconColor="#ffff00"
-          tagBorderColor="#ffff00"
-          tagTextColor="#fff"
-          itemTextColor="#fff"
-          searchInputPlaceholderText="Digite para pesquisar..."
-          searchInputStyle={{
-            color: "#fff",
-            backgroundColor: "#296D98",
-            height: 40,
-            fontWeight: "bold",
-          }}
+          tagRemoveIconColor="#FFFF00"
+          tagBorderColor="#FFFF00"
+          tagTextColor="#FFF"
+          selectedItemTextColor="#FFFF00"
+          selectedItemIconColor="#FFFF00"
+          itemTextColor="#FFF"
+          textColor="#FFF"
+          displayKey="name"
           submitButtonColor="#296D98"
           submitButtonText="Selecionar"
-          styleListContainer={{
-            backgroundColor: "#0E2433",
-            borderWidth: 2,
-            borderColor: "#45B6FE",
-            borderRadius: 5,
-          }}
-          styleInputGroup={{
+          searchInputStyle={{
+            //Style do inputText do dropdown
+            fontSize: 16,
+            color: "#FFF",
+            margin: 5,
             backgroundColor: "#296D98",
-            borderWidth: 2,
-            borderColor: "#45B6FE",
-            borderRadius: 5,
+            fontFamily: "Rubik_400Regular",
           }}
-          noItemsText="Nenhum outro item disponível"
-          selectText="Digite para pesquisar"
           styleDropdownMenuSubsection={{
+            //Style do input antes de virar dropdown
+            backgroundColor: "#296D98",
+            borderRadius: 10,
+          }}
+          styleDropdownMenu={{
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+          styleRowList={{
+            //Style dos itens da lista do dropdown
             backgroundColor: "#0E2433",
+            margin: 5,
+            borderBottomWidth: 1,
+            borderColor: "#296D98",
+            padding: 5,
+            margin: 0,
+          }}
+          styleSelectorContainer={{
+            //Style do container quando vira dropdown
             borderWidth: 2,
             borderColor: "#296D98",
             borderRadius: 10,
-            height: 50,
-            marginTop: 15,
           }}
-          styleTextDropdown={{ marginLeft: 15, color: "#FFF" }}
-          tagContainerStyle={{ marginTop: 15 }}
-          removeSelected
-          fixedHeight
+          styleIndicator={{
+            //Icone da Direita
+            alignSelf: "center",
+            color: "#FFF",
+          }}
+          styleItemsContainer={{
+            //Style da lista do dropdown que fica atrás
+            backgroundColor: "#0E2433",
+          }}
+          styleInputGroup={{
+            //Style da parte de trás do input quando vira dropdown
+            backgroundColor: "#296D98",
+            paddingHorizontal: 20,
+            // flexDirection: "row-reverse",
+          }}
+          styleTextDropdown={{
+            //Style do text na barra de pesquisa antes de virar dropdown
+            color: "#FFF",
+            paddingHorizontal: 10,
+          }}
+          styleTextDropdownSelected={{ color: "#FFF", paddingHorizontal: 20 }}
         />
       </View>
     </View>
@@ -89,8 +118,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   multiSelectContainer: {
-    height: 400,
-    width: 320,
-    borderRadius: 10,
+    width: "80%",
   },
 });
