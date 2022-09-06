@@ -25,7 +25,7 @@ export const SignaturesComponent = ({ name, desc, value }) => {
 const styles = StyleSheet.create({
   container: {
     width: 220,
-    height: 440,
+    height: 400,
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "PressStart2P_400Regular",
     color: "#0E2333",
-    fontSize: 24,
+    fontSize: 22,
     alignSelf: "center",
+
   },
 
   button: {

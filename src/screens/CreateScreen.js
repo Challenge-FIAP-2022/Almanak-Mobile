@@ -34,13 +34,13 @@ export default function CreateScreen() {
             <Text style={styles.titleInput}>Quantidade de Jogadores:</Text>
             <View style={styles.numberInput}>
               <TextInput
-                style={styles.answerNumberInput}
+                style={[styles.answerInput, styles.test]}
                 placeholder="Mínimo"
                 placeholderTextColor="#FFFFFF"
                 keyboardType="number-pad"
               />
               <TextInput
-                style={styles.answerNumberInput}
+                style={[styles.answerInput, styles.test]}
                 placeholder="Máximo"
                 placeholderTextColor="#FFFFFF"
                 keyboardType="number-pad"
@@ -68,9 +68,8 @@ export default function CreateScreen() {
             <Text style={styles.titleInput}>
               Quais itens são necessários no jogo:
             </Text>
+            <MultipleSelectListComponent />
           </View>
-
-          <MultipleSelectListComponent />
         </ScrollView>
       </View>
     </ImageBackground>
@@ -90,13 +89,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center",
     marginTop: 60,
-    marginBottom: 15,
     width: 320,
   },
   scrollVertical: {
     flex: 1,
     marginTop: 20,
     marginBottom: 80,
+    marginHorizontal: 20,
   },
   textInput: {
     flex: 1,
@@ -106,46 +105,30 @@ const styles = StyleSheet.create({
     fontFamily: "SquadaOne_400Regular",
     fontSize: 20,
     color: "#FFF",
-    marginLeft: 45,
-    marginRight: 40,
-    marginBottom: 10,
+    marginHorizontal: 15,
+    marginVertical: 15,
   },
   answerInput: {
     fontFamily: "Rubik_400Regular",
     fontSize: 16,
     color: "#FFF",
-    marginLeft: 30,
-    marginBottom: 15,
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
-    padding: 15,
-    width: 320,
+    paddingHorizontal: 15,
     paddingVertical: 10,
     alignItems: "center",
     textAlignVertical: "center",
     textAlign: "left",
   },
   numberInput: {
+    justifyContent: "space-between",
     flexDirection: "row",
-  },
-  answerNumberInput: {
-    fontFamily: "Rubik_400Regular",
-    fontSize: 16,
-    color: "#FFF",
-    marginLeft: 30,
-    marginBottom: 15,
-    borderWidth: 2,
-    borderColor: "#296D98",
-    borderRadius: 10,
-    padding: 15,
-    width: 145,
-    paddingVertical: 10,
-    alignItems: "center",
-    textAlignVertical: "center",
-    textAlign: "left",
   },
   checkbox: {
     backgroundColor: "transparent",
+  },
+  test: {
+    paddingHorizontal: 35,
   },
 });

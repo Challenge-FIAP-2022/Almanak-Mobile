@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   },
   cardsContainer: {
     flex: 0.8,
-    marginHorizontal: 30,
+    marginHorizontal: 5,
   },
 });

@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   multiSelectContainer: {
-    width: "80%",
+    width: "100%",
   },
 });

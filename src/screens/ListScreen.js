@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginBottom: 20,
+    marginHorizontal: 20
   },
   scrollVertical: {
     flex: 1,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: 40,
-    width: 320,
+    width: 280,
     margin: 10,
     borderWidth: 2,
     borderColor: "#296D98",
@@ -115,13 +115,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     color: "white",
     fontSize: 20,
-    // height: 40,
-    // width: 320,
-    // margin: 10,
-    // borderWidth: 2,
-    // borderColor: "#296D98",
-    // borderRadius: 10,
-    // backgroundColor: "rgba(14, 36, 51, 0.2)",
   },
   icon: {
     alignSelf: "center",
