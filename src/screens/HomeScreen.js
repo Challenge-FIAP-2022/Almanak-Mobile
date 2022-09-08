@@ -16,24 +16,51 @@ export default function HomeScreen() {
   const [gameData, setGameData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
 
+  function getCategories() {
+    return api.get("/categoria/adj");
+  }
+
+  function getGames() {
+    return api.get("/jogo/valido/sim");
+  }
+
+  Promise.all([getGames(), getCategories()]).then(function (results) {
+    const games = results[0].data;
+    const categories = results[1].data;
+
+    console.log(games);
+    console.log(categories);
+  });
+
   useEffect(() => {
     // setTimeout(()=>{
-    api
-      .get("/jogo/valido/sim", {
-        params: {
-          size: 5,
-        },
-      })
-      .then(function (response) {
-        // manipula o sucesso da requisição
-        setGameData(response.data);
-      })
-      .catch(function (error) {
-        // manipula erros da requisição
-        console.error(error);
-      });
-    // }, 1000)
-    setCategoryData(CategoryData.categories);
+    // api
+    //   .get("/jogo/valido/sim", {
+    //     params: {
+    //       size: 5,
+    //     },
+    //   })
+    //   .then(function (response) {
+    //     // manipula o sucesso da requisição
+    //     setGameData(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     // manipula erros da requisição
+    //     console.error(error);
+    //   });
+    // // }, 1000)
+    // setCategoryData(CategoryData.categories);
+
+    Promise.all([getGames(), getCategories()]).then(function (results) {
+      const games = results[0].data;
+      const categories = results[1].data;
+
+      console.log(games);
+      setGameData(games);
+
+      console.log(categories);
+      setCategoryData(categories);
+    });
   }, []);
 
   return (
@@ -67,7 +94,7 @@ export default function HomeScreen() {
           {categoryData.map((item) => (
             <RecommendedCategoryComponent
               icon={item.icone}
-              categoryName={item.categoria}
+              categoryName={item.name}
               key={item.id}
             />
           ))}

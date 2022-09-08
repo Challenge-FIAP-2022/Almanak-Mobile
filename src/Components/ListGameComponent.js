@@ -41,7 +41,7 @@ export const ListGameComponent = ({ category, gameName, urlImg }) => {
       </View>
 
       <View style={styles.estrelas}>
-        <RatingComponent style={styles.rating} />
+        <RatingComponent />
       </View>
     </Pressable>
   );
@@ -69,27 +69,23 @@ const styles = StyleSheet.create({
   },
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
     padding: 10,
     marginBottom: "auto",
     backgroundColor: "rgba(15, 146, 203, 0.15)",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    // borderTopLeftRadius: 10,
+    // borderTopRightRadius: 10,
     width: 320,
-    height: 50,
+    height: 55,
   },
   text: {
     flex: 1,
     marginLeft: 15,
   },
   estrelas: {
-    paddingVertical: 60,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: "auto",
+    height: 70,
     alignItems: "center",
-    marginLeft: 140,
-    padding: 25,
+    paddingTop: 25,
+    paddingStart: 70,
   },
 });

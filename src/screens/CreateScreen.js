@@ -21,8 +21,8 @@ export default function CreateScreen() {
     >
       <Text style={styles.textTitle}>Cadastrar Novo Jogo</Text>
 
-      <View style={styles.scrollVertical}>
-        <ScrollView vertical showsHorizontalScrollIndicator={false}>
+      <View style={styles.scrollVertical} >
+        <ScrollView vertical showsVerticalScrollIndicator={false}>
           <View style={styles.textInput}>
             <Text style={styles.titleInput}>Nome do Jogo:</Text>
             <TextInput

@@ -6,6 +6,7 @@ import ListScreen from "../screens/ListScreen";
 import CreateScreen from "../screens/CreateScreen";
 import SignaturesScreen from "../screens/SignaturesScreen";
 import UserScreen from "../screens/UserScreen";
+import FilterScreen from "../screens/FilterScreen"
 
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
@@ -94,6 +95,16 @@ export function AppStack() {
 
             return <Ionicons name="person-outline" size={size} color={color} />;
           },
+        }}
+      />
+
+      <Tab.Screen
+        name="Filter"
+        component={FilterScreen}
+        options={{
+          tabBarIcon: ({})=>{
+            return
+          }
         }}
       />
     </Tab.Navigator>

@@ -2,24 +2,12 @@ import {
   StyleSheet,
   View,
   Text,
-  ScrollView,
   ImageBackground,
   TextInput,
 } from "react-native";
-import GamesData from "../services/RecommendedGameService.json";
-import { useEffect, useState } from "react";
-import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 
 export default function ListScreen() {
-  const navigation = useNavigation();
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    setData(GamesData.games);
-  }, []);
-
   return (
     <ImageBackground
       source={require("../../assets/bg.png")}
@@ -27,8 +15,6 @@ export default function ListScreen() {
       style={styles.imgBackground}
     >
       <View style={styles.container}>
-        <Text style={styles.textTitle}>Lista de Jogos</Text>
-
         <View style={styles.textInputAndIcons}>
           <TextInput
             style={styles.textInput}
@@ -52,22 +38,9 @@ export default function ListScreen() {
             size={25}
             color="#FFF"
             style={styles.icon}
-            onPress={() => navigation.navigate("Filter")}
           />
         </View>
-
-        <View style={styles.scrollVertical}>
-          <ScrollView vertical showsVerticalScrollIndicator={false}>
-            {data.map((item) => (
-              <ListGameComponent
-                category={item.categoria}
-                gameName={item.jogo}
-                urlImg={item.imagem}
-                key={item.id}
-              />
-            ))}
-          </ScrollView>
-        </View>
+        <Text style={styles.textTitle}>Lista de Jogos</Text>
       </View>
     </ImageBackground>
   );
@@ -77,18 +50,15 @@ const styles = StyleSheet.create({
   imgBackground: {
     flex: 1,
     resizeMode: "contain",
+    justifyContent: "center",
   },
   container: {
-    flex: 1,
+    flex: 0.85,
     alignItems: "center",
-    marginHorizontal: 20,
-  },
-  scrollVertical: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 15,
-    marginBottom: 50,
+    margin: 20,
+    borderWidth: 5,
+    borderRadius: 10,
+    borderColor: "#296D98",
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",

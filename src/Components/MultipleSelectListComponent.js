@@ -84,8 +84,8 @@ const MultipleSelectListComponent = () => {
           }}
           styleIndicator={{
             //Icone da Direita
-            alignSelf: "center",
             color: "#FFF",
+            alignSelf: "center",
           }}
           styleItemsContainer={{
             //Style da lista do dropdown que fica atrás
