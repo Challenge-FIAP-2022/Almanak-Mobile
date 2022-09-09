@@ -94,6 +94,8 @@ const MultipleSelectListComponent = () => {
           styleInputGroup={{
             //Style da parte de trás do input quando vira dropdown
             backgroundColor: "#296D98",
+            borderTopLeftRadius: 8,
+            borderTopRightRadius: 8,
             paddingHorizontal: 20,
             // flexDirection: "row-reverse",
           }}
@@ -102,7 +104,10 @@ const MultipleSelectListComponent = () => {
             color: "#FFF",
             paddingHorizontal: 10,
           }}
-          styleTextDropdownSelected={{ color: "#FFF", paddingHorizontal: 20 }}
+          styleTextDropdownSelected={{ 
+            color: "#FFF", 
+            paddingHorizontal: 20 
+          }}
         />
       </View>
     </View>

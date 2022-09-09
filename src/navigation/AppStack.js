@@ -11,11 +11,14 @@ import FilterScreen from "../screens/FilterScreen"
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
+
 
 const Tab = createBottomTabNavigator();
 
 export function AppStack() {
   return (
+
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
@@ -99,6 +102,7 @@ export function AppStack() {
       />
 
       <Tab.Screen
+        
         name="Filter"
         component={FilterScreen}
         options={{
@@ -106,7 +110,11 @@ export function AppStack() {
             return
           }
         }}
-      />
+        />
+
     </Tab.Navigator>
+
+
+    
   );
 }

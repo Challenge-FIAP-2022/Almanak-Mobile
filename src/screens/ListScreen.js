@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -5,16 +6,24 @@ import {
   ScrollView,
   ImageBackground,
   TextInput,
+  Pressable,
 } from "react-native";
 import GamesData from "../services/RecommendedGameService.json";
-import { useEffect, useState } from "react";
 import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import Modal from "react-native-modal";
+
+import FilterScreen from "../screens/FilterScreen";
 
 export default function ListScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
+
+  const [isModalVisible, setModalVisible] = useState(false);
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   useEffect(() => {
     setData(GamesData.games);
@@ -47,14 +56,33 @@ export default function ListScreen() {
             color="#FFF"
             style={styles.icon}
           />
-          <MaterialCommunityIcons
-            name="filter"
-            size={25}
-            color="#FFF"
-            style={styles.icon}
-            onPress={() => navigation.navigate("Filter")}
-          />
+
+          
+          <Pressable>
+            <MaterialCommunityIcons
+              name="filter"
+              size={25}
+              color="#FFF"
+              style={styles.icon}
+              onPress={() => navigation.navigate("Filter")}
+            />
+          </Pressable>
+
+          
+
         </View>
+
+        {/* <View style={{ flex: 1 }}>
+          <Button title="Show modal" onPress={toggleModal} />
+
+          <Modal isVisible={isModalVisible}>
+            <View style={{ flex: 1 }}>
+              <Text>Hello!</Text>
+
+              <Button title="Hide modal" onPress={toggleModal} />
+            </View>
+          </Modal>
+        </View> */}
 
         <View style={styles.scrollVertical}>
           <ScrollView vertical showsVerticalScrollIndicator={false}>
@@ -106,7 +134,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: 40,
-    width: 280,
     margin: 10,
     borderWidth: 2,
     borderColor: "#296D98",
