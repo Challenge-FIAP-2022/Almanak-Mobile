@@ -8,10 +8,12 @@ import {
   ScrollView,
   TextInput,
 } from "react-native";
+import RadioButton from "react-native-paper";
 import MultipleSelectListComponent from "../Components/MultipleSelectListComponent";
 
 export default function CreateScreen() {
   // const [check2, setCheck2] = useState(false);
+  const [radioIdade, setRadioIdade] = useState("menoresIdade");
 
   return (
     <ImageBackground
@@ -47,23 +49,38 @@ export default function CreateScreen() {
               />
             </View>
 
-            <Text style={styles.titleInput}>
-              O jogo permite jogadores menores de idade?:
-            </Text>
-            {/* <CheckBox style={styles.checkbox}
-              center
-              wrapperStyle="#0E2433"
-              title="Click Here"
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
-              checked={check2}
-              onPress={() => setCheck2(!check2)}
-            />  */}
+            {/* <View>
+              <Text style={styles.titleInput}>O jogo permite jogadores menores de idade?:</Text>
+              <View style={styles.radioButtonGroup}>
+                <View style={styles.radioButtonIndividual}>
+                  <RadioButton
+                    value="maioresIdade"
+                    status={radioIdade === "maioresIdade" ? "checked" : "unchecked"}
+                    onPress={() => setRadioIdade("maioresIdade")}
+                    uncheckedColor="#296D98"
+                    color="#FFFF00"
+                  />
+                  <Text style={styles.textRadio}>Não, todos devem ser maiores de idade</Text>
+                </View>
+                <View style={styles.radioButtonIndividual}>
+                  <RadioButton
+                    value="menoresIdade"
+                    status={radioIdade === "menoresIdade" ? "checked" : "unchecked"}
+                    onPress={() => setRadioIdade("menoresIdade")}
+                    uncheckedColor="#296D98"
+                    color="#FFFF00"
+                  />
+                  <Text style={styles.textRadio}>Sim, permitir jogadores de todas as idades</Text>
+                </View>
+              </View>
+            </View> */}
+
             <TextInput
               style={styles.answerInput}
-              placeholder="Arrumar a parte do radiobutton aqui"
+              placeholder="VER ESSA PARTE"
               placeholderTextColor="#FFFFFF"
             />
+
 
             <Text style={styles.titleInput}>
               Quais itens são necessários no jogo:
@@ -130,5 +147,19 @@ const styles = StyleSheet.create({
   },
   test: {
     paddingHorizontal: 35,
+  },
+  radioButtonGroup: {
+    justifyContent: "space-between",
+  },
+  radioButtonIndividual: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 2,
+  },
+  textRadio: {
+    marginLeft: 5,
+    color: '#FFF',
+    fontFamily: 'SquadaOne_400Regular',
+    fontSize: 18,
   },
 });
