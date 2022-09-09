@@ -76,7 +76,7 @@ export default function CreateScreen() {
             </View> */}
 
             <TextInput
-              style={styles.answerInput}
+              style={styles.arrumar}
               placeholder="VER ESSA PARTE"
               placeholderTextColor="#FFFFFF"
             />
@@ -161,5 +161,16 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontFamily: 'SquadaOne_400Regular',
     fontSize: 18,
+  },
+  arrumar: {
+    borderWidth: 3,
+    borderColor: "#FFFF00",
+    color: "#FFF",
+    width: "100%",
+    height: 50,
+    alignSelf: "center",
+    textAlign: "center",
+    fontSize: 20,
+    margin: 20,
   },
 });

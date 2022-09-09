@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
-    marginRight: 20,
+    marginHorizontal: 10,
+    // marginLeft: 20,
+    // marginRight: 20,
   },
   titleContainer: {
     flex: 0.3,

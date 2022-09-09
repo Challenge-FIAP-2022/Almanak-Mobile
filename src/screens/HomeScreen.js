@@ -135,12 +135,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   scrollHorizontal: {
-    flex: 0.5,
-    marginBottom: 5,
+    flex: 0.3,
+    marginBottom: 15,
     marginRight: 20,
   },
   scrollVertical: {
-    flex: 0.4,
+    flex: 0.5,
     marginTop: 20,
     marginBottom: 80,
   },

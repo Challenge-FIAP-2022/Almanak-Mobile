@@ -15,7 +15,7 @@ import MultipleSelectListComponent from "../Components/MultipleSelectListCompone
 
 export default function ListScreen() {
 
-  const [radioIdade, setRadioIdade] = useState("menoresIdade");
+  const [radioIdade, setRadioIdade] = useState("maioresIdade");
   const [count, setCount] = useState(0);
 
 
@@ -71,10 +71,14 @@ export default function ListScreen() {
             <View >
               <Text style={styles.textTitle}>Quantas pessoas vão jogar?</Text>
               <View style={styles.numberInput}>
-                <Pressable style={styles.button} title="-" onPress={() => setCount(count - 1)} /> 
-                {/* Setar minimo de 1 jogador */}
+                <Pressable style={styles.button} title="-" onPress={() => setCount(count - 1)}> 
+                  <Text style={styles.textButton}>-</Text>
+                </Pressable>
+                
                 <Text style={styles.counter}>{count}</Text>
-                <Pressable style={styles.button} title="+" onPress={() => setCount(count + 1)} />
+                <Pressable style={styles.button} title="+" onPress={() => setCount(count + 1)}>
+                  <Text style={styles.textButton}>+</Text>
+                </Pressable>
               </View>
             </View>
 
@@ -176,9 +180,9 @@ const styles = StyleSheet.create({
   button: {
     width: 40,
     height: 40,
-    fontFamily: 'SquadaOne_400Regular',
-    fontSize: 40,
-    color: '#FFF',
+    // fontFamily: 'SquadaOne_400Regular',
+    // fontSize: 40,
+    // color: '#FFF',
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
@@ -192,11 +196,18 @@ const styles = StyleSheet.create({
   },
   dropDown: {
     flex: 1,
-    width: 280,
+    width: "100%",
   },
   scrollVertical: {
     flex: 1,
     justifyContent: "center",
-    
+  },
+  textButton: {
+    alignSelf: "center",
+    justifyContent: "center",
+    fontFamily: 'SquadaOne_400Regular',
+    fontSize: 30,
+    color: '#FFF',
+    marginBottom: 5,
   },
 });

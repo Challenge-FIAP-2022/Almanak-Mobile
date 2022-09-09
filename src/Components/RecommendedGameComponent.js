@@ -23,6 +23,7 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
               fontFamily: "SquadaOne_400Regular",
               fontSize: 18,
               color: "#0E2433",
+              // width: "75%",
             }}
           >
             {category}
@@ -32,6 +33,7 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
               fontFamily: "SquadaOne_400Regular",
               fontSize: 24,
               color: "#0E2433",
+              // width: "75%",
             }}
           >
             {gameName}
@@ -69,11 +71,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignContent: "center",
+    alignItems: "center",
     padding: 5,
+    // width: "30%",
+    // marginRight: 2,
   },
   textButton: {
     fontFamily: "Rubik_400Regular",
     color: "#FFF",
     fontSize: 9,
+    textAlign: "center",
   },
 });

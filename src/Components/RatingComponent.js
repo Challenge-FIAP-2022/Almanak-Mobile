@@ -13,8 +13,8 @@ const RatingComponent = () => {
         reviewSize={20}
         half={true}
         defaultRating={4}
-        // reviews
-        // isDisabled
+        reviews
+        isDisabled
         // starContainerStyle={{borderWidth: 2}}
       />
     </View>
@@ -23,8 +23,10 @@ const RatingComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.25,
+    flex: 0.2,
     backgroundColor: "transparent",
+    alignContent: "space-between",
+    justifyContent: "space-between",
     // marginBottom: 30,
     // alignSelf: "center"
   },
