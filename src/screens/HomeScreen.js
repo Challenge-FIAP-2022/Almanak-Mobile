@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryComponent";
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
-import GamesData from "../services/RecommendedGameService.json";
-import CategoryData from "../services/RecommendedGameCategoty.json";
 import { api } from "../services/api";
 
 export default function HomeScreen() {
@@ -24,41 +22,15 @@ export default function HomeScreen() {
     return api.get("/jogo/valido/sim");
   }
 
-  Promise.all([getGames(), getCategories()]).then(function (results) {
-    const games = results[0].data;
-    const categories = results[1].data;
-
-    console.log(games);
-    console.log(categories);
-  });
-
   useEffect(() => {
-    // setTimeout(()=>{
-    // api
-    //   .get("/jogo/valido/sim", {
-    //     params: {
-    //       size: 5,
-    //     },
-    //   })
-    //   .then(function (response) {
-    //     // manipula o sucesso da requisição
-    //     setGameData(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     // manipula erros da requisição
-    //     console.error(error);
-    //   });
-    // // }, 1000)
-    // setCategoryData(CategoryData.categories);
-
     Promise.all([getGames(), getCategories()]).then(function (results) {
       const games = results[0].data;
       const categories = results[1].data;
 
-      console.log(games);
+      // console.log(games);
       setGameData(games);
 
-      console.log(categories);
+      // console.log(categories);
       setCategoryData(categories);
     });
   }, []);

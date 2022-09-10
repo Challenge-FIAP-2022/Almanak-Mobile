@@ -11,7 +11,6 @@ import FilterScreen from "../screens/FilterScreen"
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
-import { NavigationContainer } from "@react-navigation/native";
 
 
 const Tab = createBottomTabNavigator();

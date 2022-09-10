@@ -2,27 +2,11 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import MultiSelect from "react-native-multiple-select";
 
-const items = [
-  {
-    id: "1",
-    name: "Bola",
-  },
-  {
-    id: "2",
-    name: "Baralho",
-  },
-  {
-    id: "3",
-    name: "Uno",
-    key: "disable",
-  },
-];
-
-const MultipleSelectListComponent = () => {
-  const [selectedItems, setselectedItems] = useState([]);
+const MultipleSelectListComponent = ({ lista }) => {
+  const [selectedItems, setSelectedItems] = useState([]);
 
   onSelectedItemsChange = (selectedItems) => {
-    setselectedItems(selectedItems);
+    setSelectedItems(selectedItems);
     console.log(selectedItems);
   };
 
@@ -30,7 +14,7 @@ const MultipleSelectListComponent = () => {
     <View style={styles.container}>
       <View style={styles.multiSelectContainer}>
         <MultiSelect
-          items={items}
+          items={lista}
           uniqueKey="id"
           onSelectedItemsChange={onSelectedItemsChange}
           selectedItems={selectedItems}
@@ -104,9 +88,9 @@ const MultipleSelectListComponent = () => {
             color: "#FFF",
             paddingHorizontal: 10,
           }}
-          styleTextDropdownSelected={{ 
-            color: "#FFF", 
-            paddingHorizontal: 20 
+          styleTextDropdownSelected={{
+            color: "#FFF",
+            paddingHorizontal: 20,
           }}
         />
       </View>
@@ -117,11 +101,11 @@ const MultipleSelectListComponent = () => {
 export default MultipleSelectListComponent;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  // container: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
   multiSelectContainer: {
     width: "100%",
   },

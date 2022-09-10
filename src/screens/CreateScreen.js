@@ -85,7 +85,7 @@ export default function CreateScreen() {
             <Text style={styles.titleInput}>
               Quais itens são necessários no jogo:
             </Text>
-            <MultipleSelectListComponent />
+            {/* <MultipleSelectListComponent /> */}
           </View>
         </ScrollView>
       </View>

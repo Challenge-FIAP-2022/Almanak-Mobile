@@ -12,11 +12,9 @@ import GamesData from "../services/RecommendedGameService.json";
 import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import Modal from "react-native-modal";
-
-import FilterScreen from "../screens/FilterScreen";
 
 export default function ListScreen() {
+
   const navigation = useNavigation();
   const [data, setData] = useState([]);
 
@@ -57,7 +55,6 @@ export default function ListScreen() {
             style={styles.icon}
           />
 
-          
           <Pressable>
             <MaterialCommunityIcons
               name="filter"
@@ -67,9 +64,6 @@ export default function ListScreen() {
               onPress={() => navigation.navigate("Filter")}
             />
           </Pressable>
-
-          
-
         </View>
 
         {/* <View style={{ flex: 1 }}>
