@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import MultiSelect from "react-native-multiple-select";
 
-const MultipleSelectListComponent = ({ lista }) => {
-  const [selectedItems, setSelectedItems] = useState([]);
+export const MultipleSelectListComponent = ({ lista, selecionados = [], setSelectedItems}) => {
 
-  onSelectedItemsChange = (selectedItems) => {
+  const onSelectedItemsChange = (selectedItems) => {
     setSelectedItems(selectedItems);
-    console.log(selectedItems);
+    // console.log(selectedItems);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.multiSelectContainer}>
+    <View style={styles.multiSelectContainer}>
+      <View style={styles.container}>
+        {/* {console.log(selecionados)} */}
         <MultiSelect
           items={lista}
           uniqueKey="id"
           onSelectedItemsChange={onSelectedItemsChange}
-          selectedItems={selectedItems}
+          selectedItems={selecionados}
           selectText="Digite para pesquisar"
           searchInputPlaceholderText="Digite para pesquisar"
           noItemsText="Item não encontrado"
@@ -98,7 +98,7 @@ const MultipleSelectListComponent = ({ lista }) => {
   );
 };
 
-export default MultipleSelectListComponent;
+// export default MultipleSelectListComponent;
 
 const styles = StyleSheet.create({
   // container: {

@@ -7,18 +7,24 @@ import {
   TextInput,
   Pressable,
   ScrollView,
+  Alert,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { RadioButton } from "react-native-paper";
 import { api } from "../services/api";
-import MultipleSelectListComponent from "../Components/MultipleSelectListComponent";
+import { MultipleSelectListComponent } from "../Components/MultipleSelectListComponent";
+import { useNavigation } from "@react-navigation/native";
 
 export default function FilterScreen() {
+  const navigation = useNavigation();
+
   const [itensData, setItensData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const [selecionadosItens, setSelecionadosItens] = useState([]);
+  const [selecionadosCategories, setSelecionadosCategories] = useState([]);
 
-  const [radioIdade, setRadioIdade] = useState("maioresIdade");
-  const [count, setCount] = useState(0);
+  const [radioIdade, setRadioIdade] = useState("maior de idade");
+  const [count, setCount] = useState(1);
 
   function getCategories() {
     return api.get("/categoria/adj");
@@ -28,15 +34,28 @@ export default function FilterScreen() {
     return api.get("/item");
   }
 
+  async function useAudio() {
+    const response = await api
+      .get("https://almanak.mybluemix.net/chatbot/teste");
+    // manipula o sucesso da requisição
+    const categorias = response.data.busca.Categorias[0];
+    const idade = response.data.busca.Idade[0];
+    const itens = response.data.busca.Itens;
+    const pessoas = response.data.busca["sys-number"][0];
+    setCount(pessoas);
+    setSelecionadosItens([itens.length]);
+    setSelecionadosCategories([categorias.length]);
+    setRadioIdade(idade);
+  }
+
   useEffect(() => {
     Promise.all([getItens(), getCategories()]).then(function (results) {
       const itens = results[0].data.content;
       const categories = results[1].data;
 
-      // console.log(results[0].data.content);
       setItensData(itens);
 
-      console.log(categories);
+      // console.log(categories);
       setCategoryData(categories);
     });
   }, []);
@@ -60,6 +79,7 @@ export default function FilterScreen() {
               size={25}
               color="#FFF"
               style={styles.icon}
+              onPress={() => useAudio()}
             />
           </View>
 
@@ -71,11 +91,11 @@ export default function FilterScreen() {
               <View style={styles.radioButtonGroup}>
                 <View style={styles.radioButtonIndividual}>
                   <RadioButton
-                    value="maioresIdade"
+                    value="maior de idade"
                     status={
-                      radioIdade === "maioresIdade" ? "checked" : "unchecked"
+                      radioIdade === "maior de idade" ? "checked" : "unchecked"
                     }
-                    onPress={() => setRadioIdade("maioresIdade")}
+                    onPress={() => setRadioIdade("maior de idade")}
                     uncheckedColor="#296D98"
                     color="#FFFF00"
                   />
@@ -85,11 +105,11 @@ export default function FilterScreen() {
                 </View>
                 <View style={styles.radioButtonIndividual}>
                   <RadioButton
-                    value="menoresIdade"
+                    value="menor de idade"
                     status={
-                      radioIdade === "menoresIdade" ? "checked" : "unchecked"
+                      radioIdade === "menor de idade" ? "checked" : "unchecked"
                     }
-                    onPress={() => setRadioIdade("menoresIdade")}
+                    onPress={() => setRadioIdade("menor de idade")}
                     uncheckedColor="#296D98"
                     color="#FFFF00"
                   />
@@ -106,7 +126,7 @@ export default function FilterScreen() {
                 <Pressable
                   style={styles.button}
                   title="-"
-                  onPress={() => (count === 0 ? count : setCount(count - 1))}
+                  onPress={() => (count === 1 ? count : setCount(count - 1))}
                 >
                   <Text style={styles.textButton}>-</Text>
                 </Pressable>
@@ -126,16 +146,36 @@ export default function FilterScreen() {
               <Text style={styles.textTitle}>
                 Possui algum dos itens abaixo?
               </Text>
-              <MultipleSelectListComponent lista={itensData} />
+              <MultipleSelectListComponent
+                lista={itensData}
+                selecionados={selecionadosItens}
+                setSelectedItems={setSelecionadosItens}
+              />
             </View>
 
             <View style={styles.dropDown}>
               <Text style={styles.textTitle}>
                 Selecione a(s) categoria(s) de jogo
               </Text>
-              <MultipleSelectListComponent lista={categoryData} />
+              <MultipleSelectListComponent
+                lista={categoryData}
+                selecionados={selecionadosCategories}
+                setSelectedItems={setSelecionadosCategories}
+              />
             </View>
           </View>
+          <Pressable
+            style={styles.secondButton}
+            onPress={() => {
+              Alert.alert("Buscando", "Buscando jogos com base no filtro",[
+                {text: "Ok", onPress: ()=> navigation.navigate("Games")}
+              ])
+
+            }
+            }
+          >
+            <Text style={styles.textSecondButton}>Buscar</Text>
+          </Pressable>
         </ScrollView>
       </View>
     </ImageBackground>
@@ -165,9 +205,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
     textAlign: "center",
-    // alignSelf: "center",
-    // marginTop: 20,
     marginBottom: 5,
+    marginTop: 15,
+    // alignSelf: "center",
     // width: 300,
   },
   textInputAndIcons: {
@@ -175,7 +215,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     height: 40,
-    marginBottom: 20,
+    // marginBottom: 20,
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
@@ -249,5 +289,22 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#FFF",
     marginBottom: 5,
+  },
+  secondButton: {
+    width: "60%",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: "#3792CB",
+    alignSelf: "center",
+    marginTop: 10,
+  },
+
+  textSecondButton: {
+    fontFamily: "PressStart2P_400Regular",
+    color: "#FFFF00",
+    fontSize: 12,
+    marginTop: 5,
   },
 });
