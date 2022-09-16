@@ -17,7 +17,7 @@ export default function LoginScreen({ navigation }) {
   const { signIn } = useAuth();
 
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
         source={require("../../assets/bg.png")}
         blurRadius={3}

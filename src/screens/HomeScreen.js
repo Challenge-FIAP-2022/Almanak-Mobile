@@ -8,16 +8,31 @@ import {
 } from "react-native";
 import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryComponent";
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
-import GamesData from "../services/RecommendedGameService.json";
-import CategoryData from "../services/RecommendedGameCategoty.json"
+import { api } from "../services/api";
 
 export default function HomeScreen() {
-  const [data, setData] = useState([]);
-  const [categoryData, setCategoryData] = useState([])
+  const [gameData, setGameData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+
+  function getCategories() {
+    return api.get("/categoria/adj");
+  }
+
+  function getGames() {
+    return api.get("/jogo/valido/sim");
+  }
 
   useEffect(() => {
-    setData(GamesData.games);
-    setCategoryData(CategoryData.categories)
+    Promise.all([getGames(), getCategories()]).then(function (results) {
+      const games = results[0].data;
+      const categories = results[1].data;
+
+      // console.log(games);
+      setGameData(games);
+
+      // console.log(categories);
+      setCategoryData(categories);
+    });
   }, []);
 
   return (
@@ -31,14 +46,14 @@ export default function HomeScreen() {
         <Text style={styles.secondText}>Recomendados</Text>
       </View>
 
-      <View style={styles.scroll}>
+      <View style={styles.scrollHorizontal}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {data.map((item) => (
+          {gameData.map((item, idx) => (
             <RecommendedGameComponent
-              category={item.categoria}
-              gameName={item.jogo}
+              gameName={item.name}
+              category={item.categorias[0].name}
               urlImg={item.imagem}
-              key={item.id}
+              key={idx}
             />
           ))}
         </ScrollView>
@@ -46,18 +61,21 @@ export default function HomeScreen() {
 
       <Text style={styles.secondText}>Categorias</Text>
 
-      <View style={{ flex: 0.4, marginTop: 20 }}>
-        {categoryData.map((item) => (
+      <View style={styles.scrollVertical}>
+        <ScrollView vertical showsHorizontalScrollIndicator={false}>
+          {categoryData.map((item) => (
             <RecommendedCategoryComponent
-              icon = {item.icone}
-              categoryName = {item.categoria}
-              key = {item.id}
+              icon={item.icone}
+              categoryName={item.name}
+              key={item.id}
             />
           ))}
+        </ScrollView>
       </View>
     </ImageBackground>
   );
 }
+
 const styles = StyleSheet.create({
   imgBackground: {
     flex: 1,
@@ -67,6 +85,7 @@ const styles = StyleSheet.create({
     flex: 0.25,
     justifyContent: "flex-end",
     marginBottom: 20,
+    marginTop: 50,
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
@@ -78,7 +97,7 @@ const styles = StyleSheet.create({
       width: 2,
       height: 2,
     },
-    marginBottom: 30,
+    marginBottom: 20,
     alignSelf: "center",
   },
   secondText: {
@@ -87,8 +106,14 @@ const styles = StyleSheet.create({
     fontSize: 32,
     alignSelf: "center",
   },
-  scroll: {
+  scrollHorizontal: {
     flex: 0.3,
-    marginBottom: 20
+    marginBottom: 15,
+    marginRight: 20,
+  },
+  scrollVertical: {
+    flex: 0.5,
+    marginTop: 20,
+    marginBottom: 80,
   },
 });

@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 import {
   Alert,
   StyleSheet,
@@ -12,19 +12,22 @@ import { useAuth } from "../contexts/Auth";
 import { api } from "../services/api";
 
 export default function UserScreen() {
-  const navigation = useNavigation();
   const { authData, signOut } = useAuth();
+  const [user, setUser] = useState({});
 
-  api
-    .get(`/usuario/${authData.id}`)
-    .then(function (response) {
-      // manipula o sucesso da requisição
-      console.log(response);
-    })
-    .catch(function (error) {
-      // manipula erros da requisição
-      console.error(error.response);
-    });
+  useEffect(() => {
+    api
+      .get(`/usuario/adj/${authData.id}`)
+      .then(function (response) {
+        // manipula o sucesso da requisição
+        console.log(response.data);
+        setUser(response.data);
+      })
+      .catch(function (error) {
+        // manipula erros da requisição
+        console.error(error.response);
+      });
+  }, []);
 
   return (
     <ImageBackground
@@ -39,21 +42,18 @@ export default function UserScreen() {
 
       <View style={styles.userData}>
         <Text style={styles.text}>Nome</Text>
-        <Text style={styles.userInfo}>Otavio Gomes</Text>
+        <Text style={styles.userInfo}>{user.name}</Text>
         <Text style={styles.text}>E-mail</Text>
-        <Text style={styles.userInfo}>otavio.gomes@gmail.com</Text>
+        <Text style={styles.userInfo}>{user.email}</Text>
         <Text style={styles.text}>Senha</Text>
         <Text style={styles.userInfo}>*********</Text>
         <Text style={styles.text}>Data de nascimento</Text>
-        <Text style={styles.userInfo}>09/Maio/199x</Text>
+        <Text style={styles.userInfo}>{user.dtNascimento}</Text>
 
         <View style={styles.buttons}>
           <Pressable
             style={styles.button}
-            onPress={() => (
-              Alert.alert("Cadastro atualizado"),
-              navigation.navigate("SignaturesScreen")
-            )}
+            onPress={() => Alert.alert("Cadastro atualizado")}
           >
             <Text style={styles.textButton}>Atualizar Cadastro</Text>
           </Pressable>
@@ -107,8 +107,9 @@ const styles = StyleSheet.create({
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 14,
+    fontSize: 13,
     marginTop: 5,
+    alignItems: "center",
   },
   userData: {
     flex: 1,
@@ -132,6 +133,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "80%",
     paddingVertical: 10,
-    textAlignVertical: "center"
+    textAlignVertical: "center",
   },
 });

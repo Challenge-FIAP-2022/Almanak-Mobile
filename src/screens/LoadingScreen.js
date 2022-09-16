@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
   },
   loading: {
     flex: 1,
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });

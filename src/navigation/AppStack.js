@@ -6,15 +6,18 @@ import ListScreen from "../screens/ListScreen";
 import CreateScreen from "../screens/CreateScreen";
 import SignaturesScreen from "../screens/SignaturesScreen";
 import UserScreen from "../screens/UserScreen";
+import FilterScreen from "../screens/FilterScreen"
 
-import ButtonNew from "../Components/ButtonNew";
+import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
+
 
 const Tab = createBottomTabNavigator();
 
 export function AppStack() {
   return (
+
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
@@ -64,7 +67,7 @@ export function AppStack() {
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ size, focused }) => (
-            <ButtonNew size={size} focused={focused} />
+            <ButtonNewComponent size={size} focused={focused} />
           ),
         }}
       />
@@ -96,6 +99,21 @@ export function AppStack() {
           },
         }}
       />
+
+      <Tab.Screen
+        
+        name="Filter"
+        component={FilterScreen}
+        options={{
+          tabBarIcon: ({})=>{
+            return
+          }
+        }}
+        />
+
     </Tab.Navigator>
+
+
+    
   );
 }

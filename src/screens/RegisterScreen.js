@@ -9,7 +9,7 @@ import {
   Pressable,
   Alert,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from "react-native";
 import { api } from "../services/api";
 
@@ -41,9 +41,10 @@ export default function RegisterScreen() {
       });
   }
   return (
-    <KeyboardAvoidingView 
-      style={{flex: 1}}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
       <ImageBackground
         source={require("../../assets/bg.png")}
         blurRadius={3}

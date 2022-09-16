@@ -14,10 +14,10 @@ export default function UserScreen() {
 
   useEffect(() => {
     api
-      .get("/plano")
+      .get("/plano/valido/sim")
       .then(function (response) {
         // manipula o sucesso da requisição
-        setData(response.data.content);
+        setData(response.data);
       })
       .catch(function (error) {
         // manipula erros da requisição
@@ -35,21 +35,15 @@ export default function UserScreen() {
         <Text style={styles.textTitle}>Almanak</Text>
         <Text style={styles.textYellow}>Planos</Text>
       </View>
-      <View
-        style={{
-          flex: 0.8,
-          marginHorizontal: 30,
-          justifyContent: "flex-start",
-        }}
-      >
+      <View style={styles.cardsContainer}>
         <View style={styles.scroll}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {data.map((item) => (
+            {data.map((item, idx) => (
               <SignaturesComponent
                 name={item.name}
                 desc={item.desc}
                 value={item.valor}
-                key={item.id}
+                key={idx}
               />
             ))}
           </ScrollView>
@@ -87,7 +81,8 @@ const styles = StyleSheet.create({
     color: "#FFFF00",
     fontSize: 32,
   },
-  scroll: {
-    flex: 0.9,
+  cardsContainer: {
+    flex: 0.8,
+    marginHorizontal: 5,
   },
 });

@@ -3,7 +3,7 @@
     {
       "id": 1,
       "categoria": "Jogos de Bola",
-      "icone": "volleyball"
+      "icone": "clover"
     },
     {
       "id": 2,
@@ -13,12 +13,22 @@
     {
       "id": 4,
       "categoria": "Jogos de Tabuleiro",
-      "icone": "checkerboard"
+      "icone": "soccer-field"
     },
     {
       "id": 5,
       "categoria": "Jogos com Bebida",
       "icone": "glass-wine"
+    },
+    {
+      "id": 6,
+      "categoria": "Jogos com Corda",
+      "icone": "alert-decagram"
+    },
+    {
+      "id": 7,
+      "categoria": "Jogos com Dados",
+      "icone": "dice-5"
     }
   ]
 }
