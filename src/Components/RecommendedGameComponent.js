@@ -1,4 +1,5 @@
 import React from "react";
+import { Alert } from "react-native";
 import {
   ImageBackground,
   View,
@@ -33,13 +34,17 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
               fontFamily: "SquadaOne_400Regular",
               fontSize: 24,
               color: "#0E2433",
-              // width: "75%",
+              // maxWidth: 120,
+              // backgroundColor: "red"
             }}
           >
             {gameName}
           </Text>
         </View>
-        <Pressable style={styles.button}>
+        <Pressable 
+          style={styles.button}
+          onPress={() => Alert.alert("Aqui um jogo abre")}
+        >
           <Text style={styles.textButton}>Visualizar Jogo</Text>
         </Pressable>
       </View>

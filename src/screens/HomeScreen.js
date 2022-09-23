@@ -27,7 +27,7 @@ export default function HomeScreen() {
       const games = results[0].data;
       const categories = results[1].data;
 
-      // console.log(games);
+      console.log(games);
       setGameData(games);
 
       // console.log(categories);
@@ -47,11 +47,17 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.scrollHorizontal}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={{ alignItems: "center" }}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
           {gameData.map((item, idx) => (
             <RecommendedGameComponent
-              gameName={item.name}
-              category={item.categorias[0].name}
+              gameName={item.name.length < 12 ? item.name : item.name.slice(0, 12) + "..."}
+              // gameName={item.name.length}
+              // category={item.categorias[0].name}
+              category={item.categorias[0].name.length < 12 ? item.categorias[0].name : item.categorias[0].name.slice(0, 12) + "..."}
               urlImg={item.imagem}
               key={idx}
             />
@@ -107,8 +113,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   scrollHorizontal: {
-    flex: 0.3,
-    marginBottom: 15,
+    flex: 0.35,
+    // marginBottom: 15,
     marginRight: 20,
   },
   scrollVertical: {

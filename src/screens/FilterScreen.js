@@ -35,13 +35,15 @@ export default function FilterScreen() {
   }
 
   async function useAudio() {
-    const response = await api
-      .get("https://almanak.mybluemix.net/chatbot/teste");
+    const response = await api.get(
+      "https://almanak.mybluemix.net/chatbot/teste"
+    );
     // manipula o sucesso da requisição
     const categorias = response.data.busca.Categorias[0];
     const idade = response.data.busca.Idade[0];
     const itens = response.data.busca.Itens;
     const pessoas = response.data.busca["sys-number"][0];
+    console.log(response.data);
     setCount(pessoas);
     setSelecionadosItens([itens.length]);
     setSelecionadosCategories([categorias.length]);
@@ -167,12 +169,10 @@ export default function FilterScreen() {
           <Pressable
             style={styles.secondButton}
             onPress={() => {
-              Alert.alert("Buscando", "Buscando jogos com base no filtro",[
-                {text: "Ok", onPress: ()=> navigation.navigate("Games")}
-              ])
-
-            }
-            }
+              Alert.alert("Buscando", "Buscando jogos com base no filtro", [
+                { text: "Ok", onPress: () => navigation.navigate("Games") },
+              ]);
+            }}
           >
             <Text style={styles.textSecondButton}>Buscar</Text>
           </Pressable>

@@ -53,26 +53,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#3939",
+    backgroundColor: "#FFFF00",
     marginTop: 20,
     width: 150,
-    height: 40,
+    height: 50,
     alignSelf: "center",
     marginBottom: 50,
+    borderWidth: 2,
+    borderColor: "#0E2333"
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
-    color: "#FFFF00",
+    color: "#0E2333",
     fontSize: 13,
     marginTop: 5,
     textAlign: "center",
-    lineHeight: 17,
+    lineHeight: 20,
+    
   },
   text: {
     fontFamily: "Rubik_400Regular",
     fontSize: 18,
     color: "#FFFFFF",
-    padding: 20,
+    paddingHorizontal: 20,
+    marginTop:20,
+    height:200,
+    width: "100%"
   },
   line: {
     backgroundColor: "#FFFF00",
