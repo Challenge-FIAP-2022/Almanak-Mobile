@@ -27,7 +27,7 @@ export default function HomeScreen() {
       const games = results[0].data;
       const categories = results[1].data;
 
-      console.log(games);
+      // console.log(games);
       setGameData(games);
 
       // console.log(categories);

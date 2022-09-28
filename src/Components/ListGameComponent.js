@@ -3,7 +3,7 @@ import React from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 import RatingComponent from "./RatingComponent";
 
-export const ListGameComponent = ({ category, gameName, urlImg }) => {
+export const ListGameComponent = ({ category, gameName, urlImg, score }) => {
   return (
     <Pressable style={styles.card}>
       <View style={styles.container}>
@@ -41,7 +41,9 @@ export const ListGameComponent = ({ category, gameName, urlImg }) => {
       </View>
 
       <View style={styles.estrelas}>
-        <RatingComponent />
+        <RatingComponent 
+          score ={score}
+        />
       </View>
     </Pressable>
   );

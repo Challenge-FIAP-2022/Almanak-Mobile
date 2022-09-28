@@ -30,8 +30,6 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderRadius: 10,
     marginHorizontal: 10,
-    // marginLeft: 20,
-    // marginRight: 20,
   },
   titleContainer: {
     flex: 0.3,
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
     color: "#0E2333",
     fontSize: 22,
     alignSelf: "center",
-
   },
 
   button: {
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 50,
     borderWidth: 2,
-    borderColor: "#0E2333"
+    borderColor: "#0E2333",
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
@@ -69,16 +66,15 @@ const styles = StyleSheet.create({
     marginTop: 5,
     textAlign: "center",
     lineHeight: 20,
-    
   },
   text: {
     fontFamily: "Rubik_400Regular",
     fontSize: 18,
     color: "#FFFFFF",
     paddingHorizontal: 20,
-    marginTop:20,
-    height:200,
-    width: "100%"
+    marginTop: 20,
+    height: 200,
+    width: "100%",
   },
   line: {
     backgroundColor: "#FFFF00",

@@ -1,23 +1,37 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "../screens/HomeScreen";
 import ListScreen from "../screens/ListScreen";
 import CreateScreen from "../screens/CreateScreen";
 import SignaturesScreen from "../screens/SignaturesScreen";
 import UserScreen from "../screens/UserScreen";
-import FilterScreen from "../screens/FilterScreen"
+import FilterScreen from "../screens/FilterScreen";
 
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
 
+const Stack = createNativeStackNavigator();
+
+function StackPart() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="List" component={ListScreen} />
+      <Stack.Screen name="Filter" component={FilterScreen} />
+    </Stack.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator();
 
 export function AppStack() {
   return (
-
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
@@ -49,7 +63,7 @@ export function AppStack() {
 
       <Tab.Screen
         name="Games"
-        component={ListScreen}
+        component={StackPart}
         options={{
           tabBarIcon: ({ size, color, focused }) => {
             if (focused) {
@@ -100,7 +114,7 @@ export function AppStack() {
         }}
       />
 
-      <Tab.Screen
+      {/* <Tab.Screen
         
         name="Filter"
         component={FilterScreen}
@@ -109,11 +123,7 @@ export function AppStack() {
             return
           }
         }}
-        />
-
+        /> */}
     </Tab.Navigator>
-
-
-    
   );
 }

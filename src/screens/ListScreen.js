@@ -12,20 +12,30 @@ import GamesData from "../services/RecommendedGameService.json";
 import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { api } from "../services/api";
 
 export default function ListScreen() {
-
+  
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-
+  
+  useEffect(() => {
+    api.get('/jogo/valido/sim')
+    .then(function (response) {
+      // manipula o sucesso da requisição
+      setData(response.data);
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      // manipula erros da requisição
+      console.error(error);
+    })
+    
+  }, []);
   const [isModalVisible, setModalVisible] = useState(false);
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
-  useEffect(() => {
-    setData(GamesData.games);
-  }, []);
 
   return (
     <ImageBackground
@@ -82,10 +92,11 @@ export default function ListScreen() {
           <ScrollView vertical showsVerticalScrollIndicator={false}>
             {data.map((item) => (
               <ListGameComponent
-                category={item.categoria}
-                gameName={item.jogo}
+                category={item.categorias[0].name}
+                gameName={item.name}
                 urlImg={item.imagem}
                 key={item.id}
+                score={item.score}
               />
             ))}
           </ScrollView>

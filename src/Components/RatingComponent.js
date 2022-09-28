@@ -2,13 +2,13 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { AirbnbRating } from "@rneui/themed";
 
-const RatingComponent = () => {
+const RatingComponent = ({score}) => {
   return (
     <View style={styles.container}>
       <AirbnbRating
         ratingColor="#ffff00"
         ratingBackgroundColor="#0E2433"
-        count={5}
+        count={score}
         size={20}
         reviewSize={20}
         half={true}
