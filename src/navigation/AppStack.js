@@ -12,6 +12,7 @@ import FilterScreen from "../screens/FilterScreen";
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
+import GameScreen from "../screens/GameScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,20 @@ function StackPart() {
     >
       <Stack.Screen name="List" component={ListScreen} />
       <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="Game" component={GameScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function StackGame() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Game" component={GameScreen} />
     </Stack.Navigator>
   );
 }
@@ -49,7 +64,7 @@ export function AppStack() {
     >
       <Tab.Screen
         name="Home"
-        component={HomeScreen}
+        component={StackGame}
         options={{
           tabBarIcon: ({ size, color, focused }) => {
             if (focused) {

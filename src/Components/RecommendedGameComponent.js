@@ -7,8 +7,12 @@ import {
   Pressable,
   Text,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
+
+  const navigation = useNavigation();
+
   return (
     <ImageBackground
       style={styles.imgBg}
@@ -43,7 +47,8 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
         </View>
         <Pressable 
           style={styles.button}
-          onPress={() => Alert.alert("Aqui um jogo abre")}
+          // onPress={() => Alert.alert("Aqui um jogo abre")}
+          onPress={() => navigation.navigate("Game")}
         >
           <Text style={styles.textButton}>Visualizar Jogo</Text>
         </Pressable>
