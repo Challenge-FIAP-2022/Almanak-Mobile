@@ -8,18 +8,20 @@ import {
 } from "react-native";
 import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryComponent";
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
+import { useAuth } from "../contexts/Auth";
 import { api } from "../services/api";
 
 export default function HomeScreen() {
   const [gameData, setGameData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const { authData } = useAuth();
 
   function getCategories() {
     return api.get("/categoria/adj");
   }
 
   function getGames() {
-    return api.get("/jogo/valido/sim");
+    return api.get(`/jogo/recomendados/${authData.id}`);
   }
 
   useEffect(() => {
@@ -54,10 +56,18 @@ export default function HomeScreen() {
         >
           {gameData.map((item, idx) => (
             <RecommendedGameComponent
-              gameName={item.name.length < 12 ? item.name : item.name.slice(0, 12) + "..."}
+              gameName={
+                item.name.length < 12
+                  ? item.name
+                  : item.name.slice(0, 12) + "..."
+              }
               // gameName={item.name.length}
               // category={item.categorias[0].name}
-              category={item.categorias[0].name.length < 12 ? item.categorias[0].name : item.categorias[0].name.slice(0, 12) + "..."}
+              category={
+                item.categorias[0].name.length < 12
+                  ? item.categorias[0].name
+                  : item.categorias[0].name.slice(0, 12) + "..."
+              }
               urlImg={item.imagem}
               key={idx}
             />
