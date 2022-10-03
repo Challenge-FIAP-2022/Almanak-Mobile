@@ -1,92 +1,158 @@
-
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Pressable } from "react-native";
 import {
   StyleSheet,
   ImageBackground,
   View,
   Text,
   ScrollView,
-  TextInput,
-  Dimensions,
 } from "react-native";
 import RatingComponent from "../Components/RatingComponent";
-import AppIntroSlider from 'react-native-app-intro-slider';
-
-const slides = [
-  {
-    key: '1',
-    title: 'Teste 1',
-    text: 'Texto do teste 1',
-    text2: 'Teste 1930257835903284',
-    //image: require('../../assets/logo.png'),
-  },
-  {
-    key: '2',
-    title: 'Teste 2',
-    text: 'Texto do teste 2',
-  },
-  {
-    key: '3',
-    title: 'Teste 3',
-    text: 'Texto do teste 3',
-  },
-];
-
+import { Dimensions } from "react-native";
+import AccordionComponent from "../Components/AccordionComponent";
 
 export default function GameScreen() {
-  const [showHome, setShowHome] = useState(false);
+  const scrollRef = useRef(null);
+  const windowWidth = Dimensions.get("window").width;
+  const [active, setActive] = useState(1);
 
-  function renderSlides({ item }){
-    return(
-      <View style={{flex:1}}>
-        <Text>{item.title}</Text>
-        <Text>{item.text}</Text>
-        <Text>{item.text2}</Text>
-        {/*<Image source={item.image} />*/}
-      </View>
-    )
-  }
-
-  if(showHome){
-    return <Text>Teste entrou na home</Text>
-  } else {
-    return(
+  return (
+    <ImageBackground
+      source={require("../../assets/bg.png")}
+      blurRadius={3}
+      style={styles.imgBackground}
+    >
       <ImageBackground
-        source={require("../../assets/bg.png")}
-        blurRadius={3}
-        style={styles.imgBackground}
+        style={styles.imgGameBackground}
+        source={{
+          uri: "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        }}
+        blurRadius={5}
       >
-        <ImageBackground
-          style={styles.imgGameBackground}
-          source={{
-            uri: "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        <Text style={styles.gameTitle}>JOGO X</Text>
+      </ImageBackground>
+
+      <View style={styles.container}>
+        <View style={styles.line} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            margin: 20,
           }}
-          blurRadius={5}
         >
-          <Text style={styles.gameTitle}>JOGO X</Text>
-        </ImageBackground>
+          <View>
+            <Pressable
+              style={active == 1 ? styles.buttonActive : styles.button}
+              onPress={() => (
+                scrollRef.current.scrollTo({ x: windowWidth * 0 }), setActive(1)
+              )}
+            >
+              <Text
+                style={[
+                  styles.textButton,
+                  { color: active == 1 ? "#0E2433" : "#FFFF00" },
+                ]}
+              >
+                1
+              </Text>
+            </Pressable>
+            <Text
+              style={[
+                styles.text,
+                { color: active === 1 ? "#FFFF00" : "#3792CB" },
+              ]}
+            >
+              Sobre
+            </Text>
+          </View>
+          <View>
+            <Pressable
+              style={active == 2 ? styles.buttonActive : styles.button}
+              onPress={() => (
+                scrollRef.current.scrollTo({ x: windowWidth * 1 }), setActive(2)
+              )}
+            >
+              <Text
+                style={[
+                  styles.textButton,
+                  { color: active == 2 ? "#0E2433" : "#FFFF00" },
+                ]}
+              >
+                2
+              </Text>
+            </Pressable>
+            <Text
+              style={[
+                styles.text,
+                { color: active === 2 ? "#FFFF00" : "#3792CB" },
+              ]}
+            >
+              Regras
+            </Text>
+          </View>
+          <View>
+            <Pressable
+              style={active == 3 ? styles.buttonActive : styles.button}
+              onPress={() => (
+                scrollRef.current.scrollTo({ x: windowWidth * 3 }), setActive(3)
+              )}
+            >
+              <Text
+                style={[
+                  styles.textButton,
+                  { color: active == 3 ? "#0E2433" : "#FFFF00" },
+                ]}
+              >
+                3
+              </Text>
+            </Pressable>
+            <Text
+              style={[
+                styles.text,
+                { color: active === 3 ? "#FFFF00" : "#3792CB" },
+              ]}
+            >
+              Avaliações
+            </Text>
+          </View>
+        </View>
 
-        <AppIntroSlider
-          renderItem={renderSlides}
-          data={slides}
-          activeDotStyle={{
-            backgroundColor: '#FFFF00',
-            width: 30,
-          }}
-        />
-
-        
-
-        {/* <ScrollView
+        <ScrollView
           horizontal={true}
-          contentContainerStyle={{ width: '${100}%' }}
-          // showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={100}
+          contentContainerStyle={{
+            width: windowWidth * 3,
+            display: "flex",
+            flexDirection: "row",
+            overflow: "hidden",
+          }}
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={200}
           decelerationRate="fast"
           pagingEnabled
-        > */}
-
-          {/* <View style={styles.carousel}>
+          ref={scrollRef}
+          onScroll={(event) => {
+            const scrolling = event.nativeEvent.contentOffset.x;
+            console.log(scrolling);
+            if (scrolling < 392) {
+              setActive(1);
+              // console.log("Active" + active);
+              // console.log(scrolling);
+            }
+            if (scrolling >392 && scrolling < 785) {
+              setActive(2);
+              // console.log("Active" + active);
+              // console.log(scrolling);
+            }
+            if (scrolling > 785) {
+              setActive(3);
+              // console.log("Active" + active);
+              // console.log(scrolling);
+            }
+          }}
+        >
+          <View style={styles.carousel}>
             <View style={styles.informacoes}>
               <Text style={styles.textTitle}>Categoria:</Text>
               <Text style={styles.textInfo}>Cartas</Text>
@@ -95,79 +161,148 @@ export default function GameScreen() {
               <Text style={styles.textTitle}>Quantidade de Jogadores:</Text>
               <Text style={styles.textInfo}>2 - 6 jogadores</Text>
               <Text style={styles.textTitle}>Avaliação do Jogo:</Text>
-              <Text style={styles.textInfo}>4,5 */}
-                {/* <RatingComponent 
-                  score ={5}
-                /> */}
-
-              {/* </Text>
+              <Text style={styles.textInfo}>
+                4,5
+                <RatingComponent score={5} color={"#FFF"} />
+              </Text>
             </View>
-          </View> */}
+          </View>
 
-        {/* </ScrollView> */}
+          <View style={styles.carousel}>
+            <View
+              style={{
+                width: "100%",
+                paddingHorizontal: 20,
+              }}
+            >
+              <AccordionComponent
+                title={"Regra Principal"}
+                text={
+                  "Utiliza-se dois baralhos de 52 cartas, com os coringas. Podem haver de dois a seis jogadores. O jogo com dois ou três participantes tem contagem individual. Quando quatro ou seis pessoas participam, duas duplas são formadas, devendo sentar em posições alternadas."
+                }
+                icon={"cellphone-sound"}
+                iconColor={"#FFFF00"}
+                // func={clica}
+              />
+              <AccordionComponent title={"Opcional"} text={"Opcionais"} />
+              <AccordionComponent title={"Extras"} text={"Extras"} />
+            </View>
+          </View>
 
-
-      </ImageBackground>
-  
-
-
-
-    );
-  }
+          <View style={styles.carousel}>
+            <View
+              style={{ borderTopWidth: 2, borderColor: "#296D98", margin: 20 }}
+            >
+              <Text style={styles.textTitle}>Usuário</Text>
+              <View
+                style={{
+                  justifyContent: "center",
+                  width: 120,
+                  height: 30,
+                }}
+              >
+                <RatingComponent score={5} color={"#FFF"} />
+              </View>
+              <Text style={styles.textTitle}>Avaliação do Jogo</Text>
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+      <MaterialCommunityIcons
+        name={"frequently-asked-questions"}
+        size={56}
+        color="#FFFF00"
+        style={{ position: "absolute", bottom: "10%", right: "10%" }}
+      />
+    </ImageBackground>
+  );
 }
 
-
 const styles = StyleSheet.create({
-    imgBackground: {
-      flex: 1,
-      resizeMode: "contain",
-    },
-    imgGameBackground: {
-      marginTop: 50,
-      height: 170,
-      width: "100%",
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    gameTitle: {
-      fontFamily: "PressStart2P_400Regular",
-      textAlign: "center",
-      color: "white",
-      fontSize: 20,
-      backgroundColor: "#1C4966",
-      borderRadius: 10,
-      paddingTop: 15,
-      paddingBottom: 5,
-      paddingHorizontal: 15,
-    },
-    informacoes: {
-      margin: 20,
-    },
-    textTitle: {
-      fontFamily: "SquadaOne_400Regular",
-      textAlign: "left",
-      paddingLeft: 20,
-      color: "#FFFF00",
-      fontSize: 28,
-      marginVertical: 5,
-    },
-    textInfo: {
-      fontFamily: "SquadaOne_400Regular",
-      textAlign: "left",
-      paddingLeft: 20,
-      color: "white",
-      fontSize: 24,
-      marginVertical: 5,
-    },
-    // carousel: {
-    //   flex: 1,
-    //   backgroundColor: "white",
-    // },
-    // cardCarousel: { 
-    //   backgroundColor: "red",
-    // },
-    // image: {
-    //   height: 250,
-    //   borderRadius: 8,
-    // },
+  imgBackground: {
+    flex: 1,
+    resizeMode: "contain",
+  },
+  imgGameBackground: {
+    height: 170,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  gameTitle: {
+    fontFamily: "PressStart2P_400Regular",
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    backgroundColor: "#1C4966",
+    borderRadius: 10,
+    paddingTop: 15,
+    paddingBottom: 5,
+    paddingHorizontal: 15,
+  },
+  informacoes: {
+    marginHorizontal: 40,
+  },
+  textTitle: {
+    fontFamily: "SquadaOne_400Regular",
+    textAlign: "left",
+    color: "#FFFF00",
+    fontSize: 26,
+  },
+  textInfo: {
+    fontFamily: "SquadaOne_400Regular",
+    textAlign: "left",
+    color: "white",
+    fontSize: 24,
+    marginVertical: 5,
+    zIndex: 10,
+  },
+  container: {
+    width: "100%",
+    elevation: 10,
+  },
+  carousel: {
+    width: "33.33%",
+  },
+  line: {
+    backgroundColor: "#FFFF00",
+    width: "70%",
+    height: 7,
+    alignSelf: "center",
+    marginTop: "auto",
+    position: "absolute",
+    top: 47,
+    elevation: 1,
+  },
+  buttonActive: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#FFFF00",
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 10,
+  },
+  button: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#0E2433",
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: "#FFFF00",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 10,
+  },
+  textButton: {
+    fontFamily: "PressStart2P_400Regular",
+    color: "#FFFF00",
+    fontSize: 20,
+  },
+  text: {
+    textAlign: "center",
+    color: "#FFFF00",
+    marginTop: 5,
+    fontFamily: "Rubik_400Regular",
+  },
 });

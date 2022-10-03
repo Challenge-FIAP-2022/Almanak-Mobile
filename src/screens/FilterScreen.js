@@ -34,19 +34,36 @@ export default function FilterScreen() {
     return api.get("/item");
   }
 
+  function getArrayPosition(itensToFind, listData) {
+    let posicoesValidas = itensToFind.map((element) => {
+      let position = listData.findIndex((e) => e.name == element) + 1;
+      if (position > 0) {
+        return position;
+      }
+    });
+
+    return posicoesValidas;
+  }
+
   async function useAudio() {
     const response = await api.get(
       "https://almanak.mybluemix.net/chatbot/teste"
     );
     // manipula o sucesso da requisição
-    const categorias = response.data.busca.Categorias[0];
+    const categorias = response.data.busca.Categorias;
+    let categoriasValidas = getArrayPosition(categorias, categoryData);
     const idade = response.data.busca.Idade[0];
+
     const itens = response.data.busca.Itens;
+    let itensValidos = getArrayPosition(itens, itensData);
+
     const pessoas = response.data.busca["sys-number"][0];
     console.log(response.data);
+
     setCount(pessoas);
-    setSelecionadosItens([itens.length]);
-    setSelecionadosCategories([categorias.length]);
+    setSelecionadosItens(itensValidos);
+    setSelecionadosCategories(categoriasValidas);
+    console.log("AQUI" + categoriasValidas);
     setRadioIdade(idade);
   }
 

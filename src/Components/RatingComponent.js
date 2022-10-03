@@ -2,20 +2,24 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { AirbnbRating } from "@rneui/themed";
 
-const RatingComponent = ({score}) => {
+const RatingComponent = ({ score, color, disabled = true }) => {
   return (
     <View style={styles.container}>
       <AirbnbRating
-        ratingColor="#ffff00"
+        selectedColor={color ? color : "#FFFF00"}
         ratingBackgroundColor="#0E2433"
         count={score}
         size={20}
-        reviewSize={20}
         half={true}
         defaultRating={4}
         reviews
-        isDisabled
-        // starContainerStyle={{borderWidth: 2}}
+        isDisabled={disabled}
+        unSelectedColor={"#BDC3C7"}
+        ratingContainerStyle={{
+          height: 35,
+          alignItems: "flex-start",
+          paddingBottom: 10,
+        }}
       />
     </View>
   );
@@ -23,12 +27,8 @@ const RatingComponent = ({score}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.2,
-    backgroundColor: "transparent",
-    alignContent: "space-between",
-    justifyContent: "space-between",
-    // marginBottom: 30,
-    // alignSelf: "center"
+    width: "100%",
+    justifyContent: "flex-start",
   },
 });
 
