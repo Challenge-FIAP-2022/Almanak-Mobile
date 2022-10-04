@@ -28,7 +28,7 @@ const RatingComponent = ({ score, color, disabled = true }) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
 });
 

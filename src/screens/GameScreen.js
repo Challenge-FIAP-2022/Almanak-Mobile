@@ -114,7 +114,7 @@ export default function GameScreen() {
                 { color: active === 3 ? "#FFFF00" : "#3792CB" },
               ]}
             >
-              Avaliações
+              Reviews
             </Text>
           </View>
         </View>
@@ -132,27 +132,28 @@ export default function GameScreen() {
           decelerationRate="fast"
           pagingEnabled
           ref={scrollRef}
-          onScroll={(event) => {
-            const scrolling = event.nativeEvent.contentOffset.x;
-            console.log(scrolling);
-            if (scrolling < 392) {
-              setActive(1);
-              // console.log("Active" + active);
-              // console.log(scrolling);
-            }
-            if (scrolling >392 && scrolling < 785) {
-              setActive(2);
-              // console.log("Active" + active);
-              // console.log(scrolling);
-            }
-            if (scrolling > 785) {
-              setActive(3);
-              // console.log("Active" + active);
-              // console.log(scrolling);
-            }
-          }}
+          // onScroll={(event) => {
+          //   const scrolling = event.nativeEvent.contentOffset.x;
+          //   console.log(scrolling);
+          //   if (scrolling < 392) {
+          //     setActive(1);
+          //     // console.log("Active" + active);
+          //     // console.log(scrolling);
+          //   }
+          //   if (scrolling >392 && scrolling < 785) {
+          //     setActive(2);
+          //     // console.log("Active" + active);
+          //     // console.log(scrolling);
+          //   }
+          //   if (scrolling > 785) {
+          //     setActive(3);
+          //     // console.log("Active" + active);
+          //     // console.log(scrolling);
+          //   }
+          // }}
+          nestedScrollEnabled={true}
         >
-          <View style={styles.carousel}>
+          <View style={[styles.carousel, { overflow: "scroll" }]}>
             <View style={styles.informacoes}>
               <Text style={styles.textTitle}>Categoria:</Text>
               <Text style={styles.textInfo}>Cartas</Text>
@@ -161,18 +162,20 @@ export default function GameScreen() {
               <Text style={styles.textTitle}>Quantidade de Jogadores:</Text>
               <Text style={styles.textInfo}>2 - 6 jogadores</Text>
               <Text style={styles.textTitle}>Avaliação do Jogo:</Text>
-              <Text style={styles.textInfo}>
-                4,5
-                <RatingComponent score={5} color={"#FFF"} />
-              </Text>
+              <View style={styles.avaliation}>
+                <Text style={styles.textAvaliation}>
+                  4,5
+                  <RatingComponent score={5} color={"#FFF"} />
+                </Text>
+              </View>
             </View>
           </View>
 
-          <View style={styles.carousel}>
+          <View style={[styles.carousel, { overflow: "scroll" }]}>
             <View
               style={{
                 width: "100%",
-                paddingHorizontal: 20,
+                paddingHorizontal: 40,
               }}
             >
               <AccordionComponent
@@ -180,7 +183,7 @@ export default function GameScreen() {
                 text={
                   "Utiliza-se dois baralhos de 52 cartas, com os coringas. Podem haver de dois a seis jogadores. O jogo com dois ou três participantes tem contagem individual. Quando quatro ou seis pessoas participam, duas duplas são formadas, devendo sentar em posições alternadas."
                 }
-                icon={"cellphone-sound"}
+                icon={"volume-high"}
                 iconColor={"#FFFF00"}
                 // func={clica}
               />
@@ -189,27 +192,93 @@ export default function GameScreen() {
             </View>
           </View>
 
-          <View style={styles.carousel}>
-            <View
-              style={{ borderTopWidth: 2, borderColor: "#296D98", margin: 20 }}
-            >
-              <Text style={styles.textTitle}>Usuário</Text>
+          <View style={[styles.carousel, { overflow: "scroll" }]}>
+            <ScrollView nestedScrollEnabled={true}>
               <View
                 style={{
-                  justifyContent: "center",
-                  width: 120,
-                  height: 30,
+                  borderTopWidth: 2,
+                  borderColor: "#296D98",
+                  marginHorizontal: 40,
                 }}
               >
-                <RatingComponent score={5} color={"#FFF"} />
+                <Text style={styles.textTitle}>Usuário</Text>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignSelf: "baseline",
+                    width: 120,
+                    height: 30,
+                    paddingBottom: 10,
+                  }}
+                >
+                  <RatingComponent score={5} color={"#FFF"} />
+                </View>
+                <Text style={styles.userAvaliation}>
+                  Achei o aplicativo maravilhoso. Tenho vários itens que consigo
+                  usar para jogar diversos jogos com os meus amigos e eu nem
+                  lembrava da existência deles. Super recomendo!!!
+                </Text>
               </View>
-              <Text style={styles.textTitle}>Avaliação do Jogo</Text>
-            </View>
+
+              <View
+                style={{
+                  borderTopWidth: 2,
+                  borderColor: "#296D98",
+                  marginHorizontal: 40,
+                }}
+              >
+                <Text style={styles.textTitle}>Usuário</Text>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignSelf: "baseline",
+                    width: 120,
+                    height: 30,
+                    paddingBottom: 10,
+                  }}
+                >
+                  <RatingComponent score={5} color={"#FFF"} />
+                </View>
+                <Text style={styles.userAvaliation}>
+                  Achei o aplicativo maravilhoso. Tenho vários itens que consigo
+                  usar para jogar diversos jogos com os meus amigos e eu nem
+                  lembrava da existência deles. Super recomendo!!!
+                </Text>
+              </View>
+
+              <View
+                style={{
+                  borderTopWidth: 2,
+                  borderColor: "#296D98",
+                  marginHorizontal: 40,
+                }}
+              >
+                <Text style={styles.textTitle}>Usuário</Text>
+                <View
+                  style={{
+                    justifyContent: "center",
+                    alignSelf: "baseline",
+                    width: 120,
+                    height: 30,
+                    paddingBottom: 10,
+                  }}
+                >
+                  <RatingComponent score={5} color={"#FFF"} />
+                </View>
+                <Text style={styles.userAvaliation}>
+                  Achei o aplicativo maravilhoso. Tenho vários itens que consigo
+                  usar para jogar diversos jogos com os meus amigos e eu nem
+                  lembrava da existência deles. Super recomendo!!!
+                </Text>
+              </View>
+            </ScrollView>
+
+
           </View>
         </ScrollView>
       </View>
       <MaterialCommunityIcons
-        name={"frequently-asked-questions"}
+        name={"message-question-outline"}
         size={56}
         color="#FFFF00"
         style={{ position: "absolute", bottom: "10%", right: "10%" }}
@@ -248,6 +317,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: "#FFFF00",
     fontSize: 26,
+    marginTop: 12,
   },
   textInfo: {
     fontFamily: "SquadaOne_400Regular",
@@ -256,6 +326,26 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginVertical: 5,
     zIndex: 10,
+  },
+  userAvaliation: {
+    fontFamily: "SquadaOne_400Regular",
+    textAlign: "left",
+    color: "white",
+    fontSize: 20,
+    marginTop: 5,
+    marginBottom: 15,
+    zIndex: 10,
+  },
+  textAvaliation: {
+    fontFamily: "SquadaOne_400Regular",
+    // textAlign: "left",
+    color: "white",
+    fontSize: 24,
+  },
+  avaliation: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignContent: "flex-start",
   },
   container: {
     width: "100%",
@@ -266,17 +356,15 @@ const styles = StyleSheet.create({
   },
   line: {
     backgroundColor: "#FFFF00",
-    width: "70%",
-    height: 7,
+    width: "60%",
+    height: 3,
     alignSelf: "center",
-    marginTop: "auto",
     position: "absolute",
-    top: 47,
-    elevation: 1,
+    top: 43,
   },
   buttonActive: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     backgroundColor: "#FFFF00",
     borderRadius: 30,
     justifyContent: "center",
@@ -284,8 +372,8 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   button: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
     backgroundColor: "#0E2433",
     borderRadius: 30,
     borderWidth: 2,
@@ -302,7 +390,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     color: "#FFFF00",
-    marginTop: 5,
+    marginTop: 7,
     fontFamily: "Rubik_400Regular",
   },
 });

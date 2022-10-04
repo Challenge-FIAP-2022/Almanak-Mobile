@@ -25,19 +25,20 @@ export const SignaturesComponent = ({ name, desc, value }) => {
 const styles = StyleSheet.create({
   container: {
     width: 220,
-    height: 400,
+    height: 500,
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
     marginHorizontal: 10,
   },
   titleContainer: {
-    flex: 0.3,
+    flex: 0.25,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFF00",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    
   },
   title: {
     fontFamily: "PressStart2P_400Regular",
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     width: 150,
     height: 50,
     alignSelf: "center",
-    marginBottom: 50,
+    marginBottom: 20,
     borderWidth: 2,
     borderColor: "#0E2333",
   },

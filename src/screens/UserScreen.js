@@ -37,7 +37,7 @@ export default function UserScreen() {
     >
       <View style={styles.container}>
         <Text style={styles.textTitle}>Almanak</Text>
-        <Text style={styles.textButton}>Perfil de usuário</Text>
+        <Text style={styles.textYellow}>Perfil de usuário</Text>
       </View>
 
       <View style={styles.userData}>
@@ -104,10 +104,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     width: "80%",
   },
+  textYellow: {
+    fontFamily: "PressStart2P_400Regular",
+    color: "#FFFF00",
+    fontSize: 20,
+  },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 13,
+    fontSize: 12,
     marginTop: 5,
     alignItems: "center",
   },

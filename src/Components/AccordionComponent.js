@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
   textTitle: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFF",
-    fontSize: 28,
+    fontSize: 24,
     paddingLeft: 20,
   },
   text: {
     fontFamily: "Rubik_400Regular",
     color: "#FFF",
     fontSize: 16,
-    padding: 10,
+    padding: 15,
   },
   faixa: {
     flexDirection: "row",

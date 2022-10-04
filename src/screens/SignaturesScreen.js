@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   textYellow: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 32,
+    fontSize: 28,
   },
   cardsContainer: {
     flex: 0.8,
