@@ -132,25 +132,18 @@ export default function GameScreen() {
           decelerationRate="fast"
           pagingEnabled
           ref={scrollRef}
-          // onScroll={(event) => {
-          //   const scrolling = event.nativeEvent.contentOffset.x;
-          //   console.log(scrolling);
-          //   if (scrolling < 392) {
-          //     setActive(1);
-          //     // console.log("Active" + active);
-          //     // console.log(scrolling);
-          //   }
-          //   if (scrolling >392 && scrolling < 785) {
-          //     setActive(2);
-          //     // console.log("Active" + active);
-          //     // console.log(scrolling);
-          //   }
-          //   if (scrolling > 785) {
-          //     setActive(3);
-          //     // console.log("Active" + active);
-          //     // console.log(scrolling);
-          //   }
-          // }}
+          onScroll={(event) => {
+            const scrolling = event.nativeEvent.contentOffset.x;
+            if (scrolling < windowWidth) {
+              setActive(1);
+            }
+            else if (scrolling >= windowWidth && scrolling < windowWidth * 2) {
+              setActive(2);
+            }
+            else if (scrolling >= windowWidth * 2) {
+              setActive(3);
+            }
+          }}
           nestedScrollEnabled={true}
         >
           <View style={[styles.carousel, { overflow: "scroll" }]}>
