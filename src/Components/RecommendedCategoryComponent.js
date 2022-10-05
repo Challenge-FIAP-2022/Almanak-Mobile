@@ -1,10 +1,20 @@
 import React from "react";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, View, Text, Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 export const RecommendedCategoryComponent = ({ icon, categoryName }) => {
+  const navigation = useNavigation();
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() =>
+        navigation.navigate("StackPart", {
+          screen: "List",
+          params: { game: categoryName },
+        })
+      }
+    >
       <View style={styles.textAndIcon}>
         <MaterialCommunityIcons
           name={icon}

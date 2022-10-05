@@ -29,10 +29,7 @@ export default function HomeScreen() {
       const games = results[0].data;
       const categories = results[1].data;
 
-      // console.log(games);
       setGameData(games);
-
-      // console.log(categories);
       setCategoryData(categories);
     });
   }, []);
@@ -54,22 +51,12 @@ export default function HomeScreen() {
           horizontal
           showsHorizontalScrollIndicator={false}
         >
-          {gameData.map((item, idx) => (
+          {gameData.map((item) => (
             <RecommendedGameComponent
-              gameName={
-                item.name.length < 12
-                  ? item.name
-                  : item.name.slice(0, 12) + "..."
-              }
-              // gameName={item.name.length}
-              // category={item.categorias[0].name}
-              category={
-                item.categorias[0].name.length < 12
-                  ? item.categorias[0].name
-                  : item.categorias[0].name.slice(0, 12) + "..."
-              }
+              gameName={item.name}
+              category={item.categorias[0].name}
               urlImg={item.imagem}
-              key={idx}
+              key={item.id}
             />
           ))}
         </ScrollView>
@@ -84,6 +71,7 @@ export default function HomeScreen() {
               icon={item.icone}
               categoryName={item.name}
               key={item.id}
+              id={item.id}
             />
           ))}
         </ScrollView>

@@ -8,34 +8,42 @@ import {
   TextInput,
   Pressable,
 } from "react-native";
-import GamesData from "../services/RecommendedGameService.json";
 import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../services/api";
 
-export default function ListScreen() {
-  
+export default function ListScreen({ route }) {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  
+
+  const endpoint = "/jogo/valido/sim";
+  const endpointCategoria = "/jogo/categoria/" + route.params?.game;
+
+  console.log(route.params?.game);
+
   useEffect(() => {
-    api.get('/jogo/valido/sim')
-    .then(function (response) {
-      // manipula o sucesso da requisição
-      setData(response.data);
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      // manipula erros da requisição
-      console.error(error);
-    })
-    
-  }, []);
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+    api
+      .get(route.params?.game ? endpointCategoria : endpoint)
+      .then(function (response) {
+        // manipula o sucesso da requisição
+        setData(response.data);
+        console.log("AXIOS " + response.data);
+      })
+      .catch(function (error) {
+        // manipula erros da requisição
+        // console.error(error);
+      });
+  }, [route.params?.game]);
+
+  useEffect(() => {
+    return () => {
+      navigation.addListener("blur", () => {
+        navigation.setParams({ game: null });
+        setData([]);
+      });
+    };
+  }, [navigation]);
 
   return (
     <ImageBackground

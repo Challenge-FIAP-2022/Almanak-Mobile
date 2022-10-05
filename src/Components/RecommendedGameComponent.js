@@ -1,5 +1,4 @@
 import React from "react";
-import { Alert } from "react-native";
 import {
   ImageBackground,
   View,
@@ -10,7 +9,6 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
-
   const navigation = useNavigation();
 
   return (
@@ -28,27 +26,23 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
               fontFamily: "SquadaOne_400Regular",
               fontSize: 18,
               color: "#0E2433",
-              // width: "75%",
             }}
           >
-            {category}
+            {category.length < 12 ? category : category.slice(0, 12) + "..."}
           </Text>
           <Text
             style={{
               fontFamily: "SquadaOne_400Regular",
               fontSize: 24,
               color: "#0E2433",
-              // maxWidth: 120,
-              // backgroundColor: "red"
             }}
           >
-            {gameName}
+            {gameName.length < 12 ? gameName : gameName.slice(0, 12) + "..."}
           </Text>
         </View>
-        <Pressable 
+        <Pressable
           style={styles.button}
-          // onPress={() => Alert.alert("Aqui um jogo abre")}
-          onPress={() => navigation.navigate("Game")}
+          onPress={() => navigation.navigate("StackGame", {screen: "Game"})}
         >
           <Text style={styles.textButton}>Visualizar Jogo</Text>
         </Pressable>

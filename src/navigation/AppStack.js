@@ -19,6 +19,7 @@ const Stack = createNativeStackNavigator();
 function StackPart() {
   return (
     <Stack.Navigator
+      initialRouteName="List"
       screenOptions={{
         headerShown: false,
       }}
@@ -33,12 +34,14 @@ function StackPart() {
 function StackGame() {
   return (
     <Stack.Navigator
+      initialRouteName="HomeStack"
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="HomeStack" component={HomeScreen} />
       <Stack.Screen name="Game" component={GameScreen} />
+      <Stack.Screen name="ListGameStack" component={ListScreen} />
     </Stack.Navigator>
   );
 }
@@ -63,7 +66,7 @@ export function AppStack() {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="StackGame"
         component={StackGame}
         options={{
           tabBarIcon: ({ size, color, focused }) => {
@@ -77,7 +80,7 @@ export function AppStack() {
       />
 
       <Tab.Screen
-        name="Games"
+        name="StackPart"
         component={StackPart}
         options={{
           tabBarIcon: ({ size, color, focused }) => {
@@ -128,17 +131,6 @@ export function AppStack() {
           },
         }}
       />
-
-      {/* <Tab.Screen
-        
-        name="Filter"
-        component={FilterScreen}
-        options={{
-          tabBarIcon: ({})=>{
-            return
-          }
-        }}
-        /> */}
     </Tab.Navigator>
   );
 }

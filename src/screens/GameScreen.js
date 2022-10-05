@@ -11,6 +11,7 @@ import {
 import RatingComponent from "../Components/RatingComponent";
 import { Dimensions } from "react-native";
 import AccordionComponent from "../Components/AccordionComponent";
+import CommentComponent from "../Components/CommentComponent";
 
 export default function GameScreen() {
   const scrollRef = useRef(null);
@@ -123,9 +124,9 @@ export default function GameScreen() {
           horizontal={true}
           contentContainerStyle={{
             width: windowWidth * 3,
-            display: "flex",
+            // display: "flex",
             flexDirection: "row",
-            overflow: "hidden",
+            // overflow: "hidden",
           }}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={200}
@@ -136,11 +137,12 @@ export default function GameScreen() {
             const scrolling = event.nativeEvent.contentOffset.x;
             if (scrolling < windowWidth) {
               setActive(1);
-            }
-            else if (scrolling >= windowWidth && scrolling < windowWidth * 2) {
+            } else if (
+              scrolling >= windowWidth &&
+              scrolling < windowWidth * 2
+            ) {
               setActive(2);
-            }
-            else if (scrolling >= windowWidth * 2) {
+            } else if (scrolling >= windowWidth * 2) {
               setActive(3);
             }
           }}
@@ -187,86 +189,12 @@ export default function GameScreen() {
 
           <View style={[styles.carousel, { overflow: "scroll" }]}>
             <ScrollView nestedScrollEnabled={true}>
-              <View
-                style={{
-                  borderTopWidth: 2,
-                  borderColor: "#296D98",
-                  marginHorizontal: 40,
-                }}
-              >
-                <Text style={styles.textTitle}>Usuário</Text>
-                <View
-                  style={{
-                    justifyContent: "center",
-                    alignSelf: "baseline",
-                    width: 120,
-                    height: 30,
-                    paddingBottom: 10,
-                  }}
-                >
-                  <RatingComponent score={5} color={"#FFF"} />
-                </View>
-                <Text style={styles.userAvaliation}>
-                  Achei o aplicativo maravilhoso. Tenho vários itens que consigo
-                  usar para jogar diversos jogos com os meus amigos e eu nem
-                  lembrava da existência deles. Super recomendo!!!
-                </Text>
-              </View>
-
-              <View
-                style={{
-                  borderTopWidth: 2,
-                  borderColor: "#296D98",
-                  marginHorizontal: 40,
-                }}
-              >
-                <Text style={styles.textTitle}>Usuário</Text>
-                <View
-                  style={{
-                    justifyContent: "center",
-                    alignSelf: "baseline",
-                    width: 120,
-                    height: 30,
-                    paddingBottom: 10,
-                  }}
-                >
-                  <RatingComponent score={5} color={"#FFF"} />
-                </View>
-                <Text style={styles.userAvaliation}>
-                  Achei o aplicativo maravilhoso. Tenho vários itens que consigo
-                  usar para jogar diversos jogos com os meus amigos e eu nem
-                  lembrava da existência deles. Super recomendo!!!
-                </Text>
-              </View>
-
-              <View
-                style={{
-                  borderTopWidth: 2,
-                  borderColor: "#296D98",
-                  marginHorizontal: 40,
-                }}
-              >
-                <Text style={styles.textTitle}>Usuário</Text>
-                <View
-                  style={{
-                    justifyContent: "center",
-                    alignSelf: "baseline",
-                    width: 120,
-                    height: 30,
-                    paddingBottom: 10,
-                  }}
-                >
-                  <RatingComponent score={5} color={"#FFF"} />
-                </View>
-                <Text style={styles.userAvaliation}>
-                  Achei o aplicativo maravilhoso. Tenho vários itens que consigo
-                  usar para jogar diversos jogos com os meus amigos e eu nem
-                  lembrava da existência deles. Super recomendo!!!
-                </Text>
+              <View style={{ marginHorizontal: 40,}}>
+                <CommentComponent />
+                <CommentComponent />
+                <CommentComponent />
               </View>
             </ScrollView>
-
-
           </View>
         </ScrollView>
       </View>
