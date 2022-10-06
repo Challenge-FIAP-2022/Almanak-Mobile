@@ -8,10 +8,11 @@ import CreateScreen from "../screens/CreateScreen";
 import SignaturesScreen from "../screens/SignaturesScreen";
 import UserScreen from "../screens/UserScreen";
 import FilterScreen from "../screens/FilterScreen";
+import MarketPlaceScreen from "../screens/MarketPlaceScreen";
 
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons  } from "@expo/vector-icons";
 import GameScreen from "../screens/GameScreen";
 
 const Stack = createNativeStackNavigator();
@@ -95,7 +96,7 @@ export function AppStack() {
 
       <Tab.Screen
         name="New"
-        component={CreateScreen}
+        component={MarketPlaceScreen}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ size, focused }) => (
@@ -110,10 +111,10 @@ export function AppStack() {
         options={{
           tabBarIcon: ({ size, color, focused }) => {
             if (focused) {
-              return <Ionicons name="cart" size={size} color={color} />;
+              return <MaterialCommunityIcons name="credit-card-outline" size={size} color={color} />;
             }
 
-            return <Ionicons name="cart-outline" size={size} color={color} />;
+            return <MaterialCommunityIcons name="credit-card-outline" size={size} color={color} />;
           },
         }}
       />

@@ -14,9 +14,9 @@ export default function ButtonNewComponent({ focused }) {
         { borderColor: focused ? "#ffff00" : "#0E2433" },
       ]}
     >
-      <Ionicons name="add" size={45} color={focused ? "#ffff00" : "#0E2433"} />
+      <Ionicons name="cart" size={RFValue(35)} color={focused ? "#ffff00" : "#0E2433"} />
     </View>
-  );
+  ); 
 }
 
 const styles = StyleSheet.create({
