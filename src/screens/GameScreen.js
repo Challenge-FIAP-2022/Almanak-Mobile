@@ -135,14 +135,12 @@ export default function GameScreen() {
           ref={scrollRef}
           onScroll={(event) => {
             const scrolling = event.nativeEvent.contentOffset.x;
-            if (scrolling < windowWidth) {
+            let roundedScroll = Math.round(scrolling);
+            if (roundedScroll < windowWidth) {
               setActive(1);
-            } else if (
-              scrolling >= windowWidth &&
-              scrolling < windowWidth * 2
-            ) {
+            } else if (roundedScroll >= windowWidth && roundedScroll < windowWidth * 2) {
               setActive(2);
-            } else if (scrolling >= windowWidth * 2) {
+            } else if (roundedScroll >= windowWidth * 2) {
               setActive(3);
             }
           }}
