@@ -13,6 +13,7 @@ import ButtonNewComponent from "../Components/ButtonNewComponent";
 
 import { Ionicons } from "@expo/vector-icons";
 import GameScreen from "../screens/GameScreen";
+import ChatScreen from "../screens/ChatScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,7 @@ function StackGame() {
     >
       <Stack.Screen name="HomeStack" component={HomeScreen} />
       <Stack.Screen name="Game" component={GameScreen} />
+      <Stack.Screen name="Chat" component={ChatScreen} />
       <Stack.Screen name="ListGameStack" component={ListScreen} />
     </Stack.Navigator>
   );

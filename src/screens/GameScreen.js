@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Pressable } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   ImageBackground,
@@ -15,6 +16,7 @@ import CommentComponent from "../Components/CommentComponent";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function GameScreen() {
+  const navigation = useNavigation();
   const scrollRef = useRef(null);
   const windowWidth = Dimensions.get("window").width;
   const [active, setActive] = useState(1);
@@ -201,7 +203,9 @@ export default function GameScreen() {
         name={"message-question-outline"}
         size={56}
         color="#FFFF00"
-        style={{ position: "absolute", bottom: RFPercentage(8), right: RFPercentage(3) }}
+        onPress={() => navigation.navigate("Chat")}
+        style={{ position: "absolute", bottom: RFPercentage(8), right: RFPercentage(3) }
+      }
       />
     </ImageBackground>
   );
