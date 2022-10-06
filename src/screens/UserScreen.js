@@ -8,6 +8,7 @@ import {
   Text,
 } from "react-native";
 import { useAuth } from "../contexts/Auth";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 import { api } from "../services/api";
 
@@ -76,19 +77,19 @@ const styles = StyleSheet.create({
     flex: 0.3,
     alignItems: "center",
     justifyContent: "flex-end",
-    marginBottom: 20,
+    marginBottom: RFValue(20),
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 40,
+    fontSize: RFValue(38),
     textShadowColor: "white",
     textShadowRadius: 1,
     textShadowOffset: {
       width: 2,
       height: 2,
     },
-    marginBottom: 20,
+    marginBottom: RFValue(20),
   },
   buttons: {
     flex: 0.8,
@@ -97,47 +98,48 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingVertical: RFValue(12),
+    paddingHorizontal: RFValue(32),
     borderRadius: 10,
     backgroundColor: "#3792CB",
-    marginTop: 20,
+    marginTop: RFValue(20),
     width: "80%",
   },
   textYellow: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 20,
+    fontSize: RFValue(23),
+    lineHeight: RFValue(32),
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 12,
-    marginTop: 5,
+    fontSize: RFValue(10),
+    marginTop: RFValue(5),
     alignItems: "center",
   },
   userData: {
-    flex: 1,
+    flex: 0.85,
   },
   text: {
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 18,
+    fontSize: RFValue(18),
     color: "#FFFFFF",
-    marginLeft: 40,
-    marginBottom: 10,
+    marginLeft: RFValue(40),
+    marginBottom: RFValue(5),
   },
   userInfo: {
     fontFamily: "Rubik_400Regular",
-    fontSize: 18,
+    fontSize: RFValue(16),
     color: "#FFFFFF",
-    marginLeft: 35,
-    marginBottom: 15,
+    marginLeft: RFValue(35),
+    marginBottom: RFValue(10),
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
-    padding: 10,
+    padding: RFValue(10),
     width: "80%",
-    paddingVertical: 10,
+    paddingVertical: RFValue(10),
     textAlignVertical: "center",
   },
 });

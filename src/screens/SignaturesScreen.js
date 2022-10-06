@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { SignaturesComponent } from "../Components/SignatureComponent";
 import { api } from "../services/api";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function UserScreen() {
   const [data, setData] = useState([]);
@@ -62,27 +63,27 @@ const styles = StyleSheet.create({
     flex: 0.25,
     alignItems: "center",
     justifyContent: "flex-end",
-    marginBottom: 20,
+    marginBottom: RFValue(20),
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 36,
+    fontSize: RFValue(36),
     textShadowColor: "white",
     textShadowRadius: 1,
     textShadowOffset: {
       width: 2,
       height: 2,
     },
-    marginBottom: 30,
+    marginBottom: RFValue(30),
   },
   textYellow: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 28,
+    fontSize: RFValue(28),
   },
   cardsContainer: {
     flex: 0.8,
-    marginHorizontal: 5,
+    marginHorizontal: RFValue(5),
   },
 });

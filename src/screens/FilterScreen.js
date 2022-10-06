@@ -14,6 +14,7 @@ import { RadioButton } from "react-native-paper";
 import { api } from "../services/api";
 import { MultipleSelectListComponent } from "../Components/MultipleSelectListComponent";
 import { useNavigation } from "@react-navigation/native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function FilterScreen() {
   const navigation = useNavigation();
@@ -209,8 +210,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.85,
     // alignItems: "center",
-    margin: 20,
-    padding: 20,
+    margin: RFValue(20),
+    padding: RFValue(20),
     borderWidth: 5,
     borderRadius: 20,
     borderColor: "#296D98",
@@ -219,11 +220,11 @@ const styles = StyleSheet.create({
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: RFValue(14),
+    lineHeight: RFValue(20),
     textAlign: "center",
-    marginBottom: 5,
-    marginTop: 15,
+    marginBottom: RFValue(5),
+    marginTop: RFValue(15),
     // alignSelf: "center",
     // width: 300,
   },
@@ -231,7 +232,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    height: 40,
+    height: RFValue(40),
     // marginBottom: 20,
     borderWidth: 2,
     borderColor: "#296D98",
@@ -241,13 +242,13 @@ const styles = StyleSheet.create({
   textInput: {
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
-    paddingLeft: 20,
+    paddingLeft: RFValue(20),
     color: "white",
-    fontSize: 18,
+    fontSize: RFValue(18),
   },
   icon: {
     alignSelf: "auto",
-    paddingRight: 20,
+    paddingRight: RFValue(20),
     // paddingStart: 20,
     // justifyContent: "space-between",
   },
@@ -257,17 +258,17 @@ const styles = StyleSheet.create({
   radioButtonIndividual: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 2,
+    marginVertical: RFValue(2),
   },
   textRadio: {
-    marginLeft: 5,
+    marginLeft: RFValue(5),
     color: "#FFF",
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 18,
+    fontSize: RFValue(18),
   },
   counter: {
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 72,
+    fontSize: RFValue(72),
     color: "#FFF",
     textShadowColor: "#296D98",
     textShadowRadius: 1,
@@ -277,8 +278,8 @@ const styles = StyleSheet.create({
     },
   },
   button: {
-    width: 40,
-    height: 40,
+    width: RFValue(40),
+    height: RFValue(40),
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
@@ -287,8 +288,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginHorizontal: 40,
-    marginVertical: 2,
+    marginHorizontal: RFValue(40),
+    marginVertical: RFValue(2),
   },
   dropDown: {
     // flex: 1,
@@ -303,25 +304,25 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     justifyContent: "center",
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 30,
+    fontSize: RFValue(30),
     color: "#FFF",
-    marginBottom: 5,
+    marginBottom: RFValue(5),
   },
   secondButton: {
     width: "60%",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
+    padding: RFValue(10),
     borderRadius: 10,
     backgroundColor: "#3792CB",
     alignSelf: "center",
-    marginTop: 10,
+    marginTop: RFValue(10),
   },
 
   textSecondButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 12,
-    marginTop: 5,
+    fontSize: RFValue(12),
+    marginTop: RFValue(5),
   },
 });

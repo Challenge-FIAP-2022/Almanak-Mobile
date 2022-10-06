@@ -2,6 +2,7 @@ import { Image } from "@rneui/base";
 import React from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 import RatingComponent from "./RatingComponent";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const ListGameComponent = ({ category, gameName, urlImg, score }) => {
   return (
@@ -20,8 +21,8 @@ export const ListGameComponent = ({ category, gameName, urlImg, score }) => {
           <Text
             style={{
               fontFamily: "SquadaOne_400Regular",
-              fontSize: 18,
-              height: 20,
+              fontSize: RFValue(18),
+              height: RFValue(20),
               color: "#FFF",
             }}
           >
@@ -30,8 +31,8 @@ export const ListGameComponent = ({ category, gameName, urlImg, score }) => {
           <Text
             style={{
               fontFamily: "SquadaOne_400Regular",
-              fontSize: 24,
-              height: 26,
+              fontSize: RFValue(24),
+              height: RFValue(26),
               color: "#FFF",
             }}
           >
@@ -51,43 +52,43 @@ export const ListGameComponent = ({ category, gameName, urlImg, score }) => {
 
 const styles = StyleSheet.create({
   img: {
-    width: 75,
-    height: 75,
+    width: RFValue(75),
+    height: RFValue(75),
     resizeMode: "cover",
     borderRadius: 10,
-    marginStart: 10,
-    marginTop: 45,
+    marginStart: RFValue(10),
+    marginTop: RFValue(45),
   },
   card: {
     flexDirection: "column",
     justifyContent: "space-between",
     borderWidth: 2,
     borderColor: "#296D98",
-    height: 100,
-    width: 320,
+    height: RFValue(100),
+    width: RFValue(300),
     borderRadius: 10,
-    marginBottom: 20,
+    marginBottom: RFValue(20),
     backgroundColor: "#132E3D",
   },
   container: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
+    padding: RFValue(10),
     marginBottom: "auto",
     backgroundColor: "rgba(15, 146, 203, 0.15)",
     // borderTopLeftRadius: 10,
     // borderTopRightRadius: 10,
-    width: 320,
-    height: 55,
+    width: RFValue(320),
+    height: RFValue(55),
   },
   text: {
     flex: 1,
-    marginLeft: 15,
+    marginLeft: RFValue(15),
   },
   estrelas: {
-    height: 70,
+    height: RFValue(70),
     alignItems: "center",
-    paddingTop: 25,
-    marginLeft: 110,
+    paddingTop: RFValue(25),
+    marginLeft: RFValue(110),
   },
 });

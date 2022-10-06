@@ -2,6 +2,7 @@ import React from "react";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const RecommendedCategoryComponent = ({ icon, categoryName }) => {
   const navigation = useNavigation();
@@ -40,13 +41,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderTopWidth: 2,
     borderColor: "#296D98",
-    height: 50,
+    height: RFValue(50),
   },
   text: {
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 20,
+    fontSize: RFValue(20),
     color: "#FFF",
-    paddingStart: 20,
+    paddingStart: RFValue(20),
   },
   textAndIcon: {
     flexDirection: "row",
@@ -54,6 +55,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     alignSelf: "center",
-    paddingStart: 20,
+    paddingStart: RFValue(20),
   },
 });

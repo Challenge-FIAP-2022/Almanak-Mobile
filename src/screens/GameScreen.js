@@ -12,6 +12,7 @@ import RatingComponent from "../Components/RatingComponent";
 import { Dimensions } from "react-native";
 import AccordionComponent from "../Components/AccordionComponent";
 import CommentComponent from "../Components/CommentComponent";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function GameScreen() {
   const scrollRef = useRef(null);
@@ -40,7 +41,7 @@ export default function GameScreen() {
           style={{
             flexDirection: "row",
             justifyContent: "space-around",
-            margin: 20,
+            margin: RFValue(20),
           }}
         >
           <View>
@@ -168,7 +169,7 @@ export default function GameScreen() {
             <View
               style={{
                 width: "100%",
-                paddingHorizontal: 40,
+                paddingHorizontal: RFValue(40),
               }}
             >
               <AccordionComponent
@@ -187,7 +188,7 @@ export default function GameScreen() {
 
           <View style={[styles.carousel, { overflow: "scroll" }]}>
             <ScrollView nestedScrollEnabled={true}>
-              <View style={{ marginHorizontal: 40,}}>
+              <View style={{ marginHorizontal: RFValue(40),}}>
                 <CommentComponent />
                 <CommentComponent />
                 <CommentComponent />
@@ -200,7 +201,7 @@ export default function GameScreen() {
         name={"message-question-outline"}
         size={56}
         color="#FFFF00"
-        style={{ position: "absolute", bottom: "10%", right: "10%" }}
+        style={{ position: "absolute", bottom: RFPercentage(8), right: RFPercentage(3) }}
       />
     </ImageBackground>
   );
@@ -212,7 +213,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   imgGameBackground: {
-    height: 170,
+    height: RFValue(170),
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -221,45 +222,45 @@ const styles = StyleSheet.create({
     fontFamily: "PressStart2P_400Regular",
     textAlign: "center",
     color: "white",
-    fontSize: 20,
+    fontSize: RFValue(20),
     backgroundColor: "#1C4966",
     borderRadius: 10,
-    paddingTop: 15,
-    paddingBottom: 5,
-    paddingHorizontal: 15,
+    paddingTop: RFValue(15),
+    paddingBottom: RFValue(5),
+    paddingHorizontal: RFValue(15),
   },
   informacoes: {
-    marginHorizontal: 40,
+    marginHorizontal: RFValue(40),
   },
   textTitle: {
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
     color: "#FFFF00",
-    fontSize: 26,
-    marginTop: 12,
+    fontSize: RFValue(26),
+    marginTop: RFValue(12),
   },
   textInfo: {
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
     color: "white",
-    fontSize: 24,
-    marginVertical: 5,
+    fontSize: RFValue(24),
+    marginVertical: RFValue(5),
     zIndex: 10,
   },
   userAvaliation: {
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
     color: "white",
-    fontSize: 20,
-    marginTop: 5,
-    marginBottom: 15,
+    fontSize: RFValue(20),
+    marginTop: RFValue(5),
+    marginBottom: RFValue(15),
     zIndex: 10,
   },
   textAvaliation: {
     fontFamily: "SquadaOne_400Regular",
     // textAlign: "left",
     color: "white",
-    fontSize: 24,
+    fontSize: RFValue(24),
   },
   avaliation: {
     flexDirection: "row",
@@ -276,40 +277,40 @@ const styles = StyleSheet.create({
   line: {
     backgroundColor: "#FFFF00",
     width: "60%",
-    height: 3,
+    height: RFValue(3),
     alignSelf: "center",
     position: "absolute",
-    top: 43,
+    top: RFValue(43),
   },
   buttonActive: {
-    width: 50,
-    height: 50,
+    width: RFValue(50),
+    height: RFValue(50),
     backgroundColor: "#FFFF00",
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 10,
+    paddingTop: RFValue(10),
   },
   button: {
-    width: 50,
-    height: 50,
+    width: RFValue(50),
+    height: RFValue(50),
     backgroundColor: "#0E2433",
     borderRadius: 30,
     borderWidth: 2,
     borderColor: "#FFFF00",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 10,
+    paddingTop: RFValue(10),
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 20,
+    fontSize: RFValue(20),
   },
   text: {
     textAlign: "center",
     color: "#FFFF00",
-    marginTop: 7,
+    marginTop: RFValue(7),
     fontFamily: "Rubik_400Regular",
   },
 });

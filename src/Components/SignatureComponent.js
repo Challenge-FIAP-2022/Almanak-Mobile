@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const SignaturesComponent = ({ name, desc, value }) => {
   return (
@@ -24,12 +25,12 @@ export const SignaturesComponent = ({ name, desc, value }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 220,
-    height: 500,
+    width: RFValue(220),
+    height: RFValue(420),
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
-    marginHorizontal: 10,
+    marginHorizontal: RFValue(10),
   },
   titleContainer: {
     flex: 0.25,
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "PressStart2P_400Regular",
     color: "#0E2333",
-    fontSize: 22,
+    fontSize: RFValue(22),
     alignSelf: "center",
   },
 
@@ -52,38 +53,38 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 10,
     backgroundColor: "#FFFF00",
-    marginTop: 20,
-    width: 150,
-    height: 50,
+    marginTop: RFValue(20),
+    width: RFValue(150),
+    height: RFValue(40),
     alignSelf: "center",
-    marginBottom: 20,
+    marginBottom: RFValue(20),
     borderWidth: 2,
     borderColor: "#0E2333",
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
     color: "#0E2333",
-    fontSize: 13,
-    marginTop: 5,
+    fontSize: RFValue(11),
+    marginTop: RFValue(5),
     textAlign: "center",
-    lineHeight: 20,
+    lineHeight: RFValue(16),
   },
   text: {
     fontFamily: "Rubik_400Regular",
-    fontSize: 18,
+    fontSize: RFValue(16),
     color: "#FFFFFF",
-    paddingHorizontal: 20,
-    marginTop: 20,
-    height: 200,
+    paddingHorizontal: RFValue(20),
+    marginTop: RFValue(20),
+    height: RFValue(200),
     width: "100%",
   },
   line: {
     backgroundColor: "#FFFF00",
     width: "90%",
-    height: 2,
+    height: RFValue(2),
     alignSelf: "center",
     marginTop: "auto",
-    marginBottom: 20,
+    marginBottom: RFValue(20),
   },
   containerBody: {
     backgroundColor: "#3792CB",

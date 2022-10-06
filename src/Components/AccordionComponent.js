@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function AccordionComponent({ title, icon, text, iconColor }) {
   const [ativo, setAtivo] = useState(false);
@@ -24,7 +25,7 @@ export default function AccordionComponent({ title, icon, text, iconColor }) {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingEnd: 10,
+            paddingEnd: RFValue(10),
           }}
         >
           {icon && (
@@ -54,19 +55,19 @@ export default function AccordionComponent({ title, icon, text, iconColor }) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    marginVertical: 10,
+    marginVertical: RFValue(10),
   },
   textTitle: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFF",
-    fontSize: 24,
-    paddingLeft: 20,
+    fontSize: RFValue(24),
+    paddingLeft: RFValue(20),
   },
   text: {
     fontFamily: "Rubik_400Regular",
     color: "#FFF",
-    fontSize: 16,
-    padding: 15,
+    fontSize: RFValue(16),
+    padding: RFValue(15),
   },
   faixa: {
     flexDirection: "row",
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 10,
     justifyContent: "space-between",
-    padding: 5,
+    padding: RFValue(5),
   },
   rule: {
     borderWidth: 2,

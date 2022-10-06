@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import MultiSelect from "react-native-multiple-select";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const MultipleSelectListComponent = ({ lista, selecionados = [], setSelectedItems}) => {
 
@@ -36,9 +37,9 @@ export const MultipleSelectListComponent = ({ lista, selecionados = [], setSelec
           submitButtonText="Selecionar"
           searchInputStyle={{
             //Style do inputText do dropdown
-            fontSize: 16,
+            fontSize: RFValue(16),
             color: "#FFF",
-            margin: 5,
+            margin: RFValue(5),
             backgroundColor: "#296D98",
             fontFamily: "Rubik_400Regular",
           }}
@@ -54,10 +55,10 @@ export const MultipleSelectListComponent = ({ lista, selecionados = [], setSelec
           styleRowList={{
             //Style dos itens da lista do dropdown
             backgroundColor: "#0E2433",
-            margin: 5,
+            margin: RFValue(5),
             borderBottomWidth: 1,
             borderColor: "#296D98",
-            padding: 5,
+            padding: RFValue(5),
             margin: 0,
           }}
           styleSelectorContainer={{
@@ -80,17 +81,17 @@ export const MultipleSelectListComponent = ({ lista, selecionados = [], setSelec
             backgroundColor: "#296D98",
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
-            paddingHorizontal: 20,
+            paddingHorizontal: RFValue(20),
             // flexDirection: "row-reverse",
           }}
           styleTextDropdown={{
             //Style do text na barra de pesquisa antes de virar dropdown
             color: "#FFF",
-            paddingHorizontal: 10,
+            paddingHorizontal: RFValue(10),
           }}
           styleTextDropdownSelected={{
             color: "#FFF",
-            paddingHorizontal: 20,
+            paddingHorizontal: RFValue(20),
           }}
         />
       </View>

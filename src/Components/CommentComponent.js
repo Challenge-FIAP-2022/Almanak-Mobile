@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import RatingComponent from "../Components/RatingComponent";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function CommentComponent({ user, text, score }) {
   return (
@@ -10,9 +11,9 @@ export default function CommentComponent({ user, text, score }) {
         style={{
           justifyContent: "center",
           alignSelf: "baseline",
-          width: 120,
-          height: 30,
-          paddingBottom: 10,
+          width: RFValue(120),
+          height: RFValue(30),
+          paddingBottom: RFValue(10),
         }}
       >
         <RatingComponent score={5} color={"#FFF"} />
@@ -36,16 +37,16 @@ const styles = StyleSheet.create({
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
     color: "#FFFF00",
-    fontSize: 26,
-    marginTop: 12,
+    fontSize: RFValue(26),
+    marginTop: RFValue(12),
   },
   userAvaliation: {
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
     color: "white",
     fontSize: 20,
-    marginTop: 5,
-    marginBottom: 15,
+    marginTop: RFValue(5),
+    marginBottom: RFValue(15),
     zIndex: 10,
   },
 });

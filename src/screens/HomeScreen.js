@@ -10,6 +10,8 @@ import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryC
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
 import { useAuth } from "../contexts/Auth";
 import { api } from "../services/api";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
 
 export default function HomeScreen() {
   const [gameData, setGameData] = useState([]);
@@ -88,36 +90,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.25,
     justifyContent: "flex-end",
-    marginBottom: 20,
-    marginTop: 50,
+    marginBottom: RFValue(20),
+    marginTop: RFValue(50),
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 36,
+    fontSize: RFValue(36),
     textShadowColor: "white",
     textShadowRadius: 1,
     textShadowOffset: {
       width: 2,
       height: 2,
     },
-    marginBottom: 20,
+    marginBottom: RFValue(20),
     alignSelf: "center",
   },
   secondText: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFF",
-    fontSize: 32,
+    fontSize: RFValue(32),
     alignSelf: "center",
+    paddingTop: RFValue(10),
   },
   scrollHorizontal: {
     flex: 0.35,
     // marginBottom: 15,
-    marginRight: 20,
+    marginRight: RFValue(20),
   },
   scrollVertical: {
     flex: 0.5,
-    marginTop: 20,
-    marginBottom: 80,
+    marginTop: RFValue(20),
+    marginBottom: RFValue(80),
   },
 });
