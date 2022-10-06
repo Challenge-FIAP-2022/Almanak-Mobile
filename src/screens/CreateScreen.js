@@ -1,5 +1,5 @@
 // import { CheckBox } from "@rneui/themed";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -24,7 +24,7 @@ export default function CreateScreen() {
     >
       <Text style={styles.textTitle}>Cadastrar Novo Jogo</Text>
 
-      <View style={styles.scrollVertical} >
+      <View style={styles.scrollVertical}>
         <ScrollView vertical showsVerticalScrollIndicator={false}>
           <View style={styles.textInput}>
             <Text style={styles.titleInput}>Nome do Jogo:</Text>
@@ -81,7 +81,6 @@ export default function CreateScreen() {
               placeholder="VER ESSA PARTE"
               placeholderTextColor="#FFFFFF"
             />
-
 
             <Text style={styles.titleInput}>
               Quais itens são necessários no jogo:
@@ -159,8 +158,8 @@ const styles = StyleSheet.create({
   },
   textRadio: {
     marginLeft: RFValue(5),
-    color: '#FFF',
-    fontFamily: 'SquadaOne_400Regular',
+    color: "#FFF",
+    fontFamily: "SquadaOne_400Regular",
     fontSize: RFValue(18),
   },
   arrumar: {

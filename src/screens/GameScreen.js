@@ -23,11 +23,9 @@ export default function GameScreen({ route }) {
   const scrollRef = useRef(null);
   const windowWidth = Dimensions.get("window").width;
   const [active, setActive] = useState(1);
-  const [gameData, setGameData] = useState({});
+  const [gameData, setGameData] = useState();
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log(route.params);
 
   function getComments() {
     return api.get(`/avaliacao/jogo/${route.params?.game}`);
@@ -37,18 +35,17 @@ export default function GameScreen({ route }) {
     return api.get(`/jogo/${route.params?.game}`);
   }
 
+  function ratingCompleted(rating) {
+    return rating;
+  }
+
   useEffect(() => {
     Promise.all([getGame(), getComments()]).then(function (results) {
       const game = results[0].data;
       const comments = results[1].data;
 
-      // console.log("REGRAS "+game.regras.length);
-      // var regras = ""
-      // game.regras.forEach(function(regra){
-      //   regras = regras.concat(regra.desc)
-      // })
-      // console.log(regras)
       setGameData(game);
+
       setComments(comments);
 
       setIsLoading(false);
@@ -58,6 +55,13 @@ export default function GameScreen({ route }) {
   if (isLoading === true) {
     return <LoadingScreen />;
   }
+
+  var regras = "";
+  gameData.regras.forEach(function (regra) {
+    regras = regras.concat(regra.desc);
+    regras = regras.replace(".", ". ");
+  });
+  console.log(regras)
 
   return (
     <ImageBackground
@@ -202,10 +206,15 @@ export default function GameScreen({ route }) {
               </Text>
               <Text style={styles.textTitle}>Avaliação do Jogo:</Text>
               <View style={styles.avaliation}>
-                <Text style={styles.textAvaliation}>
-                  4,5
-                  <RatingComponent score={gameData.score} color={"#FFF"} />
+                <Text
+                  style={[
+                    styles.textAvaliation,
+                    { marginTop: RFValue(15), marginRight: RFValue(10) },
+                  ]}
+                >
+                  {ratingCompleted(gameData.score)}
                 </Text>
+                <RatingComponent score={gameData.score} color={"#FFF"} />
               </View>
             </View>
           </View>
@@ -217,21 +226,10 @@ export default function GameScreen({ route }) {
                 paddingHorizontal: RFValue(40),
               }}
             >
-              {/* {gameData.map((item) => {
-                var regras = ""
-                item.regras.forEach(function(regra){
-                  regras = regras.concat(regra.desc)
-                  console.log(regras)
-                }),
-                <AccordionComponent
-                  title={"Regra Principal"}
-                  text={regras}
-                  icon={"volume-high"}
-                  iconColor={"#FFFF00"}
-                  // func={clica}
-                />
-                })} */}
-              <AccordionComponent title={"Opcional"} text={"Opcionais"} />
+              <AccordionComponent
+                title={gameData.regras[0].nome}
+                text={regras}
+              />
               <AccordionComponent title={"Extras"} text={"Extras"} />
             </View>
           </View>
@@ -243,6 +241,7 @@ export default function GameScreen({ route }) {
                   <CommentComponent
                     user={item.usuarioDTO.nome}
                     score={item.nota}
+                    text={item.desc}
                     key={item.id}
                   />
                 ))}
@@ -324,7 +323,6 @@ const styles = StyleSheet.create({
   },
   textAvaliation: {
     fontFamily: "SquadaOne_400Regular",
-    // textAlign: "left",
     color: "white",
     fontSize: RFValue(24),
   },
@@ -336,6 +334,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     elevation: 10,
+    marginBottom: RFValue(330),
   },
   carousel: {
     width: "33.33%",

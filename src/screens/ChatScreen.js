@@ -1,19 +1,20 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View, ImageBackground } from "react-native";
 import { Audio } from "expo-av";
 import * as FileSystem from "expo-file-system";
 import { Buffer } from "buffer";
 import { useAuth } from "../contexts/Auth";
 import { api } from "../services/api";
+import { Pressable } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default function App({ route }) {
   const [recording, setRecording] = React.useState();
   const [recordings, setRecordings] = React.useState([]);
   const [message, setMessage] = React.useState("");
   const { authData } = useAuth();
-
-  console.log("ID DO JOGO NO CHAT" + route.params?.game);
 
   function sendAudio() {
     const formData = new FormData();
@@ -107,53 +108,102 @@ export default function App({ route }) {
       return (
         <View key={index} style={styles.row}>
           <Text style={styles.fill}>
-            Recording {index + 1} - {recordingLine.duration}
+            Dúvida {index + 1} - {recordingLine.duration}
           </Text>
-          <Button
-            style={styles.button}
+          <Pressable
+            style={styles.secondButton}
             onPress={() => recordingLine.sound.replayAsync()}
-            title="Play"
-          ></Button>
-          <Button
-            style={styles.button}
-            onPress={() => sendAudio()}
-            title="Teste"
-          ></Button>
+          >
+            <Text style={styles.secondText}>Reproduzir</Text>
+          </Pressable>
+          <Pressable style={styles.secondButton} onPress={() => sendAudio()}>
+            <Text style={styles.secondText}>Enviar</Text>
+          </Pressable>
         </View>
       );
     });
   }
 
   return (
-    <View style={styles.container}>
-      <Text>{message}</Text>
-      <Button
-        title={recording ? "Stop Recording" : "Start Recording"}
-        onPress={recording ? stopRecording : startRecording}
-      />
-      {getRecordingLines()}
-      <StatusBar style="auto" />
-    </View>
+    <ImageBackground
+      source={require("../../assets/bg.png")}
+      blurRadius={3}
+      style={styles.imgBackground}
+    >
+      <View style={styles.container}>
+        <Text>{message}</Text>
+        <Pressable
+          style={styles.button}
+          onPress={recording ? stopRecording : startRecording}
+        >
+          <MaterialCommunityIcons
+            name={recording ? "stop-circle-outline" : "microphone"}
+            size={RFValue(36)}
+            style={styles.icon}
+          />
+          <Text style={styles.text}>
+            {recording ? "Parar gravação" : "Gravar dúvida"}
+          </Text>
+        </Pressable>
+        {getRecordingLines()}
+        <StatusBar style="auto" />
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  imgBackground: {
+    flex: 1,
+    resizeMode: "contain",
+  },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
   fill: {
     flex: 1,
     margin: 16,
+    color: "#FFF000",
+    fontFamily: "SquadaOne_400Regular",
+    fontSize: RFValue(20),
   },
   button: {
-    margin: 16,
+    backgroundColor: "#45B6FE",
+    padding: 10,
+    borderRadius: 15,
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  secondButton: {
+    backgroundColor: "#45B6FE",
+    padding: 10,
+    borderRadius: 10,
+    alignItems: "center",
+    marginRight: 10,
+  },
+  icon: {
+    color: "#FFFF00",
+    alignSelf: "center",
+    paddingStart: RFValue(10),
+    justifyContent: "space-between",
+    marginHorizontal: RFValue(5),
+  },
+  text: {
+    color: "#1C4966",
+    fontFamily: "SquadaOne_400Regular",
+    fontSize: RFValue(28),
+    marginHorizontal: RFValue(20),
+  },
+  secondText: {
+    color: "#1C4966",
+    fontFamily: "SquadaOne_400Regular",
+    fontSize: RFValue(16),
   },
 });

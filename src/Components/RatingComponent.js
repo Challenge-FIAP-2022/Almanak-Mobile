@@ -1,9 +1,13 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { AirbnbRating } from "@rneui/themed";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 const RatingComponent = ({ score, color, disabled = true }) => {
+  function ratingCompleted(rating) {
+    return rating
+  }
+
   return (
     <View style={styles.container}>
       <AirbnbRating
@@ -12,10 +16,11 @@ const RatingComponent = ({ score, color, disabled = true }) => {
         count={score}
         size={RFValue(20)}
         half={true}
-        defaultRating={4}
+        defaultRating={5}
         reviews
         isDisabled={disabled}
         unSelectedColor={"#BDC3C7"}
+        onFinishRating={ratingCompleted(score)}
         ratingContainerStyle={{
           height: RFValue(35),
           alignItems: "flex-start",

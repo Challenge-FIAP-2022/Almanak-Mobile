@@ -19,9 +19,7 @@ export default function CommentComponent({ user, text, score }) {
         <RatingComponent score={score} color={"#FFF"} />
       </View>
       <Text style={styles.userAvaliation}>
-        Achei o aplicativo maravilhoso. Tenho vários itens que consigo usar para
-        jogar diversos jogos com os meus amigos e eu nem lembrava da existência
-        deles. Super recomendo!!!
+        {text}
       </Text>
     </View>
   );
