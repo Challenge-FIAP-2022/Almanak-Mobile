@@ -15,26 +15,28 @@ import { api } from "../services/api";
 
 export default function ListScreen({ route }) {
   const navigation = useNavigation();
+  const [search, setSearch] = useState('')
   const [data, setData] = useState([]);
+  const [oldParam, setOldParam] = useState();
 
   const endpoint = "/jogo/valido/sim";
   const endpointCategoria = "/jogo/categoria/" + route.params?.game;
 
-  console.log(route.params?.game);
-
   useEffect(() => {
-    api
-      .get(route.params?.game ? endpointCategoria : endpoint)
-      .then(function (response) {
-        // manipula o sucesso da requisição
-        setData(response.data);
-        console.log("AXIOS " + response.data);
-      })
-      .catch(function (error) {
-        // manipula erros da requisição
-        // console.error(error);
-      });
-  }, [route.params?.game]);
+    if (data == false || route.params?.game != oldParam) {
+      api
+        .get(route.params?.game ? endpointCategoria : endpoint)
+        .then(function (response) {
+          // manipula o sucesso da requisição
+          setData(response.data);
+          setOldParam(route.params?.game);
+        })
+        .catch(function (error) {
+          // manipula erros da requisição
+          console.error(error);
+        });
+    }
+  });
 
   useEffect(() => {
     return () => {
@@ -65,6 +67,7 @@ export default function ListScreen({ route }) {
             size={25}
             color="#FFF"
             style={styles.icon}
+            onPress={() => console.log("DASHBOARD")}
           />
           <MaterialIcons
             name="mic"
@@ -83,18 +86,6 @@ export default function ListScreen({ route }) {
             />
           </Pressable>
         </View>
-
-        {/* <View style={{ flex: 1 }}>
-          <Button title="Show modal" onPress={toggleModal} />
-
-          <Modal isVisible={isModalVisible}>
-            <View style={{ flex: 1 }}>
-              <Text>Hello!</Text>
-
-              <Button title="Hide modal" onPress={toggleModal} />
-            </View>
-          </Modal>
-        </View> */}
 
         <View style={styles.scrollVertical}>
           <ScrollView vertical showsVerticalScrollIndicator={false}>
