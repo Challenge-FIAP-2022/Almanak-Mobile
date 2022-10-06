@@ -9,7 +9,12 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
+export const RecommendedGameComponent = ({
+  category,
+  gameName,
+  urlImg,
+  gameID,
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -43,7 +48,14 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
         </View>
         <Pressable
           style={styles.button}
-          onPress={() => navigation.navigate("StackGame", {screen: "Game"})}
+          onPress={() =>
+            navigation.navigate("StackGame", {
+              screen: "Game",
+              params: {
+                game: gameID,
+              },
+            })
+          }
         >
           <Text style={styles.textButton}>Visualizar Jogo</Text>
         </Pressable>

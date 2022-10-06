@@ -5,47 +5,35 @@ import {
   Text,
   ScrollView,
   ImageBackground,
-  TextInput,
-  Pressable,
 } from "react-native";
-import GamesData from "../services/RecommendedGameService.json";
-import { ListGameComponent } from "../Components/ListGameComponent";
-import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import { api } from "../services/api";
 import MarketPlaceItensComponent from "../Components/MarketPlaceItensComponent";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default function MarketPlaceScreen() {
-  const navigation = useNavigation();
   const [data, setData] = useState([]);
-  
 
   useEffect(() => {
-   setData([{
-      id: 1,
-      jogo: "Baralho de Cartas",
-      imagem: "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-    },
-    {
-      id: 2,
-      jogo: "Tabuleiro Xadrez",
-      imagem: "https://static.turbosquid.com/Preview/2020/09/27__02_17_00/chess_light1.pngAA62607D-6DBD-4520-9788-87DFD4A3B39BLarge.jpg"
-    },
-    {
-      id: 3,
-      jogo: "Bola",
-      imagem: "https://images.unsplash.com/photo-1593786930094-d5c8164ac771?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-    },
-    ])
-    
+    setData([
+      {
+        id: 1,
+        jogo: "Baralho de Cartas",
+        imagem:
+          "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      },
+      {
+        id: 2,
+        jogo: "Tabuleiro Xadrez",
+        imagem:
+          "https://static.turbosquid.com/Preview/2020/09/27__02_17_00/chess_light1.pngAA62607D-6DBD-4520-9788-87DFD4A3B39BLarge.jpg",
+      },
+      {
+        id: 3,
+        jogo: "Bola",
+        imagem:
+          "https://images.unsplash.com/photo-1593786930094-d5c8164ac771?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      },
+    ]);
   }, []);
-
-  
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
 
   return (
     <ImageBackground
@@ -56,17 +44,14 @@ export default function MarketPlaceScreen() {
       <View style={styles.container}>
         <Text style={styles.textTitle}>Loja de Jogos</Text>
         <View style={styles.scrollVertical}>
-          
-           
-          <ScrollView vertical showsVerticalScrollIndicator={false}>
-            {data.map((item) => (
-              <MarketPlaceItensComponent
-                category={item.categoria}
-                gameName={item.jogo}
-                urlImg={item.imagem}
-              />
-            ))}
-          </ScrollView>
+          {data.map((item) => (
+            <MarketPlaceItensComponent
+              category={item.categoria}
+              gameName={item.jogo}
+              urlImg={item.imagem}
+              key={item.id}
+            />
+          ))}
         </View>
       </View>
     </ImageBackground>
@@ -79,16 +64,12 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   container: {
-    flex: 1,
-    alignItems: "center",
-    marginHorizontal:RFValue(20),
+    marginHorizontal: 20,
   },
   scrollVertical: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: RFValue(15),
-    marginBottom: RFValue(50),
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",

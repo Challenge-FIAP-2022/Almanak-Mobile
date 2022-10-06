@@ -10,8 +10,7 @@ import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryC
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
 import { useAuth } from "../contexts/Auth";
 import { api } from "../services/api";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default function HomeScreen() {
   const [gameData, setGameData] = useState([]);
@@ -59,6 +58,7 @@ export default function HomeScreen() {
               category={item.categorias[0].name}
               urlImg={item.imagem}
               key={item.id}
+              gameID={item.id}
             />
           ))}
         </ScrollView>

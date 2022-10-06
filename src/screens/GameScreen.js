@@ -14,12 +14,50 @@ import { Dimensions } from "react-native";
 import AccordionComponent from "../Components/AccordionComponent";
 import CommentComponent from "../Components/CommentComponent";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { api } from "../services/api";
+import { useEffect } from "react";
+import LoadingScreen from "./LoadingScreen";
 
-export default function GameScreen() {
+export default function GameScreen({ route }) {
   const navigation = useNavigation();
   const scrollRef = useRef(null);
   const windowWidth = Dimensions.get("window").width;
   const [active, setActive] = useState(1);
+  const [gameData, setGameData] = useState({});
+  const [comments, setComments] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  console.log(route.params);
+
+  function getComments() {
+    return api.get(`/avaliacao/jogo/${route.params?.game}`);
+  }
+
+  function getGame() {
+    return api.get(`/jogo/${route.params?.game}`);
+  }
+
+  useEffect(() => {
+    Promise.all([getGame(), getComments()]).then(function (results) {
+      const game = results[0].data;
+      const comments = results[1].data;
+
+      // console.log("REGRAS "+game.regras.length);
+      // var regras = ""
+      // game.regras.forEach(function(regra){
+      //   regras = regras.concat(regra.desc)
+      // })
+      // console.log(regras)
+      setGameData(game);
+      setComments(comments);
+
+      setIsLoading(false);
+    });
+  }, []);
+
+  if (isLoading === true) {
+    return <LoadingScreen />;
+  }
 
   return (
     <ImageBackground
@@ -30,11 +68,11 @@ export default function GameScreen() {
       <ImageBackground
         style={styles.imgGameBackground}
         source={{
-          uri: "https://images.unsplash.com/photo-1501003878151-d3cb87799705?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+          uri: gameData.imagem,
         }}
         blurRadius={5}
       >
-        <Text style={styles.gameTitle}>JOGO X</Text>
+        <Text style={styles.gameTitle}>{gameData.name}</Text>
       </ImageBackground>
 
       <View style={styles.container}>
@@ -127,9 +165,7 @@ export default function GameScreen() {
           horizontal={true}
           contentContainerStyle={{
             width: windowWidth * 3,
-            // display: "flex",
             flexDirection: "row",
-            // overflow: "hidden",
           }}
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={200}
@@ -141,7 +177,10 @@ export default function GameScreen() {
             let roundedScroll = Math.round(scrolling);
             if (roundedScroll < windowWidth) {
               setActive(1);
-            } else if (roundedScroll >= windowWidth && roundedScroll < windowWidth * 2) {
+            } else if (
+              roundedScroll >= windowWidth &&
+              roundedScroll < windowWidth * 2
+            ) {
               setActive(2);
             } else if (roundedScroll >= windowWidth * 2) {
               setActive(3);
@@ -152,16 +191,20 @@ export default function GameScreen() {
           <View style={[styles.carousel, { overflow: "scroll" }]}>
             <View style={styles.informacoes}>
               <Text style={styles.textTitle}>Categoria:</Text>
-              <Text style={styles.textInfo}>Cartas</Text>
+              <Text style={styles.textInfo}>{gameData.categorias[0].name}</Text>
               <Text style={styles.textTitle}>Itens:</Text>
-              <Text style={styles.textInfo}>Baralho</Text>
+              <Text style={styles.textInfo}>
+                {gameData.itens[0]?.item.name}
+              </Text>
               <Text style={styles.textTitle}>Quantidade de Jogadores:</Text>
-              <Text style={styles.textInfo}>2 - 6 jogadores</Text>
+              <Text style={styles.textInfo}>
+                {gameData.maxJogadores ? gameData.maxJogadores : "indefinido"}
+              </Text>
               <Text style={styles.textTitle}>Avaliação do Jogo:</Text>
               <View style={styles.avaliation}>
                 <Text style={styles.textAvaliation}>
                   4,5
-                  <RatingComponent score={5} color={"#FFF"} />
+                  <RatingComponent score={gameData.score} color={"#FFF"} />
                 </Text>
               </View>
             </View>
@@ -174,15 +217,20 @@ export default function GameScreen() {
                 paddingHorizontal: RFValue(40),
               }}
             >
-              <AccordionComponent
-                title={"Regra Principal"}
-                text={
-                  "Utiliza-se dois baralhos de 52 cartas, com os coringas. Podem haver de dois a seis jogadores. O jogo com dois ou três participantes tem contagem individual. Quando quatro ou seis pessoas participam, duas duplas são formadas, devendo sentar em posições alternadas."
-                }
-                icon={"volume-high"}
-                iconColor={"#FFFF00"}
-                // func={clica}
-              />
+              {/* {gameData.map((item) => {
+                var regras = ""
+                item.regras.forEach(function(regra){
+                  regras = regras.concat(regra.desc)
+                  console.log(regras)
+                }),
+                <AccordionComponent
+                  title={"Regra Principal"}
+                  text={regras}
+                  icon={"volume-high"}
+                  iconColor={"#FFFF00"}
+                  // func={clica}
+                />
+                })} */}
               <AccordionComponent title={"Opcional"} text={"Opcionais"} />
               <AccordionComponent title={"Extras"} text={"Extras"} />
             </View>
@@ -190,10 +238,14 @@ export default function GameScreen() {
 
           <View style={[styles.carousel, { overflow: "scroll" }]}>
             <ScrollView nestedScrollEnabled={true}>
-              <View style={{ marginHorizontal: RFValue(40),}}>
-                <CommentComponent />
-                <CommentComponent />
-                <CommentComponent />
+              <View style={{ marginHorizontal: RFValue(40) }}>
+                {comments.map((item) => (
+                  <CommentComponent
+                    user={item.usuarioDTO.nome}
+                    score={item.nota}
+                    key={item.id}
+                  />
+                ))}
               </View>
             </ScrollView>
           </View>
@@ -203,9 +255,19 @@ export default function GameScreen() {
         name={"message-question-outline"}
         size={56}
         color="#FFFF00"
-        onPress={() => navigation.navigate("Chat")}
-        style={{ position: "absolute", bottom: RFPercentage(8), right: RFPercentage(3) }
-      }
+        onPress={() =>
+          navigation.navigate("StackGame", {
+            screen: "Chat",
+            params: {
+              game: route.params?.game,
+            },
+          })
+        }
+        style={{
+          position: "absolute",
+          bottom: RFPercentage(8),
+          right: RFPercentage(3),
+        }}
       />
     </ImageBackground>
   );

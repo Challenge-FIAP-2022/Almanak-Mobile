@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import RatingComponent from "../Components/RatingComponent";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default function CommentComponent({ user, text, score }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.textTitle}>Usuário</Text>
+      <Text style={styles.textTitle}>{user}</Text>
       <View
         style={{
           justifyContent: "center",
@@ -16,7 +16,7 @@ export default function CommentComponent({ user, text, score }) {
           paddingBottom: RFValue(10),
         }}
       >
-        <RatingComponent score={5} color={"#FFF"} />
+        <RatingComponent score={score} color={"#FFF"} />
       </View>
       <Text style={styles.userAvaliation}>
         Achei o aplicativo maravilhoso. Tenho vários itens que consigo usar para

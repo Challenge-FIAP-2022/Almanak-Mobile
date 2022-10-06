@@ -12,16 +12,21 @@ import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../services/api";
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default function ListScreen({ route }) {
   const navigation = useNavigation();
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [oldParam, setOldParam] = useState();
 
+  const endpointPesquisa = "/jogo/nome/" + search;
   const endpoint = "/jogo/valido/sim";
   const endpointCategoria = "/jogo/categoria/" + route.params?.game;
+
+  function Searching() {
+    return console.log(search);
+  }
 
   useEffect(() => {
     if (data == false || route.params?.game != oldParam) {
@@ -44,6 +49,7 @@ export default function ListScreen({ route }) {
       navigation.addListener("blur", () => {
         navigation.setParams({ game: null });
         setData([]);
+        setSearch("");
       });
     };
   }, [navigation]);
@@ -59,6 +65,8 @@ export default function ListScreen({ route }) {
 
         <View style={styles.textInputAndIcons}>
           <TextInput
+            value={search}
+            onChangeText={(searchInput) => setSearch(searchInput)}
             style={styles.textInput}
             placeholder="Pesquisar jogos"
             placeholderTextColor="#FFFFFF"
@@ -68,7 +76,7 @@ export default function ListScreen({ route }) {
             size={RFValue(25)}
             color="#FFF"
             style={styles.icon}
-            onPress={() => console.log("DASHBOARD")}
+            onPress={() => Searching}
           />
           <MaterialIcons
             name="mic"

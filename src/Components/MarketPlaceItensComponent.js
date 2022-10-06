@@ -3,9 +3,8 @@ import React from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-export default function MarketPlaceItensComponent  ({ gameName, urlImg }) {
-
-  const preco = (Math.floor(Math.random() * 200) + 10)/10;
+export default function MarketPlaceItensComponent({ gameName, urlImg }) {
+  const preco = (Math.floor(Math.random() * 200) + 10) / 10;
   return (
     <Pressable style={styles.card}>
       <View style={styles.container}>
@@ -34,20 +33,20 @@ export default function MarketPlaceItensComponent  ({ gameName, urlImg }) {
 
       <View style={styles.estrelas}>
         <Text
-            style={{
-              fontFamily: "SquadaOne_400Regular",
-              fontSize: RFValue(25),
-              height: RFValue(30),
-              marginTop: RFValue(10),
-              color: "#FFF",
-            }}
-          > 
-           Preço: R${(preco % 10 == 0) ? preco + ".00" : preco + "0"}   
-          </Text>
+          style={{
+            fontFamily: "SquadaOne_400Regular",
+            fontSize: RFValue(25),
+            height: RFValue(30),
+            marginTop: RFValue(10),
+            color: "#FFF",
+          }}
+        >
+          Preço: R${preco % 10 == 0 ? preco + ".00" : preco + "0"}
+        </Text>
       </View>
     </Pressable>
   );
-};
+}
 
 const styles = StyleSheet.create({
   img: {
@@ -59,12 +58,11 @@ const styles = StyleSheet.create({
     marginTop: RFValue(45),
   },
   card: {
-    flexDirection: "column",
     justifyContent: "space-between",
     borderWidth: 2,
     borderColor: "#296D98",
     height: RFValue(100),
-    width: RFValue(310),
+    width: "100%",
     borderRadius: 10,
     marginBottom: RFValue(20),
     backgroundColor: "#132E3D",
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
     padding: RFValue(10),
     marginBottom: "auto",
     backgroundColor: "rgba(15, 146, 203, 0.15)",
-    width: RFValue(320),
+    width: "100%",
     height: RFValue(55),
   },
   text: {
