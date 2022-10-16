@@ -30,5 +30,8 @@ de jogos na tela. Você pode consultar as regras do jogo, avaliar, comentar, ent
 O protótipo da aplicação mobile pode ser consultado através do link:
 
 <a href="https://www.figma.com/file/KckhP8iEMtydbC4p6W7ajc/AlmanaK-App?node-id=438%3A755">Protótipo</a>
+
+
+TesteCICD
 <hr>
 <br>
