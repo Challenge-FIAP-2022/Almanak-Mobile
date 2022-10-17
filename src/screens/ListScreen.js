@@ -8,24 +8,51 @@ import {
   TextInput,
   Pressable,
 } from "react-native";
-import GamesData from "../services/RecommendedGameService.json";
 import { ListGameComponent } from "../Components/ListGameComponent";
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { api } from "../services/api";
+import { RFValue } from "react-native-responsive-fontsize";
 
-export default function ListScreen() {
-
+export default function ListScreen({ route }) {
   const navigation = useNavigation();
+  const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
+  const [oldParam, setOldParam] = useState();
 
-  const [isModalVisible, setModalVisible] = useState(false);
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  const endpointPesquisa = "/jogo/nome/" + search;
+  const endpoint = "/jogo/valido/sim";
+  const endpointCategoria = "/jogo/categoria/" + route.params?.game;
+
+  function Searching() {
+    return console.log(search);
+  }
 
   useEffect(() => {
-    setData(GamesData.games);
-  }, []);
+    if (data == false || route.params?.game != oldParam) {
+      api
+        .get(route.params?.game ? endpointCategoria : endpoint)
+        .then(function (response) {
+          // manipula o sucesso da requisição
+          setData(response.data);
+          setOldParam(route.params?.game);
+        })
+        .catch(function (error) {
+          // manipula erros da requisição
+          console.error(error);
+        });
+    }
+  });
+
+  useEffect(() => {
+    return () => {
+      navigation.addListener("blur", () => {
+        navigation.setParams({ game: null });
+        setData([]);
+        setSearch("");
+      });
+    };
+  }, [navigation]);
 
   return (
     <ImageBackground
@@ -38,19 +65,22 @@ export default function ListScreen() {
 
         <View style={styles.textInputAndIcons}>
           <TextInput
+            value={search}
+            onChangeText={(searchInput) => setSearch(searchInput)}
             style={styles.textInput}
             placeholder="Pesquisar jogos"
             placeholderTextColor="#FFFFFF"
           />
           <MaterialIcons
             name="search"
-            size={25}
+            size={RFValue(25)}
             color="#FFF"
             style={styles.icon}
+            onPress={() => Searching}
           />
           <MaterialIcons
             name="mic"
-            size={25}
+            size={RFValue(25)}
             color="#FFF"
             style={styles.icon}
           />
@@ -58,7 +88,7 @@ export default function ListScreen() {
           <Pressable>
             <MaterialCommunityIcons
               name="filter"
-              size={25}
+              size={RFValue(25)}
               color="#FFF"
               style={styles.icon}
               onPress={() => navigation.navigate("Filter")}
@@ -66,26 +96,15 @@ export default function ListScreen() {
           </Pressable>
         </View>
 
-        {/* <View style={{ flex: 1 }}>
-          <Button title="Show modal" onPress={toggleModal} />
-
-          <Modal isVisible={isModalVisible}>
-            <View style={{ flex: 1 }}>
-              <Text>Hello!</Text>
-
-              <Button title="Hide modal" onPress={toggleModal} />
-            </View>
-          </Modal>
-        </View> */}
-
         <View style={styles.scrollVertical}>
           <ScrollView vertical showsVerticalScrollIndicator={false}>
             {data.map((item) => (
               <ListGameComponent
-                category={item.categoria}
-                gameName={item.jogo}
+                category={item.categorias[0].name}
+                gameName={item.name}
                 urlImg={item.imagem}
                 key={item.id}
+                score={item.score}
               />
             ))}
           </ScrollView>
@@ -103,32 +122,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    marginHorizontal: 20,
+    marginHorizontal: RFValue(20),
   },
   scrollVertical: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 15,
-    marginBottom: 50,
+    marginTop: RFValue(15),
+    marginBottom: RFValue(50),
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 28,
-    lineHeight: 40,
+    fontSize: RFValue(28),
+    lineHeight: RFValue(40),
     textAlign: "center",
     alignSelf: "center",
-    marginTop: 60,
-    marginBottom: 15,
-    width: 320,
+    marginTop: RFValue(60),
+    marginBottom: RFValue(15),
+    width: RFValue(300),
   },
   textInputAndIcons: {
-    width: 320,
+    width: RFValue(300),
     flexDirection: "row",
     alignItems: "center",
-    height: 40,
-    margin: 10,
+    height: RFValue(40),
+    margin: RFValue(10),
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
@@ -136,13 +155,13 @@ const styles = StyleSheet.create({
   textInput: {
     fontFamily: "SquadaOne_400Regular",
     textAlign: "left",
-    paddingLeft: 20,
+    paddingLeft: RFValue(20),
     color: "white",
-    fontSize: 20,
+    fontSize: RFValue(20),
   },
   icon: {
     alignSelf: "center",
-    paddingStart: 20,
+    paddingStart: RFValue(10),
     justifyContent: "space-between",
   },
 });

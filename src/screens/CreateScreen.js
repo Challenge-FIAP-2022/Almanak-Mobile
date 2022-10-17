@@ -1,5 +1,5 @@
 // import { CheckBox } from "@rneui/themed";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   StyleSheet,
   ImageBackground,
@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import RadioButton from "react-native-paper";
 import MultipleSelectListComponent from "../Components/MultipleSelectListComponent";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function CreateScreen() {
   // const [check2, setCheck2] = useState(false);
@@ -23,7 +24,7 @@ export default function CreateScreen() {
     >
       <Text style={styles.textTitle}>Cadastrar Novo Jogo</Text>
 
-      <View style={styles.scrollVertical} >
+      <View style={styles.scrollVertical}>
         <ScrollView vertical showsVerticalScrollIndicator={false}>
           <View style={styles.textInput}>
             <Text style={styles.titleInput}>Nome do Jogo:</Text>
@@ -81,7 +82,6 @@ export default function CreateScreen() {
               placeholderTextColor="#FFFFFF"
             />
 
-
             <Text style={styles.titleInput}>
               Quais itens são necessários no jogo:
             </Text>
@@ -101,18 +101,18 @@ const styles = StyleSheet.create({
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 28,
-    lineHeight: 40,
+    fontSize: RFValue(28),
+    lineHeight: RFValue(40),
     textAlign: "center",
     alignSelf: "center",
-    marginTop: 60,
-    width: 320,
+    marginTop: RFValue(60),
+    width: RFValue(320),
   },
   scrollVertical: {
     flex: 1,
-    marginTop: 20,
-    marginBottom: 80,
-    marginHorizontal: 20,
+    marginTop: RFValue(20),
+    marginBottom: RFValue(80),
+    marginHorizontal: RFValue(20),
   },
   textInput: {
     flex: 1,
@@ -120,20 +120,20 @@ const styles = StyleSheet.create({
   },
   titleInput: {
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 20,
+    fontSize: RFValue(20),
     color: "#FFF",
-    marginHorizontal: 15,
-    marginVertical: 15,
+    marginHorizontal: RFValue(15),
+    marginVertical: RFValue(15),
   },
   answerInput: {
     fontFamily: "Rubik_400Regular",
-    fontSize: 16,
+    fontSize: RFValue(16),
     color: "#FFF",
     borderWidth: 2,
     borderColor: "#296D98",
     borderRadius: 10,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
+    paddingHorizontal: RFValue(15),
+    paddingVertical: RFValue(10),
     alignItems: "center",
     textAlignVertical: "center",
     textAlign: "left",
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
   },
   test: {
-    paddingHorizontal: 35,
+    paddingHorizontal: RFValue(35),
   },
   radioButtonGroup: {
     justifyContent: "space-between",
@@ -154,23 +154,23 @@ const styles = StyleSheet.create({
   radioButtonIndividual: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 2,
+    marginVertical: RFValue(2),
   },
   textRadio: {
-    marginLeft: 5,
-    color: '#FFF',
-    fontFamily: 'SquadaOne_400Regular',
-    fontSize: 18,
+    marginLeft: RFValue(5),
+    color: "#FFF",
+    fontFamily: "SquadaOne_400Regular",
+    fontSize: RFValue(18),
   },
   arrumar: {
     borderWidth: 3,
     borderColor: "#FFFF00",
     color: "#FFF",
     width: "100%",
-    height: 50,
+    height: RFValue(50),
     alignSelf: "center",
     textAlign: "center",
-    fontSize: 20,
-    margin: 20,
+    fontSize: RFValue(20),
+    margin: RFValue(20),
   },
 });

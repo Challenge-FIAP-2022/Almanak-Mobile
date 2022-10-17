@@ -12,6 +12,7 @@ import {
   Platform,
 } from "react-native";
 import { api } from "../services/api";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function RegisterScreen() {
   const [userName, setUserName] = useState("");
@@ -150,43 +151,43 @@ const styles = StyleSheet.create({
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 40,
+    fontSize: RFValue(40),
     textShadowColor: "white",
     textShadowRadius: 1,
     textShadowOffset: {
       width: 2,
       height: 2,
     },
-    marginVertical: 30,
+    marginVertical: RFValue(30),
   },
   text: {
     fontFamily: "SquadaOne_400Regular",
-    fontSize: 36,
+    fontSize: RFValue(36),
     color: "#FFFFFF",
     alignSelf: "flex-start",
-    marginLeft: 40,
+    marginLeft: RFValue(40),
   },
   textInput: {
-    height: 40,
+    height: RFValue(40),
     width: "80%",
-    margin: 10,
+    margin: RFValue(10),
     textAlign: "left",
     borderWidth: 2,
     borderColor: "#296D98",
-    paddingLeft: 20,
+    paddingLeft: RFValue(20),
     borderRadius: 10,
     color: "white",
-    fontSize: 15,
+    fontSize: RFValue(15),
     backgroundColor: "rgba(14, 36, 51, 0.2)",
   },
   button: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingVertical: RFValue(12),
+    paddingHorizontal: RFValue(32),
     borderRadius: 10,
     backgroundColor: "#3792CB",
-    marginTop: 20,
+    marginTop: RFValue(20),
     width: "60%",
   },
   textButton: {
@@ -198,12 +199,12 @@ const styles = StyleSheet.create({
   secondText: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFFFFF",
-    fontSize: 16,
-    margin: 20,
+    fontSize: RFValue(16),
+    margin: RFValue(20),
   },
   registerText: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFFF00",
-    fontSize: 16,
+    fontSize: RFValue(16),
   },
 });

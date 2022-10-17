@@ -8,18 +8,21 @@ import {
 } from "react-native";
 import { RecommendedCategoryComponent } from "../Components/RecommendedCategoryComponent";
 import { RecommendedGameComponent } from "../Components/RecommendedGameComponent";
+import { useAuth } from "../contexts/Auth";
 import { api } from "../services/api";
+import { RFValue } from "react-native-responsive-fontsize";
 
 export default function HomeScreen() {
   const [gameData, setGameData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
+  const { authData } = useAuth();
 
   function getCategories() {
     return api.get("/categoria/adj");
   }
 
   function getGames() {
-    return api.get("/jogo/valido/sim");
+    return api.get(`/jogo/recomendados/${authData.id}`);
   }
 
   useEffect(() => {
@@ -27,10 +30,7 @@ export default function HomeScreen() {
       const games = results[0].data;
       const categories = results[1].data;
 
-      // console.log(games);
       setGameData(games);
-
-      // console.log(categories);
       setCategoryData(categories);
     });
   }, []);
@@ -47,13 +47,18 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.scrollHorizontal}>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {gameData.map((item, idx) => (
+        <ScrollView
+          contentContainerStyle={{ alignItems: "center" }}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          {gameData.map((item) => (
             <RecommendedGameComponent
               gameName={item.name}
               category={item.categorias[0].name}
               urlImg={item.imagem}
-              key={idx}
+              key={item.id}
+              gameID={item.id}
             />
           ))}
         </ScrollView>
@@ -68,6 +73,7 @@ export default function HomeScreen() {
               icon={item.icone}
               categoryName={item.name}
               key={item.id}
+              id={item.id}
             />
           ))}
         </ScrollView>
@@ -84,36 +90,37 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.25,
     justifyContent: "flex-end",
-    marginBottom: 20,
-    marginTop: 50,
+    marginBottom: RFValue(20),
+    marginTop: RFValue(50),
   },
   textTitle: {
     fontFamily: "PressStart2P_400Regular",
     color: "#FFFF00",
-    fontSize: 36,
+    fontSize: RFValue(36),
     textShadowColor: "white",
     textShadowRadius: 1,
     textShadowOffset: {
       width: 2,
       height: 2,
     },
-    marginBottom: 20,
+    marginBottom: RFValue(20),
     alignSelf: "center",
   },
   secondText: {
     fontFamily: "SquadaOne_400Regular",
     color: "#FFF",
-    fontSize: 32,
+    fontSize: RFValue(32),
     alignSelf: "center",
+    paddingTop: RFValue(10),
   },
   scrollHorizontal: {
-    flex: 0.3,
-    marginBottom: 15,
-    marginRight: 20,
+    flex: 0.35,
+    // marginBottom: 15,
+    marginRight: RFValue(20),
   },
   scrollVertical: {
     flex: 0.5,
-    marginTop: 20,
-    marginBottom: 80,
+    marginTop: RFValue(20),
+    marginBottom: RFValue(80),
   },
 });

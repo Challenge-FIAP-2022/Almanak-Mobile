@@ -6,8 +6,17 @@ import {
   Pressable,
   Text,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
+export const RecommendedGameComponent = ({
+  category,
+  gameName,
+  urlImg,
+  gameID,
+}) => {
+  const navigation = useNavigation();
+
   return (
     <ImageBackground
       style={styles.imgBg}
@@ -23,23 +32,31 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
               fontFamily: "SquadaOne_400Regular",
               fontSize: 18,
               color: "#0E2433",
-              // width: "75%",
             }}
           >
-            {category}
+            {category.length < 12 ? category : category.slice(0, 12) + "..."}
           </Text>
           <Text
             style={{
               fontFamily: "SquadaOne_400Regular",
               fontSize: 24,
               color: "#0E2433",
-              // width: "75%",
             }}
           >
-            {gameName}
+            {gameName.length < 12 ? gameName : gameName.slice(0, 12) + "..."}
           </Text>
         </View>
-        <Pressable style={styles.button}>
+        <Pressable
+          style={styles.button}
+          onPress={() =>
+            navigation.navigate("StackGame", {
+              screen: "Game",
+              params: {
+                game: gameID,
+              },
+            })
+          }
+        >
           <Text style={styles.textButton}>Visualizar Jogo</Text>
         </Pressable>
       </View>
@@ -49,18 +66,18 @@ export const RecommendedGameComponent = ({ category, gameName, urlImg }) => {
 
 const styles = StyleSheet.create({
   imgBg: {
-    width: 220,
-    height: 175,
+    width: RFValue(220),
+    height: RFValue(175),
     resizeMode: "contain",
     backgroundColor: "#1C4966",
     borderRadius: 10,
-    marginStart: 20,
+    marginStart: RFValue(20),
   },
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 10,
+    padding: RFValue(10),
     marginTop: "auto",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
     borderBottomLeftRadius: 10,
@@ -72,14 +89,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
-    padding: 5,
+    padding: RFValue(5),
     // width: "30%",
     // marginRight: 2,
   },
   textButton: {
     fontFamily: "Rubik_400Regular",
     color: "#FFF",
-    fontSize: 9,
+    fontSize: RFValue(9),
     textAlign: "center",
   },
 });

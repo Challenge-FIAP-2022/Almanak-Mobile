@@ -1,21 +1,31 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { AirbnbRating } from "@rneui/themed";
+import { RFValue } from "react-native-responsive-fontsize";
 
-const RatingComponent = () => {
+const RatingComponent = ({ score, color, disabled = true }) => {
+  function ratingCompleted(rating) {
+    return rating
+  }
+
   return (
     <View style={styles.container}>
       <AirbnbRating
-        ratingColor="#ffff00"
+        selectedColor={color ? color : "#FFFF00"}
         ratingBackgroundColor="#0E2433"
-        count={5}
-        size={20}
-        reviewSize={20}
+        count={score}
+        size={RFValue(20)}
         half={true}
-        defaultRating={4}
+        defaultRating={5}
         reviews
-        isDisabled
-        // starContainerStyle={{borderWidth: 2}}
+        isDisabled={disabled}
+        unSelectedColor={"#BDC3C7"}
+        onFinishRating={ratingCompleted(score)}
+        ratingContainerStyle={{
+          height: RFValue(35),
+          alignItems: "flex-start",
+          paddingBottom: RFValue(10),
+        }}
       />
     </View>
   );
@@ -23,12 +33,8 @@ const RatingComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.2,
-    backgroundColor: "transparent",
-    alignContent: "space-between",
-    justifyContent: "space-between",
-    // marginBottom: 30,
-    // alignSelf: "center"
+    width: "100%",
+    justifyContent: "center",
   },
 });
 

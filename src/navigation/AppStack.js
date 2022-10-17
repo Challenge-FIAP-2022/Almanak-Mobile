@@ -1,23 +1,58 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "../screens/HomeScreen";
 import ListScreen from "../screens/ListScreen";
 import CreateScreen from "../screens/CreateScreen";
 import SignaturesScreen from "../screens/SignaturesScreen";
 import UserScreen from "../screens/UserScreen";
-import FilterScreen from "../screens/FilterScreen"
+import FilterScreen from "../screens/FilterScreen";
+import MarketPlaceScreen from "../screens/MarketPlaceScreen";
 
 import ButtonNewComponent from "../Components/ButtonNewComponent";
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons  } from "@expo/vector-icons";
+import GameScreen from "../screens/GameScreen";
+import ChatScreen from "../screens/ChatScreen";
 
+const Stack = createNativeStackNavigator();
+
+function StackPart() {
+  return (
+    <Stack.Navigator
+      initialRouteName="List"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="List" component={ListScreen} />
+      <Stack.Screen name="Filter" component={FilterScreen} />
+      <Stack.Screen name="Game" component={GameScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function StackGame() {
+  return (
+    <Stack.Navigator
+      initialRouteName="HomeStack"
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="HomeStack" component={HomeScreen} />
+      <Stack.Screen name="Game" component={GameScreen} />
+      <Stack.Screen name="Chat" component={ChatScreen} />
+      <Stack.Screen name="ListGameStack" component={ListScreen} />
+    </Stack.Navigator>
+  );
+}
 
 const Tab = createBottomTabNavigator();
 
 export function AppStack() {
   return (
-
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
@@ -34,8 +69,8 @@ export function AppStack() {
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        name="StackGame"
+        component={StackGame}
         options={{
           tabBarIcon: ({ size, color, focused }) => {
             if (focused) {
@@ -48,8 +83,8 @@ export function AppStack() {
       />
 
       <Tab.Screen
-        name="Games"
-        component={ListScreen}
+        name="StackPart"
+        component={StackPart}
         options={{
           tabBarIcon: ({ size, color, focused }) => {
             if (focused) {
@@ -63,7 +98,7 @@ export function AppStack() {
 
       <Tab.Screen
         name="New"
-        component={CreateScreen}
+        component={MarketPlaceScreen}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ size, focused }) => (
@@ -78,10 +113,10 @@ export function AppStack() {
         options={{
           tabBarIcon: ({ size, color, focused }) => {
             if (focused) {
-              return <Ionicons name="cart" size={size} color={color} />;
+              return <MaterialCommunityIcons name="credit-card-outline" size={size} color={color} />;
             }
 
-            return <Ionicons name="cart-outline" size={size} color={color} />;
+            return <MaterialCommunityIcons name="credit-card-outline" size={size} color={color} />;
           },
         }}
       />
@@ -99,21 +134,6 @@ export function AppStack() {
           },
         }}
       />
-
-      <Tab.Screen
-        
-        name="Filter"
-        component={FilterScreen}
-        options={{
-          tabBarIcon: ({})=>{
-            return
-          }
-        }}
-        />
-
     </Tab.Navigator>
-
-
-    
   );
 }

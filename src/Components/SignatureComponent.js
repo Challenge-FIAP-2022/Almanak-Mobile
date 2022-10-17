@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const SignaturesComponent = ({ name, desc, value }) => {
   return (
@@ -24,63 +25,66 @@ export const SignaturesComponent = ({ name, desc, value }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 220,
-    height: 400,
+    width: RFValue(220),
+    height: RFValue(420),
     borderWidth: 2,
     borderColor: "white",
     borderRadius: 10,
-    marginHorizontal: 10,
-    // marginLeft: 20,
-    // marginRight: 20,
+    marginHorizontal: RFValue(10),
   },
   titleContainer: {
-    flex: 0.3,
+    flex: 0.25,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFFF00",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    
   },
   title: {
     fontFamily: "PressStart2P_400Regular",
     color: "#0E2333",
-    fontSize: 22,
+    fontSize: RFValue(22),
     alignSelf: "center",
-
   },
 
   button: {
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 10,
-    backgroundColor: "#3939",
-    marginTop: 20,
-    width: 150,
-    height: 40,
+    backgroundColor: "#FFFF00",
+    marginTop: RFValue(20),
+    width: RFValue(150),
+    height: RFValue(40),
     alignSelf: "center",
-    marginBottom: 50,
+    marginBottom: RFValue(20),
+    borderWidth: 2,
+    borderColor: "#0E2333",
   },
   textButton: {
     fontFamily: "PressStart2P_400Regular",
-    color: "#FFFF00",
-    fontSize: 13,
-    marginTop: 5,
+    color: "#0E2333",
+    fontSize: RFValue(11),
+    marginTop: RFValue(5),
     textAlign: "center",
-    lineHeight: 17,
+    lineHeight: RFValue(16),
   },
   text: {
     fontFamily: "Rubik_400Regular",
-    fontSize: 18,
+    fontSize: RFValue(16),
     color: "#FFFFFF",
-    padding: 20,
+    paddingHorizontal: RFValue(20),
+    marginTop: RFValue(20),
+    height: RFValue(200),
+    width: "100%",
   },
   line: {
     backgroundColor: "#FFFF00",
     width: "90%",
-    height: 2,
+    height: RFValue(2),
     alignSelf: "center",
     marginTop: "auto",
-    marginBottom: 20,
+    marginBottom: RFValue(20),
   },
   containerBody: {
     backgroundColor: "#3792CB",
