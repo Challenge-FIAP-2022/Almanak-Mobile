@@ -13,7 +13,7 @@ import MultipleSelectListComponent from "../Components/MultipleSelectListCompone
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function CreateScreen() {
-  // const [check2, setCheck2] = useState(false);
+  
   const [radioIdade, setRadioIdade] = useState("menoresIdade");
 
   return (
@@ -49,43 +49,9 @@ export default function CreateScreen() {
                 keyboardType="number-pad"
               />
             </View>
-
-            {/* <View>
-              <Text style={styles.titleInput}>O jogo permite jogadores menores de idade?:</Text>
-              <View style={styles.radioButtonGroup}>
-                <View style={styles.radioButtonIndividual}>
-                  <RadioButton
-                    value="maioresIdade"
-                    status={radioIdade === "maioresIdade" ? "checked" : "unchecked"}
-                    onPress={() => setRadioIdade("maioresIdade")}
-                    uncheckedColor="#296D98"
-                    color="#FFFF00"
-                  />
-                  <Text style={styles.textRadio}>Não, todos devem ser maiores de idade</Text>
-                </View>
-                <View style={styles.radioButtonIndividual}>
-                  <RadioButton
-                    value="menoresIdade"
-                    status={radioIdade === "menoresIdade" ? "checked" : "unchecked"}
-                    onPress={() => setRadioIdade("menoresIdade")}
-                    uncheckedColor="#296D98"
-                    color="#FFFF00"
-                  />
-                  <Text style={styles.textRadio}>Sim, permitir jogadores de todas as idades</Text>
-                </View>
-              </View>
-            </View> */}
-
-            <TextInput
-              style={styles.arrumar}
-              placeholder="VER ESSA PARTE"
-              placeholderTextColor="#FFFFFF"
-            />
-
             <Text style={styles.titleInput}>
               Quais itens são necessários no jogo:
             </Text>
-            {/* <MultipleSelectListComponent /> */}
           </View>
         </ScrollView>
       </View>
